@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">CalendarTest</string>
+    <string name="mapsearch">高德地图</string>
+    <string name="destination">旅行目的地</string>
+    <string name="addnew">添加行程</string>
+    <string name="destination_hint">请输入旅行的城市</string>
+
+    <string name="current_date">出发日期</string>
+    <string name="current_time">出发时间</string>
+    <string name="current_date2">回程日期</string>
+    <string name="current_time2">回程时间</string>
+    <string name="plan_cost">预计开销</string>
+    <string name="plan_cost_hint">请输入预计开销</string>
+    <string name="introduction">旅行简介</string>
+    <string name="introduction_hint">不超过20字符</string>
+    <string name="isremind">在出发前一天提醒我</string>
+    <string name="submit">提交</string>
+
+
+    <string-array name="custom_myweekdays">
+        <item>日</item>
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+    </string-array>
+
+</resources>

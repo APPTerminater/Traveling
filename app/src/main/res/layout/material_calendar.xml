@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="#00F"
+        />
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:orientation="horizontal">
+        <TextView android:layout_width="96dp"
+            android:layout_height="match_parent"
+            android:background="#b2dfdb" />
+        <TextView android:layout_width="96dp"
+            android:layout_height="match_parent"
+            android:background="#80cbc4" />
+        <TextView android:layout_width="96dp"
+            android:layout_height="match_parent"
+            android:background="#4db6ac" />
+        <TextView android:layout_width="96dp"
+            android:layout_height="match_parent"
+            android:background="#26a69a" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="#b2dfdb" />
+    <TextView android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="#80cbc4" />
+    <TextView android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="#4db6ac" />
+    <TextView android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="#26a69a" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
