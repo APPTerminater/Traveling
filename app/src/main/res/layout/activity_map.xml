@@ -16,14 +16,17 @@
         android:onClick="Back_Map"
         android:visibility="gone"
         />
+
     <ImageView
         android:id="@+id/go_where"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="172dp"
+        android:layout_height="143dp"
+        android:layout_alignBottom="@+id/nav_fragment"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
-        android:src="@drawable/map_destination_press"
-        android:onClick="Enter_SearchPage"/>
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="96dp"
+        android:onClick="Enter_SearchPage"
+        android:src="@drawable/map_destination_press" />
     <FrameLayout
         android:id="@+id/search_page"
         android:layout_alignParentBottom="true"
