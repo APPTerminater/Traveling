@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/mEtName"
+        android:hint="请输入您的昵称"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    </EditText>
+    <EditText
+        android:id="@+id/mEtBirthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入您的生日"
+        android:inputType="date" />
+    <EditText
+        android:id="@+id/mEtPlaceNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入您的所在地" />
+    <EditText
+        android:id="@+id/mEtWalkDaily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入您的日均步数"
+        android:inputType="number" />
+    <Button
+        android:onClick="add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="添加" />
+    <Button
+        android:onClick="delete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="删除" />
+    <Button
+        android:onClick="update"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="修改" />
+    <Button
+        android:onClick="query"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="查询" />
+</LinearLayout>

@@ -25,7 +25,7 @@ import android.support.annotation.Nullable;
 //import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
-import com.tongji.lisa1225.calendartest.MyStepActivity;
+import com.tongji.lisa1225.calendartest.*;
 import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.config.Constant;
 import com.tongji.lisa1225.calendartest.pojo.StepData;

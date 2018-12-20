@@ -30,6 +30,7 @@ import butterknife.*;
 
 public class MainActivity extends AppCompatActivity {
     ActionBar actionBar; //声明ActionBar
+    long selectday,selectmonth,selectyear;
     //@BindView(R.id.imcv_tem_mater_calendar_week)
     //MaterialCalendarView imcvTemMaterCalendarWeek=findViewById(R.id.calendarView);
 
@@ -88,7 +89,13 @@ public class MainActivity extends AppCompatActivity {
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) { //在这个方法中处理选中事件。
                 // dealWithData(date);
                 // 给bnt1添加点击响应事件
+                selectday=date.getDay();
+                selectmonth=date.getMonth()+1;
+                selectyear=date.getYear();
+                //Date nowdate = new Date(System.currentTimeMillis());
                 Intent dateintent =new Intent(MainActivity.this,DateActivity.class);
+                //if(nowdate.)
+                dateintent.putExtra("selectdate",String.valueOf(selectyear)+"年"+String.valueOf(selectmonth)+"月"+String.valueOf(selectday)+"日");
                 //启动
                 startActivity(dateintent);
             }

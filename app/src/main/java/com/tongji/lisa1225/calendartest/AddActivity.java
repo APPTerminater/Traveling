@@ -1,5 +1,7 @@
 package com.tongji.lisa1225.calendartest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +27,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     long tenYears = 10L * 365 * 1000 * 60 * 60 * 24L;
 
     //测试日期有效性
-    long time1,time2;
+    long starttime,backtime;
 
     SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
@@ -36,19 +38,19 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
         selectTime = (RelativeLayout) findViewById(R.id.selectTime);
         selectTime.setOnClickListener(this);
-       // selectDate = (RelativeLayout) findViewById(R.id.selectDate);
-       // selectDate.setOnClickListener(this);
-       // currentDate = (TextView) findViewById(R.id.currentDate);
+        // selectDate = (RelativeLayout) findViewById(R.id.selectDate);
+        // selectDate.setOnClickListener(this);
+        // currentDate = (TextView) findViewById(R.id.currentDate);
         currentTime = (TextView) findViewById(R.id.currentTime);
         selectTime2 = (RelativeLayout) findViewById(R.id.selectTime2);
         selectTime2.setOnClickListener(this);
-       // selectDate2 = (RelativeLayout) findViewById(R.id.selectDate2);
-       // selectDate2.setOnClickListener(this);
-       // currentDate2 = (TextView) findViewById(R.id.currentDate2);
+        // selectDate2 = (RelativeLayout) findViewById(R.id.selectDate2);
+        // selectDate2.setOnClickListener(this);
+        // currentDate2 = (TextView) findViewById(R.id.currentDate2);
         currentTime2 = (TextView) findViewById(R.id.currentTime2);
 
         //返回按钮监听
-        //view层的控件和业务层的控件，靠id关联和映射  给btn1赋值，即设置布局文件中的Button按钮id进行关联
+        //view层的控件和业务层的控件，靠id关联和映射  给btn赋值，即设置布局文件中的Button按钮id进行关联
         Button backbtn=(Button)findViewById(R.id.backButton);
         //给btn1绑定监听事件
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +64,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         });
         //返回按钮监听结束
         //提交按钮监听
-        //view层的控件和业务层的控件，靠id关联和映射  给btn1赋值，即设置布局文件中的Button按钮id进行关联
+        //view层的控件和业务层的控件，靠id关联和映射  给btn赋值，即设置布局文件中的Button按钮id进行关联
         Button submitbtn=(Button)findViewById(R.id.submitButton);
         //给btn1绑定监听事件
         submitbtn.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +143,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                             public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                                 String text = getDateToString(millseconds);
 
-                                time2=millseconds;
+                                backtime=millseconds;
                                 if(!DateWarning(2))
                                 {
                                     currentTime2.setText(text);
@@ -177,7 +179,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
         String text = getDateToString(millseconds);
 
-        time1=millseconds;
+        starttime=millseconds;
         if(!DateWarning(1))
         {
             currentTime.setText(text);
@@ -189,25 +191,40 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         Date d = new Date(time);
         return sf.format(d);
     }
+    //判断出发时间是否晚于回程时间
     public boolean DateWarning(int num){
-        if(time1*time2!=0)
+        if(starttime*backtime!=0)
         {
-            if(time2<time1)
+            if(backtime<starttime)
             {
                 switch (num)
                 {
                     case 1:
-                        time1=0;
+                        starttime=0;
                         break;
                     case 2:
-                        time2=0;
+                        backtime=0;
                         break;
                 }
+                AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+                alertdialogbuilder.setMessage("出发时间不能晚于回程时间！请重新选择！");
+                alertdialogbuilder.setPositiveButton("确定", okclick);
+                AlertDialog alertdialog1=alertdialogbuilder.create();
+                alertdialog1.show();
                 return true;
             }
         }
         return false;
     }
+    private DialogInterface.OnClickListener okclick=new DialogInterface.OnClickListener()
+    {
+        @Override
+        public void onClick(DialogInterface arg0,int arg1)
+        {
+            arg0.cancel();
+        }
+    };
+
 }
 
 

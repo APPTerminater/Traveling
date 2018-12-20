@@ -86,6 +86,9 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
                 startActivity(mainintent);
             }
         });
+        Intent get_intent=getIntent();
+        TextView showdate=findViewById(R.id.showdate);
+        showdate.setText(get_intent.getStringExtra("selectdate"));
     }
     //计步相关开始
     @Override
