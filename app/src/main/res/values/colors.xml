@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#4f79d9</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorSearch">#409cf2</color>
     <color name="ControlNormal">#788be8</color>
-    <color name="colorAdd">#4673c1</color>
+    <color name="colorAdd">#101010</color>
     <color name="skyBlue">#4eeaf2</color>
     <color name="PureWhite">#FFFFFF</color>
     <color name="Black"> #000000</color>
@@ -21,4 +21,15 @@
     <color name="media_music_index_color">#989898</color>
 
     <color name="car_data_line">#1B0D66</color>
+    <color name="textColor">#BBBBBB</color>
+    <color name="border_color">#BBBBBB</color>
+    <color name="bg_adrj">#f5e2e2</color>
+    <color name="buttom_color">#F8F8F8</color>
+    <color name="tool_bar">#6971D3</color>
+    <color name="danxiaqu">#B8BBE4</color>
+    <color name="add_button">#FCEFEF</color>
+    <color name="hong">#E52C5C</color>
+    <color name="zi">#e0e0f8</color>
+    <color name="danxiaqu2">#A4A8D7</color>
+    <color name="dlb">#333643</color>
 </resources>

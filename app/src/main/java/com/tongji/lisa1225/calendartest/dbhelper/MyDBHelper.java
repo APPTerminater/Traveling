@@ -27,7 +27,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table userinfo (nickname varchar(20) primary key, birthday varchar(20), place_now varchar(20),walk_daliy varchar(20))");
+        db.execSQL("create table userinfo (nickname varchar(20) primary key, birthday varchar(20), password varchar(20),walk_daliy varchar(20))");
     }
 
 

@@ -6,7 +6,7 @@ import com.amap.api.services.core.AMapException;
 import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeResult;
-import com.tongji.lisa1225.calendartest.MapActivity;
+import com.tongji.lisa1225.calendartest.view.MapActivity;
 import com.tongji.lisa1225.calendartest.model.PoiInfoBean;
 import com.tongji.lisa1225.calendartest.util.LogUtil;
 import com.tongji.lisa1225.calendartest.util.MapUtil;

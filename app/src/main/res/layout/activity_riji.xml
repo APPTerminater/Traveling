@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/tool_bar">
+
+        <Button
+            android:layout_marginTop="0dp"
+            android:drawableLeft="@drawable/more"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="0dp"
+            android:id="@+id/more"
+            />
+
+        <Button
+            android:layout_marginTop="0dp"
+            android:id="@+id/riji"
+            android:text="日记"
+            android:textColor="@color/PureWhite"
+            android:textSize="17dp"
+            android:fontFamily="@font/msyhbd"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="40dp"
+            />
+        <Button
+            android:layout_marginTop="0dp"
+            android:id="@+id/zuji"
+            android:text="足迹"
+            android:textColor="@color/danxiaqu"
+            android:textSize="17dp"
+            android:fontFamily="@font/msyhbd"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="0dp"
+            />
+        <Button
+            android:layout_marginTop="0dp"
+            android:id="@+id/xingcheng"
+            android:text="行程"
+            android:textColor="@color/danxiaqu"
+            android:textSize="17dp"
+            android:fontFamily="@font/msyhbd"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="0dp"
+            />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout>
+        <Button
+            android:left="0dp"
+            android:top="104dp"
+            android:layout_width="340dp"
+            android:layout_height="307dp"
+            android:gravity="center"
+            android:background="@drawable/boder_kuang2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/riji_details"
+            />
+
+        <TextView
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="21dp"
+            android:fontFamily="@font/msyh"
+            android:textColor="@color/black"
+            android:left="20dp"
+            android:top="90dp"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:textSize="20dp"
+            android:gravity="left"
+            android:text="我要去北京"
+            />
+
+        <Button
+            android:left="20dp"
+            android:top="195dp"
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="90dp"
+            android:background="@color/textColor"
+            />
+            <TextView
+                android:left="26dp"
+                android:top="130dp"
+                android:layout_width="46dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="55dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:gravity="left"
+                android:background="@drawable/border_write"
+                android:text="北京"
+
+                />
+            <TextView
+                android:left="100dp"
+                android:top="130dp"
+                android:layout_width="79dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="55dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:gravity="left"
+                android:text="10000步"
+                android:background="@drawable/border_write"
+
+                />
+            <TextView
+                android:left="201dp"
+                android:top="130dp"
+                android:layout_width="45dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="55dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:gravity="left"
+                android:text="26C"
+                android:background="@drawable/border_write"
+                />
+        <ImageView
+            android:left="131dp"
+            android:top="529dp"
+            android:layout_width="150dp"
+            android:layout_height="112dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="95dp"
+            android:background="@drawable/bg"
+            />
+        <ImageView
+            android:left="131dp"
+            android:top="529dp"
+            android:layout_width="150dp"
+            android:layout_height="112dp"
+            android:layout_marginLeft="190dp"
+            android:layout_marginTop="95dp"
+            android:background="@drawable/bg_main"
+            />
+        <TextView
+            android:left="20dp"
+            android:top="210dp"
+            android:layout_width="320dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="214dp"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="left"
+            android:text="我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout>
+        <View
+            android:left="20dp"
+            android:top="195dp"
+            android:layout_width="335dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/textColor"
+            />
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.Toolbar
+        android:left="0dp"
+        android:layout_width="375dp"
+        android:layout_height="45dp"
+        android:background="@color/zi"
+        android:layout_marginTop="144dp"
+        >
+        <Button
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/shouye"
+            android:text="首页"
+            android:textSize="18dp"
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/msyhbd"
+            android:textColor="@color/tool_bar"
+            />
+        <Button
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="60dp"
+            android:id="@+id/add_sel"
+            android:drawableLeft="@drawable/addst"
+            android:layout_width="70dp"
+            android:layout_height="46dp"
+            android:background="@android:color/transparent"
+            />
+        <Button
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="55dp"
+            android:id="@+id/searchButton"
+            android:text="导航"
+            android:textSize="18dp"
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/msyhbd"
+            android:textColor="@color/danxiaqu2"
+            />
+    </android.support.v7.widget.Toolbar>
+
+
+
+
+</TableLayout>
+
+
+
+
+
+
+

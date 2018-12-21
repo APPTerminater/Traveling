@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest;
+package com.tongji.lisa1225.calendartest.view;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
+import com.tongji.lisa1225.calendartest.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,19 +36,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-
-        selectTime = (RelativeLayout) findViewById(R.id.selectTime);
-        selectTime.setOnClickListener(this);
-        // selectDate = (RelativeLayout) findViewById(R.id.selectDate);
-        // selectDate.setOnClickListener(this);
-        // currentDate = (TextView) findViewById(R.id.currentDate);
-        currentTime = (TextView) findViewById(R.id.currentTime);
-        selectTime2 = (RelativeLayout) findViewById(R.id.selectTime2);
-        selectTime2.setOnClickListener(this);
-        // selectDate2 = (RelativeLayout) findViewById(R.id.selectDate2);
-        // selectDate2.setOnClickListener(this);
-        // currentDate2 = (TextView) findViewById(R.id.currentDate2);
-        currentTime2 = (TextView) findViewById(R.id.currentTime2);
+        currentTime = (TextView) findViewById(R.id.goTime);
+        currentTime.setOnClickListener(this);
+        currentTime2 = (TextView) findViewById(R.id.backTime);
+        currentTime2.setOnClickListener(this);
 
         //返回按钮监听
         //view层的控件和业务层的控件，靠id关联和映射  给btn赋值，即设置布局文件中的Button按钮id进行关联
@@ -82,36 +74,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            /*case R.id.selectDate:
-                mDialogYearMonthDay = new TimePickerDialog.Builder()
-                        .setType(Type.YEAR_MONTH_DAY)
-                        .setCallBack(new OnDateSetListener() {
-                            @Override
-                            public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
-                                String text = getDateToString(millseconds);
-                                currentDate.setText(text);
-                            }
-                        })
-                        .setCancelStringId("取消")
-                        .setSureStringId("确定")
-                        .setTitleStringId("出发日期")
-                        .setYearText("年")
-                        .setMonthText("月")
-                        .setDayText("日")
-                        .setCyclic(false)
-                        .setMinMillseconds(System.currentTimeMillis())
-                        .setMaxMillseconds(System.currentTimeMillis() + tenYears)
-                        .setCurrentMillseconds(System.currentTimeMillis())
-                        .setThemeColor(getResources().getColor(R.color.colorAdd))
-                        .setWheelItemTextNormalColor(getResources().getColor(R.color.colorAdd))
-                        .setWheelItemTextSelectorColor(getResources().getColor(R.color.colorAdd))
-                        .setWheelItemTextSize(12)
-                        .build();
-
-                mDialogYearMonthDay.show(getSupportFragmentManager(),"date");
-                break;*/
-
-            case R.id.selectTime:
+            case R.id.goTime:
                 mDialogAll = new TimePickerDialog.Builder()
                         .setCallBack(this)
                         .setCancelStringId("取消")
@@ -126,17 +89,17 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         .setMinMillseconds(System.currentTimeMillis() - tenYears)
                         .setMaxMillseconds(System.currentTimeMillis() + tenYears)
                         .setCurrentMillseconds(System.currentTimeMillis())
-                        .setThemeColor(getResources().getColor(R.color.colorAdd))
+                        .setThemeColor(getResources().getColor(R.color.colorPrimary))
                         .setType(Type.ALL)
-                        .setWheelItemTextNormalColor(getResources().getColor(R.color.colorAdd))
-                        .setWheelItemTextSelectorColor(getResources().getColor(R.color.colorAdd))
+                        .setWheelItemTextNormalColor(getResources().getColor(R.color.colorPrimary))
+                        .setWheelItemTextSelectorColor(getResources().getColor(R.color.colorPrimary))
                         .setWheelItemTextSize(12)
                         .build();
 
                 mDialogAll.show(getSupportFragmentManager(), "time");
                 break;
 
-            case R.id.selectTime2:
+            case R.id.backTime:
                 mDialogAll2 = new TimePickerDialog.Builder()
                         .setCallBack(new OnDateSetListener() {
                             @Override
@@ -162,10 +125,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         .setMinMillseconds(System.currentTimeMillis() - tenYears)
                         .setMaxMillseconds(System.currentTimeMillis() + tenYears)
                         .setCurrentMillseconds(System.currentTimeMillis())
-                        .setThemeColor(getResources().getColor(R.color.colorAdd))
+                        .setThemeColor(getResources().getColor(R.color.colorPrimary))
                         .setType(Type.ALL)
-                        .setWheelItemTextNormalColor(getResources().getColor(R.color.colorAdd))
-                        .setWheelItemTextSelectorColor(getResources().getColor(R.color.colorAdd))
+                        .setWheelItemTextNormalColor(getResources().getColor(R.color.colorPrimary))
+                        .setWheelItemTextSelectorColor(getResources().getColor(R.color.colorPrimary))
                         .setWheelItemTextSize(12)
                         .build();
 

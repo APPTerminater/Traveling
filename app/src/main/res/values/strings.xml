@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">CalendarTest</string>
     <string name="mapsearch">高德地图</string>
-    <string name="destination">旅行目的地</string>
+    <string name="destination">目的地</string>
     <string name="addnew">添加行程</string>
     <string name="destination_hint">请输入旅行的城市</string>
 
+    <string name="rijiname">标题</string>
     <string name="current_date">出发日期</string>
     <string name="current_time">出发时间</string>
     <string name="current_date2">回程日期</string>

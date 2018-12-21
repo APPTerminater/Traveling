@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest;
+package com.tongji.lisa1225.calendartest.view;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -25,6 +25,8 @@ import com.amap.api.navi.model.AimLessModeStat;
 import com.amap.api.navi.model.NaviInfo;
 import com.amap.api.navi.model.NaviLatLng;
 import com.autonavi.tbt.TrafficFacilityInfo;
+import com.tongji.lisa1225.calendartest.R;
+import com.tongji.lisa1225.calendartest.TTSController;
 import com.tongji.lisa1225.calendartest.model.NaviLatLngBean;
 import com.tongji.lisa1225.calendartest.util.LogUtil;
 import com.tongji.lisa1225.calendartest.util.MapUtil;

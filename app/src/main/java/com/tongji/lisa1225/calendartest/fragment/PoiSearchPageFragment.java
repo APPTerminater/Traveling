@@ -21,7 +21,7 @@ import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.help.Inputtips;
 import com.amap.api.services.help.InputtipsQuery;
 import com.amap.api.services.help.Tip;
-import com.tongji.lisa1225.calendartest.MapActivity;
+import com.tongji.lisa1225.calendartest.view.MapActivity;
 import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.adapter.MapHistoryListAdapter;
 import com.tongji.lisa1225.calendartest.adapter.PoiSearchListAdapter;

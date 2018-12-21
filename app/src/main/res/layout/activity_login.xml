@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main">
+
+    <RelativeLayout>
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/media_music_index_color"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:text="登录"
+        android:fontFamily="@font/roundbd"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="0dp"
+        />
+
+        <View
+            android:left="48dp"
+            android:top="132dp"
+            android:layout_width="279dp"
+            android:layout_height="404dp"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="95dp"
+            android:background="@drawable/boder_kuang2"
+            />
+        <Button
+            android:left="117dp"
+            android:top="617dp"
+            android:id="@+id/jump_zhuce"
+            android:layout_width="166dp"
+            android:layout_height="39dp"
+            android:textColor="@color/textColor"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:text="新用户？点击这里注册"
+            android:fontFamily="@font/msyh"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="529dp"
+            android:background="@android:color/transparent"
+            android:onClick="jump_register"
+            />
+
+        <EditText
+            android:id="@+id/name"
+            android:left="84dp"
+            android:top="292dp"
+            android:layout_width="208dp"
+            android:layout_height="46dp"
+            android:radius="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="275dp"
+            android:background="@drawable/boder_kuang"
+            android:hint="昵称"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:alpha="0.8"
+            />
+        <TextView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="102dp"
+            android:gravity="left"
+            android:drawableLeft="@drawable/jixing"
+            />
+        <EditText
+            android:id="@+id/password"
+            android:left="83dp"
+            android:top="348dp"
+            android:layout_width="208dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="335dp"
+            android:background="@drawable/boder_kuang"
+            android:hint="密码"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:alpha="0.8"
+            android:inputType="textPassword"
+            />
+        <Button
+            android:left="83dp"
+            android:top="448dp"
+            android:layout_width="208dp"
+            android:layout_height="46dp"
+            android:gravity="center"
+            android:background="@color/tool_bar"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="425dp"
+            android:textColor="@color/PureWhite"
+            android:textSize="18dp"
+            android:text="SIGN IN "
+            android:id="@+id/loginButton"
+            android:onClick="login"
+            />
+    </RelativeLayout>
+</TableLayout>
+
+
+
+
+
+
+

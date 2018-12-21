@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest;
+package com.tongji.lisa1225.calendartest.view;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.config.Constant;
 import com.tongji.lisa1225.calendartest.service.StepService;
 
@@ -23,6 +24,7 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
     private long TIME_INTERVAL = 500;
     //控件
     private TextView text_step;    //显示走的步数
+
 
     private Messenger messenger;
     private Messenger mGetReplyMessenger = new Messenger(new Handler(this));
@@ -90,6 +92,13 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
         TextView showdate=findViewById(R.id.showdate);
         showdate.setText(get_intent.getStringExtra("selectdate"));
     }
+
+    public void edit(View view){
+        Intent editintent =new Intent(DateActivity.this,MainActivity.class);//TODO 换成编辑日记的界面
+        //启动
+        startActivity(editintent);
+    }
+
     //计步相关开始
     @Override
     public void onStart() {

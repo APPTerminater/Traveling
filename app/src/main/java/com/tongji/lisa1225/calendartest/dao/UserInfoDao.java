@@ -22,7 +22,7 @@ public class UserInfoDao {
     // 调用谷歌的api去进行增删改查
     
     // 增加的方法吗，返回的的是一个long值
-    public long addData(String nickname,String birthday,String place_now,String walk_daliy){
+    public long addData(String nickname,String birthday,String password,String walk_daliy){
         // 增删改查每一个方法都要得到数据库，然后操作完成后一定要关闭
         // getWritableDatabase(); 执行后数据库文件才会生成
         // 数据库文件利用DDMS可以查看，在 data/data/包名/databases 目录下即可查看
@@ -31,7 +31,7 @@ public class UserInfoDao {
 
         contentValues.put("nickname",nickname);
         contentValues.put("birthday",birthday );
-        contentValues.put("place_now",place_now);
+        contentValues.put("password",password);
         contentValues.put("walk_daliy",walk_daliy);
         // 返回,显示数据添加在第几行
         // 加了现在连续添加了3行数据,突然删掉第三行,然后再添加一条数据返回的是4不是3
@@ -65,7 +65,25 @@ public class UserInfoDao {
         sqLiteDatabase.close();
         return updateResult;
     }
+    /**
+     * 查询的方法（查找密码）
+     * @param nickname
+     * @return
+     */
+    public String alterPassword(String nickname){
+        String password = null;
 
+        SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
+        // 查询比较特别,涉及到 cursor
+
+        Cursor cursor = readableDatabase.query("userinfo", new String[]{"password"}, "nickname=?", new String[]{nickname}, null, null, null);
+        if(cursor.moveToNext()){
+            password=cursor.getString(0);
+        }
+        cursor.close(); // 记得关闭 corsor
+        readableDatabase.close(); // 关闭数据库
+        return password;
+    }
     /**
      * 查询的方法（查找电话）
      * @param nickname

@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest;
+package com.tongji.lisa1225.calendartest.view;
 
 import android.Manifest;
 import android.app.Activity;
@@ -43,6 +43,8 @@ import com.amap.api.services.route.DriveRouteResult;
 import com.amap.api.services.route.RideRouteResult;
 import com.amap.api.services.route.RouteSearch;
 import com.amap.api.services.route.WalkRouteResult;
+import com.tongji.lisa1225.calendartest.DriveRouteColorfulOverLay;
+import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.model.NaviLatLngBean;
 import com.tongji.lisa1225.calendartest.model.PathPlanDataBean;
 import com.tongji.lisa1225.calendartest.model.PoiInfoBean;

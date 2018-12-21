@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest;
+package com.tongji.lisa1225.calendartest.view;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.prolificinteractive.materialcalendarview.*;
+import com.tongji.lisa1225.calendartest.R;
 
 
 import android.view.*;
@@ -13,20 +14,9 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 
 
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.*;
-import android.util.Log;
 import android.support.annotation.*;
 
-import java.util.*;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-
-import butterknife.*;
 
 public class MainActivity extends AppCompatActivity {
     ActionBar actionBar; //声明ActionBar
@@ -40,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //actionBar = getActionBar(); //得到ActionBar
-        //actionBar.hide(); //隐藏ActionBar
+        Intent get_intent=getIntent();//TODO 传来的昵称 日历标记、侧边栏显示
+        get_intent.getStringExtra("nickname");
         //新建行程按钮监听
         //view层的控件和业务层的控件，靠id关联和映射  给btn1赋值，即设置布局文件中的Button按钮id进行关联
         Button addbtn=(Button)findViewById(R.id.addButton);

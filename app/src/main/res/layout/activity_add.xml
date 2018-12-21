@@ -3,202 +3,259 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="@drawable/bg_add">
+    android:background="@color/PureWhite"
+    >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/activity_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="48dp"
+        android:background="@color/tool_bar">
         <Button
             android:layout_marginTop="0dp"
             android:id="@+id/backButton"
-            android:drawableLeft="@drawable/back"
-
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/back1"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:background="@android:color/transparent"
             android:layout_marginLeft="0dp"
-
             />
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp"
-            android:text="@string/addnew"
+        <View
+            android:left="4dp"
+            android:top="33dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:background="@color/PureWhite"
+            />
+
+        <Button
+            android:id="@+id/tripButton"
+            android:layout_width="60dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="60dp"
+            android:text="行程"
             android:textColor="@color/PureWhite"
-            android:textSize="25dp"
-            android:fontFamily="@font/msyhbd"
+            android:textSize="20dp"
+            android:fontFamily="@font/msyh"
+            android:background="@android:color/transparent"
+            />
+        <Button
+            android:id="@+id/reminderButton"
+            android:layout_width="60dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="备忘录"
+            android:textColor="@color/danxiaqu"
+            android:textSize="20dp"
+            android:fontFamily="@font/msyh"
+            android:background="@android:color/transparent"
             />
         <Button
             android:layout_marginTop="0dp"
             android:id="@+id/submitButton"
-            android:text="@string/submit"
-            android:textColor="@color/PureWhite"
-            android:textSize="20dp"
-            android:fontFamily="@font/msyh"
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="68dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/save"
             android:background="@android:color/transparent"
-            android:layout_marginLeft="70dp"
-
             />
     </android.support.v7.widget.Toolbar>
 
-
-<TableRow>
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
-            android:text="@string/destination"
-            android:textSize="20dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"
+    <RelativeLayout>
+        <TextView
+            android:left="20dp"
+            android:top="140dp"
+            android:layout_width="77dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:textSize="18dp"
+            android:gravity="left"
+            android:drawableLeft="@drawable/mudidi"
             />
-
+        <TextView
+            android:left="20dp"
+            android:top="140dp"
+            android:layout_width="77dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="left"
+            android:text="目的地"
+            />
         <EditText
             android:id="@+id/destination"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="0dp"
-            android:background="@drawable/editsharp"
-            android:hint="@string/destination_hint"
-            android:fontFamily="@font/msyh"
+            android:left="100dp"
+            android:top="135dp"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="27dp"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:hint="城市"
+            android:background="@drawable/boder_kuang"
             />
-</TableRow>
-
-
-    <RelativeLayout
-        android:id="@+id/selectTime"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:gravity="center"
-            android:text="@string/current_time"
-            android:textSize="20dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"/>
-
-        <TextView
-            android:id="@+id/currentTime"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:paddingRight="30dp"
-            android:paddingLeft="15dp"
-
-            android:textSize="20dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"/>
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/selectTime2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:gravity="center"
-            android:text="@string/current_time2"
-            android:textSize="20dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"/>
-
-        <TextView
-            android:id="@+id/currentTime2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:paddingRight="30dp"
-            android:paddingLeft="15dp"
-
-            android:textSize="20dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"/>
 
     </RelativeLayout>
     <TableRow>
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView
+            android:left="20dp"
+            android:top="160dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="23dp"
+            android:textSize="18dp"
+            android:gravity="left"
+            android:drawableLeft="@drawable/shijian"
+            />
+        <TextView
+            android:left="20dp"
+            android:top="160dp"
+            android:layout_width="60dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="7dp"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
-            android:text="@string/plan_cost"
-            android:textSize="20dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="left"
+            android:text="时间"
             />
-        <EditText
-            android:id="@+id/plan_cost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="0dp"
-            android:background="@drawable/editsharp"
-            android:hint="@string/plan_cost_hint"
-            android:digits="1234567890."
-            android:fontFamily="@font/msyh"
-            />
-    </TableRow>
-    <TableRow>
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="30dp"
-            android:text="@string/introduction"
-            android:textSize="20dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"
-            />
-        <EditText
-            android:id="@+id/introduction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="0dp"
-            android:background="@drawable/editsharp"
-            android:hint="@string/introduction_hint"
-            android:minLines="3"
-            android:fontFamily="@font/msyh"
-            />
-    </TableRow>
 
+        <TextView
+            android:id="@+id/goTime"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:fontFamily="@font/msyh"
+            android:textColor="@color/colorAdd"
+            android:background="@drawable/boder_kuang"
+            android:textSize="14dp"
+            android:hint="出发时间"
+            />
+    </TableRow>
+    <RelativeLayout>
+        <View
+            android:left="20dp"
+            android:top="195dp"
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="93dp"
+            android:layout_marginTop="36dp"
+            android:background="@color/textColor"
+            />
+        <TextView
+            android:id="@+id/backTime"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="131dp"
+            android:layout_marginTop="20dp"
+
+            android:gravity="center"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:fontFamily="@font/msyh"
+            android:textColor="@color/colorAdd"
+            android:background="@drawable/boder_kuang"
+            android:textSize="14dp"
+            android:hint="返回时间"
+            />
+    </RelativeLayout>
     <RelativeLayout>
 
+        <TextView
+            android:left="20dp"
+            android:top="160dp"
+            android:layout_width="20dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="24dp"
+            android:textSize="18dp"
+            android:gravity="left"
+            android:drawableLeft="@drawable/money"
+            />
+        <TextView
+            android:left="20dp"
+            android:top="160dp"
+            android:layout_width="77dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="left"
+            android:text="预计开销"
+            />
+        <EditText
+            android:id="@+id/money"
+            android:left="100dp"
+            android:top="155dp"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="20dp"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:hint="RMB"
+            android:background="@drawable/boder_kuang"
+            android:inputType="numberDecimal"
+            />
+
+        <View
+            android:left="20dp"
+            android:top="195dp"
+            android:layout_width="335dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="65dp"
+            android:background="@color/textColor"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout>
+        <EditText
+            android:id="@+id/jianjie"
+            android:left="20dp"
+            android:top="210dp"
+            android:layout_width="320dp"
+            android:layout_height="265dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/Black"
+            android:textSize="16dp"
+            android:gravity="left"
+            android:background="@drawable/boder_kuang"
+            android:hint="旅行简介"
+            />
+    </RelativeLayout>
+    <RelativeLayout>
         <CheckBox
             android:id="@+id/isremind"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="@string/isremind"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"
+            android:textColor="@color/black"
             />
-
-
     </RelativeLayout>
 </TableLayout>
-
 
 
 

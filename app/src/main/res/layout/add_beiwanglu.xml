@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/bg_main">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/tool_bar">
+        <Button
+            android:layout_marginTop="0dp"
+            android:id="@+id/backButton"
+            android:drawableLeft="@drawable/back1"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="0dp"
+            />
+        <View
+            android:left="4dp"
+            android:top="33dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:background="@color/PureWhite"
+            />
+
+        <Button
+            android:id="@+id/add_xingcheng"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="50dp"
+            android:text="行程"
+            android:textColor="@color/danxiaqu"
+            android:textSize="20dp"
+            android:fontFamily="Microsoft Yahei"
+            android:background="@android:color/transparent"
+            />
+        <Button
+            android:id="@+id/add_beiwanglu"
+            android:layout_width="70dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="0dp"
+            android:text="备忘录"
+            android:textColor="@color/PureWhite"
+            android:textSize="20dp"
+            android:fontFamily="Microsoft Yahei"
+            android:background="@android:color/transparent"
+            />
+        <Button
+            android:layout_marginTop="0dp"
+            android:id="@+id/save"
+            android:textColor="@color/PureWhite"
+            android:textSize="20dp"
+            android:layout_marginLeft="68dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/save"
+            android:background="@android:color/transparent"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <RelativeLayout>
+
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="415dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/boder_kuang"
+            android:gravity="left"
+            android:left="20dp"
+            android:hint="添加必要的物品"
+            android:textColor="@color/textColor"
+            android:textSize="16dp"
+            android:top="210dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout>
+
+        <CheckBox
+            android:id="@+id/isremind"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/isremind"
+            android:textSize="16dp"
+            android:fontFamily="@font/msyh"
+            android:textColor="@color/black"
+            />
+    </RelativeLayout>
+</TableLayout>
+
+
+
+
+
+
+

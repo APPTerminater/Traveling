@@ -1,50 +1,150 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <EditText
-        android:id="@+id/mEtName"
-        android:hint="请输入您的昵称"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-    </EditText>
-    <EditText
-        android:id="@+id/mEtBirthday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入您的生日"
-        android:inputType="date" />
-    <EditText
-        android:id="@+id/mEtPlaceNow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入您的所在地" />
-    <EditText
-        android:id="@+id/mEtWalkDaily"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入您的日均步数"
-        android:inputType="number" />
-    <Button
-        android:onClick="add"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="添加" />
-    <Button
-        android:onClick="delete"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="删除" />
-    <Button
-        android:onClick="update"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="修改" />
-    <Button
-        android:onClick="query"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="查询" />
-</LinearLayout>
+
+    android:background="@drawable/bg_main">
+
+
+
+    <RelativeLayout>
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/media_music_index_color"
+            android:textSize="22dp"
+            android:gravity="center"
+            android:text="注册 "
+            android:fontFamily="@font/roundbd"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="0dp"
+            />
+
+        <View
+            android:left="48dp"
+            android:top="132dp"
+            android:layout_width="279dp"
+            android:layout_height="444dp"
+            android:radius="10dp"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="75dp"
+            android:background="@drawable/boder_kuang2"
+            />
+        <Button
+            android:id="@+id/jump_login"
+            android:onClick="jump_login"
+            android:left="117dp"
+            android:top="617dp"
+            android:layout_width="166dp"
+            android:layout_height="39dp"
+            android:textColor="@color/textColor"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:text="已有账号了？点击登录"
+            android:fontFamily="@font/msyh"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="529dp"
+            android:background="@android:color/transparent"
+            />
+        <EditText
+            android:id="@+id/name"
+            android:left="84dp"
+            android:top="292dp"
+            android:layout_width="208dp"
+            android:layout_height="46dp"
+            android:radius="20dp"
+            android:gravity="center"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="105dp"
+            android:background="@drawable/boder_kuang"
+            android:hint="昵称"
+
+            android:textSize="16dp"
+            android:alpha="0.8"
+            />
+        <EditText
+            android:id="@+id/born"
+            android:left="84dp"
+            android:top="292dp"
+            android:layout_width="208dp"
+            android:layout_height="46dp"
+            android:radius="20dp"
+            android:gravity="center"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="165dp"
+            android:background="@drawable/boder_kuang"
+            android:hint="出生日期"
+            android:textSize="16dp"
+            android:alpha="0.8"
+            />
+
+        <EditText
+            android:id="@+id/step"
+            android:left="84dp"
+            android:top="292dp"
+            android:layout_width="208dp"
+            android:layout_height="46dp"
+            android:radius="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="225dp"
+            android:background="@drawable/boder_kuang"
+            android:hint="日均步数"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:alpha="0.8"
+            android:inputType="number"
+            />
+        <EditText
+            android:id="@+id/password"
+            android:left="83dp"
+            android:top="348dp"
+            android:layout_width="208dp"
+            android:layout_height="46dp"
+            android:radius="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="285dp"
+            android:background="@drawable/boder_kuang"
+            android:hint="密码"
+            android:textSize="16dp"
+            android:inputType="textPassword"
+            android:gravity="center"
+            android:alpha="0.8"
+            />
+        <EditText
+            android:id="@+id/password_again"
+            android:left="83dp"
+            android:top="348dp"
+            android:layout_width="208dp"
+            android:layout_height="46dp"
+            android:radius="20dp"
+            android:hint="确认密码"
+            android:textSize="16dp"
+            android:inputType="textPassword"
+            android:gravity="center"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="345dp"
+            android:background="@drawable/boder_kuang"
+            android:alpha="0.8"
+            />
+        <Button
+            android:id="@+id/registerButton"
+            android:onClick="add"
+            android:left="83dp"
+            android:top="448dp"
+            android:layout_width="208dp"
+            android:layout_height="46dp"
+            android:gravity="center"
+            android:background="@color/tool_bar"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="440dp"
+            android:textColor="@color/PureWhite"
+            android:textSize="18dp"
+            android:text="register "
+            />
+
+    </RelativeLayout>
+</TableLayout>

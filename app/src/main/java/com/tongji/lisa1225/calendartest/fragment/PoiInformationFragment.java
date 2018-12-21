@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tongji.lisa1225.calendartest.MapActivity;
+import com.tongji.lisa1225.calendartest.view.MapActivity;
 import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.model.PathPlanDataBean;
 import com.tongji.lisa1225.calendartest.model.PoiInfoBean;
