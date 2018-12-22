@@ -36,7 +36,7 @@
                     android:layout_marginTop="28dp"
                     android:text="null"
                     android:textColor="@color/black"
-                    android:textSize="30dp" />
+                    android:textSize="20dp" />
             </RelativeLayout>
 
             <TextView
@@ -46,7 +46,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="30dp"
                 android:text="null"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/poi_distance"
@@ -55,13 +55,13 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="43dp"
                 android:text="null"
-                android:textSize="25dp" />
+                android:textSize="15dp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/go_there_bt"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
+            android:layout_width="218dp"
+            android:layout_height="42dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="40dp"
             android:layout_weight="1"
