@@ -114,6 +114,21 @@ public class MapActivity extends Activity implements AMap.OnPOIClickListener, Ro
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_map);
         MapsInitializer.sdcardDir= OffLineMapUtils.getSdCacheDir(this);
+
+        //返回按钮监听
+        //view层的控件和业务层的控件，靠id关联和映射  给btn赋值，即设置布局文件中的Button按钮id进行关联
+        Button backbtn=(Button)findViewById(R.id.backButton);
+        //给btn1绑定监听事件
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 给bnt1添加点击响应事件
+                Intent addintent =new Intent(MapActivity.this,MainActivity.class);
+                //启动
+                startActivity(addintent);
+            }
+        });
+
         mManager = getFragmentManager();
         mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);// 此方法必须重写

@@ -60,8 +60,8 @@
 
         <Button
             android:id="@+id/go_there_bt"
-            android:layout_width="218dp"
-            android:layout_height="42dp"
+            android:layout_width="120dp"
+            android:layout_height="109dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="40dp"
             android:layout_weight="1"

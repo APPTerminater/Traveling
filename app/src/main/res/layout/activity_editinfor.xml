@@ -29,7 +29,6 @@
             android:layout_height="24dp"
             android:background="@color/PureWhite"
             />
-
         <TextView android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_marginTop="0dp"
