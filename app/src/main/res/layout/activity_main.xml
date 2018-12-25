@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:layout_marginLeft="50dp"
+            android:onClick="toDiary"
             />
         <Button
             android:layout_marginTop="0dp"
@@ -64,6 +65,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:layout_marginLeft="0dp"
+            android:onClick="toTrip"
             />
 
 
@@ -113,6 +115,7 @@ android:layout_marginBottom="0dp"
     android:layout_width="60dp"
     android:layout_height="40dp"
     android:background="@android:color/transparent"
+    android:onClick="toAdd"
     />
 <Button
     android:layout_marginTop="10dp"
@@ -125,6 +128,7 @@ android:layout_marginBottom="0dp"
     android:background="@android:color/transparent"
     android:fontFamily="@font/msyhbd"
     android:textColor="@color/danxiaqu2"
+    android:onClick="toGaode"
     />
 
 </android.support.v7.widget.Toolbar>

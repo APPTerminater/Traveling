@@ -19,6 +19,7 @@
             android:layout_height="28dp"
             android:background="@android:color/transparent"
             android:layout_marginLeft="0dp"
+            android:onClick="back"
             />
         <View
             android:left="4dp"

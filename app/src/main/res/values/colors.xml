@@ -32,4 +32,9 @@
     <color name="zi">#e0e0f8</color>
     <color name="danxiaqu2">#A4A8D7</color>
     <color name="dlb">#333643</color>
+    <color name="changegreen">#009688</color>
+    <color name="changered">#e51c23</color>
+    <color name="changelowgreen">#8bc34a</color>
+    <color name="changepink">#ff4081</color>
+    <color name="changeorange">#ff9800</color>
 </resources>

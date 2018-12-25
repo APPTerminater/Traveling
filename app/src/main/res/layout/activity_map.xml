@@ -29,6 +29,7 @@
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="48dp"
         >
     </com.amap.api.maps.MapView>
 
@@ -40,15 +41,15 @@
         android:text="返回"
         android:visibility="gone" />
 
-    <TextView android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="29dp"
+        android:layout_marginLeft="165dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="180dp"
+        android:fontFamily="Microsoft Yahei"
         android:text="导航"
         android:textColor="@color/PureWhite"
-        android:textSize="20dp"
-        android:fontFamily="Microsoft Yahei"
-        />
+        android:textSize="20dp" />
     <ImageView
         android:id="@+id/go_where"
         android:layout_width="172dp"

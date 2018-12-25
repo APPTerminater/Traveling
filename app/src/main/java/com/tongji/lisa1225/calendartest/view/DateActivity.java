@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest.view;
+package com.tongji.lisa1225.calendartest.view;//todo 需要更换字体、颜色等
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -24,7 +24,7 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
     private long TIME_INTERVAL = 500;
     //控件
     private TextView text_step;    //显示走的步数
-
+    String chosen_date;  //选中日期
 
     private Messenger messenger;
     private Messenger mGetReplyMessenger = new Messenger(new Handler(this));
@@ -77,24 +77,20 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
         text_step = (TextView) findViewById(R.id.main_text_step);
         delayHandler = new Handler(this);
         //计步相关结束
-        Button backbtn=(Button)findViewById(R.id.backButton);
-        //给btn1绑定监听事件
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 给bnt1添加点击响应事件
-                Intent mainintent =new Intent(DateActivity.this,MainActivity.class);
-                //启动
-                startActivity(mainintent);
-            }
-        });
+       //获取日期
         Intent get_intent=getIntent();
         TextView showdate=findViewById(R.id.showdate);
-        showdate.setText(get_intent.getStringExtra("selectdate"));
+        chosen_date=get_intent.getStringExtra("selectdate");
+        showdate.setText(chosen_date);
     }
-
+    public void back(View view){
+        Intent mainintent =new Intent(DateActivity.this,MainActivity.class);
+        //启动
+        startActivity(mainintent);
+    }
     public void edit(View view){
-        Intent editintent =new Intent(DateActivity.this,MainActivity.class);//TODO 换成编辑日记的界面
+        Intent editintent =new Intent(DateActivity.this,EditDiaryActivity.class);
+        editintent.putExtra("selectdate",chosen_date);
         //启动
         startActivity(editintent);
     }

@@ -32,35 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Intent get_intent=getIntent();//TODO 传来的昵称 日历标记、侧边栏显示
         get_intent.getStringExtra("nickname");
-        //新建行程按钮监听
-        //view层的控件和业务层的控件，靠id关联和映射  给btn1赋值，即设置布局文件中的Button按钮id进行关联
-        Button addbtn=(Button)findViewById(R.id.addButton);
-        //给btn1绑定监听事件
-        addbtn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 给bnt1添加点击响应事件
-                Intent addintent =new Intent(MainActivity.this,AddActivity.class);
-                //启动
-                startActivity(addintent);
-            }
-        });
-        //新建行程按钮监听结束
 
-        //高德搜索按钮监听
-        //view层的控件和业务层的控件，靠id关联和映射  给btn1赋值，即设置布局文件中的Button按钮id进行关联
-        Button btn1=(Button)findViewById(R.id.searchButton);
-        //给btn1绑定监听事件
-        btn1.setOnClickListener(new OnClickListener() {
-            @Override
-             public void onClick(View v) {
-                // 给bnt1添加点击响应事件
-                Intent intent =new Intent(MainActivity.this,MapActivity.class);
-                //启动
-                startActivity(intent);
-            }
-        });
-        //高德搜索按钮监听结束
 
         //处理日历
         //MaterialCalendarView imcvTemMaterCalendarWeek=findViewById(R.id.imcv_tem_mater_calendar_week);
@@ -91,6 +63,27 @@ public class MainActivity extends AppCompatActivity {
             }
             });
         //处理日历结束
-
     }
+    //几个按钮点击事件
+    public void toAdd(View view){
+        Intent addIntent =new Intent(MainActivity.this,AddActivity.class);
+        //启动
+        startActivity(addIntent);
+    }
+    public void toGaode(View view){
+        Intent gaodeIntent =new Intent(MainActivity.this,MapActivity.class);
+        //启动
+        startActivity(gaodeIntent);
+    }
+    public void toDiary(View view){
+        Intent diaryIntent =new Intent(MainActivity.this,DiaryActivity.class);
+        //启动
+        startActivity(diaryIntent);
+    }
+    public void toTrip(View view){
+        Intent tripIntent =new Intent(MainActivity.this,TripActivity.class);
+        //启动
+        startActivity(tripIntent);
+    }
+    //按钮点击事件结束
 }
