@@ -20,6 +20,7 @@
             android:layout_height="28dp"
             android:background="@android:color/transparent"
             android:layout_marginLeft="0dp"
+            android:onClick="tomain"
             />
         <View
             android:left="4dp"
@@ -50,6 +51,7 @@
             android:layout_height="40dp"
             android:drawableLeft="@drawable/save"
             android:background="@android:color/transparent"
+            android:onClick="update"
             />
     </android.support.v7.widget.Toolbar>
 
@@ -74,22 +76,22 @@
             android:layout_marginTop="64dp"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:gravity="left"
+            android:gravity="center"
+            android:fontFamily="@font/round"
             android:text="昵称"
             />
-        <EditText
-            android:id="@+id/name"
+        <TextView
+            android:id="@+id/newname"
             android:left="100dp"
-            android:top="155dp"
+            android:top="160dp"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="170dp"
-            android:layout_marginTop="61dp"
-            android:background="@drawable/boder_kuang"
-            android:hint="单行输入"
-            android:gravity="left"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/app_name"
+            android:gravity="center"
             android:textSize="16dp"
-            android:textColor="@color/textColor"
+            android:textColor="@color/black"
             />
 
     </RelativeLayout>
@@ -110,7 +112,7 @@
             android:top="160dp"
             android:layout_width="70dp"
             android:layout_height="23dp"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="50dp"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -118,18 +120,18 @@
             android:text="日均步数"
             />
         <EditText
-            android:id="@+id/step"
+            android:id="@+id/newwalk"
             android:left="100dp"
             android:top="155dp"
             android:layout_width="90dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="53dp"
             android:background="@drawable/boder_kuang"
             android:hint="单行输入"
             android:gravity="left"
             android:textSize="16dp"
-            android:textColor="@color/textColor"
+            android:textColor="@color/black"
             />
     </TableRow>
     <RelativeLayout>
@@ -155,20 +157,21 @@
             android:textSize="16dp"
             android:gravity="left"
             android:text="出生年月"
+
             />
         <EditText
-            android:id="@+id/born"
+            android:id="@+id/newbirthday"
             android:left="100dp"
             android:top="155dp"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="170dp"
+            android:layout_marginLeft="175dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/boder_kuang"
             android:hint="单行输入"
             android:gravity="left"
             android:textSize="16dp"
-            android:textColor="@color/textColor"
+            android:textColor="@color/black"
             />
         <View
             android:left="20dp"
@@ -205,7 +208,7 @@
             android:text="新密码"
             />
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/newpassword"
             android:left="100dp"
             android:top="155dp"
             android:layout_width="150dp"
@@ -216,7 +219,8 @@
             android:hint="设置密码"
             android:gravity="left"
             android:textSize="16dp"
-            android:textColor="@color/textColor"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
             />
     </RelativeLayout>
     <RelativeLayout>
@@ -244,7 +248,7 @@
             android:text="确认密码"
             />
         <EditText
-            android:id="@+id/password_agin"
+            android:id="@+id/newpassword_again"
             android:left="100dp"
             android:top="155dp"
             android:layout_width="150dp"
@@ -255,7 +259,8 @@
             android:hint="再次输入"
             android:gravity="left"
             android:textSize="16dp"
-            android:textColor="@color/textColor"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
             />
     </RelativeLayout>
 </TableLayout>

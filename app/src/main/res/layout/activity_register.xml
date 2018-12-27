@@ -61,7 +61,7 @@
             android:layout_marginLeft="80dp"
             android:layout_marginTop="105dp"
             android:background="@drawable/boder_kuang"
-            android:hint="昵称"
+            android:hint="昵称（不可修改）"
 
             android:textSize="16dp"
             android:alpha="0.8"
