@@ -20,6 +20,8 @@ import com.tongji.lisa1225.calendartest.config.Constant;
 import com.tongji.lisa1225.calendartest.service.StepService;
 
 public class DateActivity extends AppCompatActivity implements Handler.Callback {
+    String nickname;
+    Intent get_intent;
     //计步相关开始：循环取当前时刻的步数中间的时间间隔
     private long TIME_INTERVAL = 500;
     //控件
@@ -74,6 +76,8 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date);
         //计步相关开始
+        get_intent = getIntent();// 传来的昵称
+        nickname=get_intent.getStringExtra("nickname");
         text_step = (TextView) findViewById(R.id.main_text_step);
         delayHandler = new Handler(this);
         //计步相关结束
@@ -86,6 +90,7 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
     public void back(View view){
         Intent mainintent =new Intent(DateActivity.this,MainActivity.class);
         //启动
+        mainintent.putExtra("nickname",nickname);
         startActivity(mainintent);
     }
     public void edit(View view){

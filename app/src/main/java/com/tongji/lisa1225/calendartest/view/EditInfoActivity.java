@@ -38,8 +38,7 @@ public class EditInfoActivity extends AppCompatActivity {
         walkText.setText(mDao.alterWalk(nickname));
         password_againText=(EditText)findViewById(R.id.newpassword_again);
         passwordText=(EditText)findViewById(R.id.newpassword);
-        get_intent = getIntent();// 传来的昵称
-        nickname=get_intent.getStringExtra("nickname");
+
 
     }
     public void tomain(View view){

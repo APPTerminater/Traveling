@@ -75,6 +75,10 @@ import java.util.List;
  */
 
 public class MapActivity extends Activity implements AMap.OnPOIClickListener, RouteSearch.OnRouteSearchListener {
+    //lsy add
+    String nickname;
+    Intent get_intent;
+
     private final int BASIC_PERMISSION_REQUEST_CODE = 100;
     private FragmentManager mManager;
     PoiInformationFragment poiinfoFragment;
@@ -114,7 +118,8 @@ public class MapActivity extends Activity implements AMap.OnPOIClickListener, Ro
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_map);
         MapsInitializer.sdcardDir= OffLineMapUtils.getSdCacheDir(this);
-
+        get_intent = getIntent();
+        nickname=get_intent.getStringExtra("nickname");
         //返回按钮监听
         //view层的控件和业务层的控件，靠id关联和映射  给btn赋值，即设置布局文件中的Button按钮id进行关联
         Button backbtn=(Button)findViewById(R.id.backButton);
@@ -124,6 +129,7 @@ public class MapActivity extends Activity implements AMap.OnPOIClickListener, Ro
             public void onClick(View v) {
                 // 给bnt1添加点击响应事件
                 Intent addintent =new Intent(MapActivity.this,MainActivity.class);
+                addintent.putExtra("nickname",nickname);
                 //启动
                 startActivity(addintent);
             }

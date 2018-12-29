@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/PureWhite"
+    android:id="@+id/layout"
     >
 
     <android.support.v7.widget.Toolbar
@@ -19,6 +20,7 @@
             android:layout_height="28dp"
             android:background="@android:color/transparent"
             android:layout_marginLeft="0dp"
+            android:onClick="tomain"
             />
         <View
             android:left="4dp"
@@ -63,6 +65,7 @@
             android:layout_height="40dp"
             android:drawableLeft="@drawable/save"
             android:background="@android:color/transparent"
+            android:onClick="submit"
             />
     </android.support.v7.widget.Toolbar>
 
@@ -228,7 +231,7 @@
 
     <RelativeLayout>
         <EditText
-            android:id="@+id/jianjie"
+            android:id="@+id/info"
             android:left="20dp"
             android:top="210dp"
             android:layout_width="320dp"
@@ -242,6 +245,7 @@
             android:hint="旅行简介"
             />
     </RelativeLayout>
+
     <RelativeLayout>
         <CheckBox
             android:id="@+id/isremind"

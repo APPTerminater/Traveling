@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.tongji.lisa1225.calendartest.dbhelper.MyDBHelper;
+import com.tongji.lisa1225.calendartest.model.TripInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TripInfoDao {
     private MyDBHelper mMyDBHelper;
@@ -22,23 +26,25 @@ public class TripInfoDao {
     // 调用谷歌的api去进行增删改查
 
     // 增加的方法，返回的的是一个long值
-    public long addData(String nickname,String place_name,String start_time,String end_time,String budget,String brief_info){
+    public long addData(TripInfo tripInfo){
         // 增删改查每一个方法都要得到数据库，然后操作完成后一定要关闭
         // getWritableDatabase(); 执行后数据库文件才会生成
         // 数据库文件利用DDMS可以查看，在 data/data/包名/databases 目录下即可查看
         SQLiteDatabase sqLiteDatabase =  mMyDBHelper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
 
-        contentValues.put("nickname",nickname);
-        contentValues.put("place_name",place_name);
-        contentValues.put("start_time",start_time);
-        contentValues.put("end_time",end_time);
-        contentValues.put("budget",budget);
-        contentValues.put("brief_info",brief_info);
+        contentValues.put(TripInfo.KEY_nickname,tripInfo.nickname);
+        contentValues.put(TripInfo.KEY_destination,tripInfo.destination);
+        contentValues.put(TripInfo.KEY_start_time,tripInfo.start_time);
+        contentValues.put(TripInfo.KEY_end_time,tripInfo.end_time);
+        contentValues.put(TripInfo.KEY_budget,tripInfo.budget);
+        contentValues.put(TripInfo.KEY_brief_info,tripInfo.brief_info);
+        contentValues.put(TripInfo.KEY_remind,tripInfo.remind);
+        //todo contentValues.put(TripInfo.KEY_memo,tripInfo.memo);
         // 返回,显示数据添加在第几行
         // 加了现在连续添加了3行数据,突然删掉第三行,然后再添加一条数据返回的是4不是3
         // 因为自增长
-        long rowid=sqLiteDatabase.insert("tripinfo",null,contentValues);
+        long rowid=sqLiteDatabase.insert(TripInfo.TABLE,null,contentValues);
 
         sqLiteDatabase.close();
         return rowid;
@@ -48,7 +54,7 @@ public class TripInfoDao {
     // 删除的方法，返回值是int
     public int deleteData(int id,String nickname){
         SQLiteDatabase sqLiteDatabase = mMyDBHelper.getWritableDatabase();
-        int deleteResult = sqLiteDatabase.delete("tripinfo", "id=? and nickname=?", new String[]{String.valueOf(id),nickname});
+        int deleteResult = sqLiteDatabase.delete(TripInfo.TABLE, "id=? and nickname=?", new String[]{String.valueOf(id),nickname});
         sqLiteDatabase.close();
         return deleteResult;
     }
@@ -58,51 +64,44 @@ public class TripInfoDao {
      * @param nickname
      * @param newWalk
      * @return
-     */
+
     public int updateData(String nickname,String newWalk){
         SQLiteDatabase sqLiteDatabase = mMyDBHelper.getWritableDatabase();
         ContentValues contentValues =new ContentValues();
         contentValues.put("walk_daliy", newWalk);
-        int updateResult = sqLiteDatabase.update("userinfo", contentValues, "nickname=?", new String[]{nickname});
+        int updateResult = sqLiteDatabase.update(TripInfo.TABLE, contentValues, "nickname=?", new String[]{nickname});
         sqLiteDatabase.close();
         return updateResult;
     }
+    */
+
     /**
-     * 查询的方法（查找密码）
+     * 查询的方法
      * @param nickname
      * @return
      */
-    public String alterPassword(String nickname){
-        String password = null;
-
+    public List<TripInfo> alterData(String nickname){
+        List<TripInfo> tripInfoList=new ArrayList<>();
+        TripInfo tripInfo = new TripInfo();
+        int count=0;
         SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
         // 查询比较特别,涉及到 cursor
-
-        Cursor cursor = readableDatabase.query("userinfo", new String[]{"password"}, "nickname=?", new String[]{nickname}, null, null, null);
-        if(cursor.moveToNext()){
-            password=cursor.getString(0);
+        Cursor cursor = readableDatabase.query(TripInfo.TABLE, new String[]{TripInfo.KEY_id,TripInfo.KEY_destination,TripInfo.KEY_start_time,TripInfo.KEY_end_time,TripInfo.KEY_budget,TripInfo.KEY_brief_info,TripInfo.KEY_remind}, "nickname=?", new String[]{nickname}, null, null, null);
+        while (cursor.moveToNext()) {
+            tripInfo.nickname=nickname;
+            tripInfo.id = cursor.getInt(0); //获取第一列的值,第一列的索引从0开始
+            tripInfo.destination = cursor.getString(1);//获取第二列的值
+            tripInfo.start_time = cursor.getLong(2);
+            tripInfo.end_time=cursor.getLong(3);
+            tripInfo.budget=cursor.getString(4);
+            tripInfo.brief_info=cursor.getString(5);
+            tripInfo.remind=cursor.getString(6);
+            tripInfoList.add(tripInfo);
+            count++;
         }
         cursor.close(); // 记得关闭 corsor
         readableDatabase.close(); // 关闭数据库
-        return password;
+        return tripInfoList;
     }
-    /**
-     * 查询的方法（查找电话）
-     * @param nickname
-     * @return
-     */
-    public String alterData(String nickname){
-        String walk_daliy = null;
 
-        SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
-        // 查询比较特别,涉及到 cursor
-
-        Cursor cursor = readableDatabase.query("userinfo", new String[]{"walk_daliy"}, "nickname=?", new String[]{nickname}, null, null, null);
-        if(cursor.moveToNext()){
-            walk_daliy=cursor.getString(0);
-        }
-        cursor.close(); // 记得关闭 corsor
-        readableDatabase.close(); // 关闭数据库
-        return walk_daliy;
-    }
 }

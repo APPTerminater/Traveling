@@ -98,6 +98,7 @@ public class UserInfoDao {
         if(cursor.moveToNext()){
             mode=cursor.getString(0);
         }
+
         cursor.close(); // 记得关闭 corsor
         readableDatabase.close(); // 关闭数据库
         return mode;

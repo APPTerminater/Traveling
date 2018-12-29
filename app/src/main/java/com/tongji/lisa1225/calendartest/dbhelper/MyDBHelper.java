@@ -28,7 +28,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table UserInfo (nickname varchar(20) primary key, birthday varchar(20), password varchar(20),walk_daliy varchar(20),prefer_mode varchar(20))");
-        db.execSQL("create table tripinfo (id integer primary key autoincrement,nickname varchar(20), place_name varchar(20), start_time varchar(20),end_time varchar(20),budget varchar(20),brief_info varchar(50))");
+        db.execSQL("create table tripinfo (id integer primary key autoincrement,nickname varchar(20), destination varchar(20), " +
+                "start_time long,end_time long,budget varchar(20),brief_info varchar(50),remind varchar(10),memo varchar(100))");
     }
 
 
@@ -43,6 +44,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //db.execSQL("alter table userinfo add account varchar(20)");
+        //db.execSQL("drop table if exists tripinfo");
+
     }
 }
 
