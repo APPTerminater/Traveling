@@ -70,7 +70,7 @@
             android:top="90dp"
             android:textSize="18dp"
             android:gravity="center"
-            android:text="我要去北京"
+            android:hint="暂未填写"
             />
         <View
             android:left="20dp"
@@ -88,6 +88,7 @@
         android:layout_width="match_parent">
 
         <TextView
+            android:id="@+id/city"
             android:left="26dp"
             android:top="130dp"
             android:layout_width="wrap_content"
@@ -140,7 +141,7 @@
             android:layout_marginRight="0dp"
             android:layout_centerVertical="true"
             android:textSize="14dp"
-            android:text="100元"
+            android:hint="100元"
             android:fontFamily="@font/msyh"
             />
         <TextView
@@ -155,7 +156,7 @@
             android:fontFamily="@font/msyhbd"
             />
         <TextView
-            android:id="@+id/wendu"
+            android:id="@+id/temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -163,7 +164,7 @@
             android:layout_marginRight="0dp"
             android:layout_centerVertical="true"
             android:textSize="14dp"
-            android:text="100℃"
+            android:hint="0℃"
             android:fontFamily="@font/msyh"
             />
         <View
@@ -189,7 +190,7 @@
             android:layout_marginTop="14dp"
             android:textSize="16dp"
             android:gravity="left"
-            android:text="我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了"
+            android:hint="待记录"
             />
     </RelativeLayout>
     <RelativeLayout

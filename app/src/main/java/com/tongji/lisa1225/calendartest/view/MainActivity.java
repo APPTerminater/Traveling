@@ -96,8 +96,7 @@ public class MainActivity extends AppCompatActivity {
         {
             Date startDate = new Date(tripInfo.start_time);
             Date endDate = new Date(tripInfo.end_time);
-            String remind=new String(tripInfo.remind);
-            walkTextview.setText(remind);
+            String remind=tripInfo.remind;
             start_timeList.add(startDate);
             end_timeList.add(endDate);
             remindList.add(remind);
@@ -134,12 +133,18 @@ public class MainActivity extends AppCompatActivity {
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) { //在这个方法中处理选中事件。
                 // dealWithData(date);
                 // 给bnt1添加点击响应事件
+                long selectTime=date.getDate().getTime();
                 selectday = date.getDay();
                 selectmonth = date.getMonth() + 1;
                 selectyear = date.getYear();
                 //Date nowdate = new Date(System.currentTimeMillis());
                 Intent dateintent = new Intent(MainActivity.this, DateActivity.class);
                 //if(nowdate.)
+                Bundle b=new Bundle();
+                b.putString("name","SWWWWW");
+                b.putLong("selectTime",selectTime);
+                dateintent.putExtras(b);
+
                 dateintent.putExtra("nickname",nickname);
                 dateintent.putExtra("selectdate", String.valueOf(selectyear) + "年" + String.valueOf(selectmonth) + "月" + String.valueOf(selectday) + "日");
                 //启动
@@ -190,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         infoLayout.setVisibility(View.VISIBLE);
         nicknameTextview.setText(nickname);
         birthdayTextview.setText(mDao.alterBirthday(nickname));
-        //todo walkTextview.setText(mDao.alterWalk(nickname)+"步");
+        walkTextview.setText(mDao.alterWalk(nickname)+"步");
     }
     public void seeless(View view){
         infoLayout.setVisibility(View.INVISIBLE);

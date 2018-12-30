@@ -23,7 +23,6 @@ public class RemindController {
         calendar.getTime().getTime();
 
         long currentTime = calendar.getTime().getTime();
-        ;
         Date[] startArray = new Date[start_dates.size()];
         start_dates.toArray(startArray);
         String[] remindArray=new String[reminds.size()];

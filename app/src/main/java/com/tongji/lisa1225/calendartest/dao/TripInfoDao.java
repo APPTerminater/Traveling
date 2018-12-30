@@ -82,18 +82,19 @@ public class TripInfoDao {
      */
     public List<TripInfo> alterData(String nickname){
         List<TripInfo> tripInfoList=new ArrayList<>();
-        TripInfo tripInfo = new TripInfo();
+
         int count=0;
         SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
         // 查询比较特别,涉及到 cursor
         Cursor cursor = readableDatabase.query(TripInfo.TABLE, new String[]{TripInfo.KEY_id,TripInfo.KEY_destination,TripInfo.KEY_start_time,TripInfo.KEY_end_time,TripInfo.KEY_budget,TripInfo.KEY_brief_info,TripInfo.KEY_remind}, "nickname=?", new String[]{nickname}, null, null, null);
         while (cursor.moveToNext()) {
+            TripInfo tripInfo = new TripInfo();
             tripInfo.nickname=nickname;
             tripInfo.id = cursor.getInt(0); //获取第一列的值,第一列的索引从0开始
             tripInfo.destination = cursor.getString(1);//获取第二列的值
             tripInfo.start_time = cursor.getLong(2);
             tripInfo.end_time=cursor.getLong(3);
-            tripInfo.budget=cursor.getString(4);
+            tripInfo.budget=cursor.getInt(4);
             tripInfo.brief_info=cursor.getString(5);
             tripInfo.remind=cursor.getString(6);
             tripInfoList.add(tripInfo);

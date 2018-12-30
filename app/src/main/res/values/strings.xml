@@ -16,6 +16,7 @@
     <string name="introduction_hint">不超过20字符</string>
     <string name="isremind">在出发前一天提醒我</string>
     <string name="submit">提交</string>
+    <string name="notrip">未出行</string>
 
 
     <string-array name="custom_myweekdays">

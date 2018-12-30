@@ -214,7 +214,7 @@
             android:gravity="center"
             android:hint="RMB"
             android:background="@drawable/boder_kuang"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             />
 
         <View

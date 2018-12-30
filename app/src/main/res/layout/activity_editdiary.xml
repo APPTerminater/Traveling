@@ -50,6 +50,7 @@
             android:layout_height="35dp"
             android:drawableLeft="@drawable/save"
             android:background="@android:color/transparent"
+            android:onClick="save"
             />
     </android.support.v7.widget.Toolbar>
 
@@ -69,18 +70,19 @@
             android:background="@drawable/boder_kuang"
             android:fontFamily="@font/msyhbd"
             android:hint="@string/rijiname" />
+
         <TextView
-            android:left="26dp"
-            android:top="130dp"
+            android:id="@+id/city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="115dp"
+            android:background="@drawable/border_write"
+            android:left="26dp"
+            android:text="城市名"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:background="@drawable/border_write"
-            android:text="城市名"
-            />
+            android:top="130dp" />
         <TextView
             android:left="100dp"
             android:top="130dp"
@@ -103,7 +105,7 @@
             android:layout_marginLeft="21dp"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="162dp"
             android:text="今日开销"
             android:fontFamily="@font/msyhbd"
             />
@@ -118,6 +120,7 @@
             android:textSize="14dp"
             android:hint="100元"
             android:fontFamily="@font/msyh"
+            android:inputType="number"
             />
         <TextView
             android:left="20dp"
@@ -127,12 +130,12 @@
             android:layout_marginLeft="201dp"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="162dp"
             android:text="温度"
             android:fontFamily="@font/msyhbd"
             />
         <EditText
-            android:id="@+id/wendu"
+            android:id="@+id/temperature"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="240dp"
@@ -140,8 +143,9 @@
             android:background="@drawable/boder_kuang"
             android:layout_marginTop="160dp"
             android:textSize="14dp"
-            android:text="100℃"
+            android:hint="100℃"
             android:fontFamily="@font/msyh"
+            android:inputType="number"
             />
         <View
             android:left="20dp"

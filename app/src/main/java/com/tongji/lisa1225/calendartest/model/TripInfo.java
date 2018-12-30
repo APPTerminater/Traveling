@@ -19,19 +19,19 @@ public class TripInfo {
     public String destination;
     public long start_time;
     public long end_time;
-    public String budget;
+    public int budget;
     public String brief_info;
     public String remind;
     public String memo;
 
 
     public TripInfo(){
-        id=0;
+
         nickname=null;
         destination=null;
         start_time=0;
         end_time=0;
-        budget=null;
+        budget=0;
         brief_info=null;
         remind=null;
         memo=null;

@@ -194,14 +194,15 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         tripInfo.destination=destination.getText().toString().trim();
         tripInfo.start_time=starttime;
         tripInfo.end_time=backtime;
-        tripInfo.budget=money.getText().toString().trim();
+        tripInfo.budget=Integer.parseInt(money.getText().toString());
         tripInfo.brief_info=info.getText().toString().trim();
         if(isremind.isChecked())
         tripInfo.remind="yes";
         else tripInfo.remind="no";
 
 
-        if(TextUtils.isEmpty(tripInfo.destination)||TextUtils.isEmpty(tripInfo.budget)||TextUtils.isEmpty(tripInfo.brief_info)||tripInfo.start_time*tripInfo.end_time==0){
+        if(TextUtils.isEmpty(tripInfo.destination)||TextUtils.isEmpty(money.getText().toString().trim())
+                ||TextUtils.isEmpty(tripInfo.brief_info)||tripInfo.start_time*tripInfo.end_time==0){
             Toast.makeText(this,"填写不完整",Toast.LENGTH_SHORT).show();
             return;
         }else{
