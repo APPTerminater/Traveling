@@ -155,14 +155,15 @@
     <RelativeLayout>
 
         <Button
+            android:id="@+id/share"
             android:layout_width="217dp"
             android:layout_height="70dp"
-            android:id="@+id/share"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="23dp"
             android:background="@drawable/border_write"
             android:drawableLeft="@drawable/weixin"
             android:gravity="center"
+            android:onClick="share"
             android:text="一键分享到微信"
             android:textColor="@color/black"
             android:textSize="14dp"

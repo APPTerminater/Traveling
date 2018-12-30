@@ -93,6 +93,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".view.CommentActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".view.DateActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -30,5 +30,10 @@ public class TripActivity extends AppCompatActivity {
         Intent diaryIntent =new Intent(TripActivity.this,DiaryActivity.class);
         startActivity(diaryIntent);
     }
+    public void tocomment(View view){
+        Intent commentIntent=new Intent(TripActivity.this,CommentActivity.class);
+        startActivity(commentIntent);
+
+    }
     //按钮点击事件结束
 }

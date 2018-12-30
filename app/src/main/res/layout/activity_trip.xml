@@ -103,17 +103,18 @@
             android:gravity="left"
             android:text="10000步"
             />
+
         <Button
             android:id="@+id/share"
-            android:left="335dp"
-            android:top="114dp"
-            android:background="@android:color/transparent"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:drawableLeft="@drawable/share1"
-            android:layout_marginTop="17dp"
             android:layout_marginLeft="290dp"
-            />
+            android:layout_marginTop="17dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/share1"
+            android:left="335dp"
+            android:onClick="tocomment"
+            android:top="114dp" />
         <TextView
             android:left="20dp"
             android:top="210dp"
