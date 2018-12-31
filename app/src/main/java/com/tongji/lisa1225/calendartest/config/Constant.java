@@ -1,8 +1,5 @@
 package com.tongji.lisa1225.calendartest.config;
 
-/**
- * Created by lenovo on 2017/1/17.
- */
 
 public class Constant {
     //用于发送消息

@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest.utils;
+package com.tongji.lisa1225.calendartest.util;
 
 import android.content.Context;
 
@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * 数据库操作类
- * Created by lenovo on 2017/1/5.
  */
 public class DbUtils {
     public static LiteOrm liteOrm;

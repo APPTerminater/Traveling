@@ -15,6 +15,7 @@ public class DiaryInfo {
     public static final String KEY_bold="isbold";
     public static final String KEY_size="textsize";
     public static final String KEY_color="textcolor";
+    public static final String KEY_destination="destination";
     //属性
     public int id;
     public long time;
@@ -27,6 +28,7 @@ public class DiaryInfo {
     public String isbold;
     public String textsize;
     public String textcolor;
+    public String destination;
 
 
     public DiaryInfo(){
@@ -40,5 +42,6 @@ public class DiaryInfo {
         isbold=null;
         textsize=null;
         textcolor=null;
+        destination=null;
     }
 }

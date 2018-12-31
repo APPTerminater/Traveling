@@ -43,6 +43,7 @@ public class DiaryInfoDao {
         contentValues.put(DiaryInfo.KEY_bold,diaryInfo.isbold);
         contentValues.put(DiaryInfo.KEY_size,diaryInfo.textsize);
         contentValues.put(DiaryInfo.KEY_color,diaryInfo.textcolor);
+        contentValues.put(DiaryInfo.KEY_destination,diaryInfo.destination);
 
         // 返回,显示数据添加在第几行
         // 加了现在连续添加了3行数据,突然删掉第三行,然后再添加一条数据返回的是4不是3
@@ -116,6 +117,36 @@ public class DiaryInfoDao {
         cursor.close(); // 记得关闭 corsor
         readableDatabase.close(); // 关闭数据库
         return diaryInfo;
+    }
+    public List<DiaryInfo> alterData(String nickname){
+        List<DiaryInfo> diaryInfoList=new ArrayList<>();
+
+        int count=0;
+        SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
+        // 查询比较特别,涉及到 cursor
+        Cursor cursor = readableDatabase.query(DiaryInfo.TABLE, new String[]{DiaryInfo.KEY_id,DiaryInfo.KEY_temperature,DiaryInfo.KEY_cost,
+                        DiaryInfo.KEY_title,DiaryInfo.KEY_text,DiaryInfo.KEY_font,DiaryInfo.KEY_bold,DiaryInfo.KEY_size,
+                        DiaryInfo.KEY_color,DiaryInfo.KEY_time,DiaryInfo.KEY_destination},
+                "nickname=?", new String[]{nickname}, null, null, null);
+        while (cursor.moveToNext()) {
+            DiaryInfo diaryInfo = new DiaryInfo();
+            diaryInfo.nickname=nickname;
+            diaryInfo.id = cursor.getInt(0); //获取第一列的值,第一列的索引从0开始
+            diaryInfo.temperature = cursor.getInt(1);//获取第二列的值
+            diaryInfo.cost = cursor.getInt(2);
+            diaryInfo.title=cursor.getString(3);
+            diaryInfo.text=cursor.getString(4);
+            diaryInfo.textfont=cursor.getString(5);
+            diaryInfo.isbold=cursor.getString(6);
+            diaryInfo.textsize=cursor.getString(7);
+            diaryInfo.textcolor=cursor.getString(8);
+            diaryInfo.time=cursor.getLong(9);
+            diaryInfo.destination=cursor.getString(10);
+            diaryInfoList.add(diaryInfo);
+        }
+        cursor.close(); // 记得关闭 corsor
+        readableDatabase.close(); // 关闭数据库
+        return diaryInfoList;
     }
 
 }

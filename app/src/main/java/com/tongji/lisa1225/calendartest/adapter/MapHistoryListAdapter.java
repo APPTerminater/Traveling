@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.tongji.lisa1225.calendartest.R;
-import com.tongji.lisa1225.calendartest.sqlite.MapHistoryBean;
+import com.tongji.lisa1225.calendartest.model.MapHistoryBean;
 import com.tongji.lisa1225.calendartest.util.LogUtil;
 
 import java.util.List;

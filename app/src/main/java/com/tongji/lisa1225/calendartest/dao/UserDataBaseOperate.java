@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest.sqlite;
+package com.tongji.lisa1225.calendartest.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.tongji.lisa1225.calendartest.model.MapHistoryBean;
+import com.tongji.lisa1225.calendartest.dbhelper.UserSQLiteOpenHelper;
 import com.tongji.lisa1225.calendartest.util.LogUtil;
 
 import java.util.ArrayList;

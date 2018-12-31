@@ -4,11 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
 import com.tongji.lisa1225.calendartest.dbhelper.MyDBHelper;
 import com.tongji.lisa1225.calendartest.model.TripInfo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TripInfoDao {
@@ -40,7 +42,8 @@ public class TripInfoDao {
         contentValues.put(TripInfo.KEY_budget,tripInfo.budget);
         contentValues.put(TripInfo.KEY_brief_info,tripInfo.brief_info);
         contentValues.put(TripInfo.KEY_remind,tripInfo.remind);
-        //todo contentValues.put(TripInfo.KEY_memo,tripInfo.memo);
+        if(!TextUtils.isEmpty(tripInfo.destination))
+        contentValues.put(TripInfo.KEY_memo,tripInfo.memo);
         // 返回,显示数据添加在第几行
         // 加了现在连续添加了3行数据,突然删掉第三行,然后再添加一条数据返回的是4不是3
         // 因为自增长
@@ -62,18 +65,19 @@ public class TripInfoDao {
     /**
      * 修改的方法
      * @param nickname
-     * @param newWalk
+     * @param starttime
      * @return
-
-    public int updateData(String nickname,String newWalk){
+*/
+    public int updateRemind(String nickname, Date starttime){
         SQLiteDatabase sqLiteDatabase = mMyDBHelper.getWritableDatabase();
         ContentValues contentValues =new ContentValues();
-        contentValues.put("walk_daliy", newWalk);
-        int updateResult = sqLiteDatabase.update(TripInfo.TABLE, contentValues, "nickname=?", new String[]{nickname});
+        contentValues.put(TripInfo.KEY_remind, "no");
+        int updateResult = sqLiteDatabase.update(TripInfo.TABLE, contentValues, "nickname=? and start_time=?",
+                new String[]{nickname,String.valueOf(starttime.getTime())});
         sqLiteDatabase.close();
         return updateResult;
     }
-    */
+
 
     /**
      * 查询的方法
@@ -86,7 +90,9 @@ public class TripInfoDao {
         int count=0;
         SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
         // 查询比较特别,涉及到 cursor
-        Cursor cursor = readableDatabase.query(TripInfo.TABLE, new String[]{TripInfo.KEY_id,TripInfo.KEY_destination,TripInfo.KEY_start_time,TripInfo.KEY_end_time,TripInfo.KEY_budget,TripInfo.KEY_brief_info,TripInfo.KEY_remind}, "nickname=?", new String[]{nickname}, null, null, null);
+        Cursor cursor = readableDatabase.query(TripInfo.TABLE, new String[]{TripInfo.KEY_id,TripInfo.KEY_destination,TripInfo.KEY_start_time,
+                TripInfo.KEY_end_time,TripInfo.KEY_budget,TripInfo.KEY_brief_info,TripInfo.KEY_remind,TripInfo.KEY_memo},
+                "nickname=?", new String[]{nickname}, null, null, null);
         while (cursor.moveToNext()) {
             TripInfo tripInfo = new TripInfo();
             tripInfo.nickname=nickname;
@@ -97,6 +103,7 @@ public class TripInfoDao {
             tripInfo.budget=cursor.getInt(4);
             tripInfo.brief_info=cursor.getString(5);
             tripInfo.remind=cursor.getString(6);
+            tripInfo.memo=cursor.getString(7);
             tripInfoList.add(tripInfo);
             count++;
         }

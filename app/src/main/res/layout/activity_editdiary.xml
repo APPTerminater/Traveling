@@ -33,14 +33,13 @@
 
         <TextView
             android:id="@+id/showdate"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="29dp"
-            android:layout_marginTop="0dp"
             android:layout_marginLeft="60dp"
+            android:layout_marginTop="0dp"
             android:text="2018年12月01日"
             android:textColor="@color/PureWhite"
-            android:textSize="20dp"
-            />
+            android:textSize="20dp" />
         <Button
             android:layout_marginTop="0dp"
             android:id="@+id/saveButton"

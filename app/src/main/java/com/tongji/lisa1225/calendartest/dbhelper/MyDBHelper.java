@@ -31,7 +31,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.execSQL("create table tripinfo (id integer primary key autoincrement,nickname varchar(20), destination varchar(20), " +
                 "start_time long,end_time long,budget integer,brief_info varchar(50),remind varchar(10),memo varchar(100))");
         db.execSQL("create table DiaryInfo (id integer primary key autoincrement,time long,nickname varchar(20), temperature integer,cost integer," +
-                "title varchar(20), text varchar(500),textfont varchar(20),isbold varchar(20),textsize varchar(20),textcolor varchar(20))");
+                "title varchar(20), text varchar(500),textfont varchar(20),isbold varchar(20),textsize varchar(20),textcolor varchar(20),destination varchar(20))");
     }
 
 

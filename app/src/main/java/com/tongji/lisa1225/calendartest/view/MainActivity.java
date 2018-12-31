@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         topbar=(Toolbar)findViewById(R.id.activity_toolbar);
 
-        get_intent = getIntent();//TODO 传来的昵称 日历标记、侧边栏显示
+        get_intent = getIntent();
         nickname=get_intent.getStringExtra("nickname");
 
 
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         List<Date> start_timeList=new ArrayList<>();
         List<Date> end_timeList=new ArrayList<>();
         List<String> remindList =new ArrayList<>();
+        List<String> memoList=new ArrayList<>();
 
         tripInfoList=tDao.alterData(nickname);
         for (TripInfo tripInfo:tripInfoList)
@@ -97,17 +98,22 @@ public class MainActivity extends AppCompatActivity {
             Date startDate = new Date(tripInfo.start_time);
             Date endDate = new Date(tripInfo.end_time);
             String remind=tripInfo.remind;
+            String memo=tripInfo.memo;
             start_timeList.add(startDate);
             end_timeList.add(endDate);
             remindList.add(remind);
+            memoList.add(memo);
         }
         //提醒功能
         remindController=new RemindController(start_timeList,remindList);
         if(remindController.shouldRemind())
         {
             AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
-            alertdialogbuilder.setMessage("您在一天内有出行计划哦！请做好准备！");
-            alertdialogbuilder.setPositiveButton("确定", okclick);
+            if(remindController.remindText(memoList)!=null)
+                alertdialogbuilder.setMessage(remindController.remindText(memoList));
+            else alertdialogbuilder.setMessage("您在一天内有出行计划哦！请做好准备！");
+            alertdialogbuilder.setPositiveButton("再次提醒",againclick);
+            alertdialogbuilder.setNegativeButton("确定", okclick);
             AlertDialog alertdialog=alertdialogbuilder.create();
             alertdialog.show();
         }
@@ -156,6 +162,16 @@ public class MainActivity extends AppCompatActivity {
     }
     //提醒确定按钮
     private DialogInterface.OnClickListener okclick=new DialogInterface.OnClickListener()
+    {
+        @Override
+        public void onClick(DialogInterface arg0,int arg1)
+        {
+            tDao.updateRemind(nickname,remindController.getstart_dates());
+            arg0.cancel();
+        }
+    };
+    //再次提醒按钮
+    private DialogInterface.OnClickListener againclick=new DialogInterface.OnClickListener()
     {
         @Override
         public void onClick(DialogInterface arg0,int arg1)

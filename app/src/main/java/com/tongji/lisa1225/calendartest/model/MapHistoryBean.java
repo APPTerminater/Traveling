@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest.sqlite;
+package com.tongji.lisa1225.calendartest.model;
 
 public class MapHistoryBean {
 

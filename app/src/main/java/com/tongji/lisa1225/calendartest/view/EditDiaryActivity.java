@@ -123,6 +123,7 @@ public class EditDiaryActivity extends AppCompatActivity {
         diaryInfo.text=content.getText().toString().trim();
         diaryInfo.temperature= Integer.parseInt(temperature.getText().toString());
         diaryInfo.cost=Integer.parseInt(money.getText().toString());
+        diaryInfo.destination=cityname;
         //添加
         if(dDao.alterData(nickname,selectTime).title==null) {
             if (TextUtils.isEmpty(diaryInfo.title) || TextUtils.isEmpty(money.getText().toString().trim())
@@ -139,7 +140,7 @@ public class EditDiaryActivity extends AppCompatActivity {
                 }
             }
         }
-        //todo 修改
+        //修改
         else {
             if (TextUtils.isEmpty(diaryInfo.title) || TextUtils.isEmpty(money.getText().toString().trim())
                     || TextUtils.isEmpty(temperature.getText().toString().trim()) || TextUtils.isEmpty(diaryInfo.text)) {

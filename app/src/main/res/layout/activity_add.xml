@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/PureWhite"
-    android:id="@+id/layout"
     >
 
     <android.support.v7.widget.Toolbar
@@ -34,7 +33,7 @@
         <Button
             android:id="@+id/tripButton"
             android:layout_width="60dp"
-            android:layout_height="29dp"
+            android:layout_height="48dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="60dp"
@@ -43,11 +42,12 @@
             android:textSize="20dp"
             android:fontFamily="@font/msyh"
             android:background="@android:color/transparent"
+            android:onClick="toTrip"
             />
         <Button
             android:id="@+id/reminderButton"
             android:layout_width="60dp"
-            android:layout_height="29dp"
+            android:layout_height="48dp"
             android:layout_marginTop="0dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="10dp"
@@ -56,6 +56,7 @@
             android:textSize="20dp"
             android:fontFamily="@font/msyh"
             android:background="@android:color/transparent"
+            android:onClick="toReminder"
             />
         <Button
             android:layout_marginTop="0dp"
@@ -69,153 +70,149 @@
             />
     </android.support.v7.widget.Toolbar>
 
-    <RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/addTripLayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        >
+
         <TextView
-            android:left="20dp"
-            android:top="140dp"
-            android:layout_width="77dp"
+            android:layout_width="wrap_content"
             android:layout_height="23dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:textSize="18dp"
-            android:gravity="left"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="24dp"
             android:drawableLeft="@drawable/mudidi"
-            />
-        <TextView
+            android:gravity="left"
             android:left="20dp"
-            android:top="140dp"
+            android:textSize="18dp"
+            android:top="130dp" />
+
+        <TextView
             android:layout_width="77dp"
             android:layout_height="23dp"
             android:layout_marginLeft="52dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
+            android:gravity="left"
+            android:left="20dp"
+            android:text="目的地"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:gravity="left"
-            android:text="目的地"
-            />
+            android:top="140dp" />
+
         <EditText
             android:id="@+id/destination"
-            android:left="100dp"
-            android:top="135dp"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="27dp"
-            android:gravity="center"
-            android:textSize="16dp"
-            android:hint="城市"
+            android:layout_marginTop="22dp"
             android:background="@drawable/boder_kuang"
-            />
+            android:gravity="center"
+            android:hint="城市"
+            android:left="100dp"
+            android:textSize="16dp"
+            android:top="135dp" />
 
-    </RelativeLayout>
-    <TableRow>
         <TextView
-            android:left="20dp"
-            android:top="160dp"
             android:layout_width="23dp"
             android:layout_height="23dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="23dp"
-            android:textSize="18dp"
-            android:gravity="left"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="76dp"
             android:drawableLeft="@drawable/shijian"
-            />
-        <TextView
+            android:gravity="left"
             android:left="20dp"
-            android:top="160dp"
+            android:textSize="18dp"
+            android:top="160dp" />
+
+        <TextView
             android:layout_width="60dp"
             android:layout_height="23dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="76dp"
+            android:gravity="left"
+            android:left="20dp"
+            android:text="时间"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:gravity="left"
-            android:text="时间"
-            />
+            android:top="160dp" />
 
         <TextView
             android:id="@+id/goTime"
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:paddingRight="5dp"
-            android:paddingLeft="5dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="72dp"
             android:background="@drawable/boder_kuang"
-            android:textSize="14dp"
+            android:fontFamily="@font/msyh"
+            android:gravity="center"
             android:hint="出发时间"
-            />
-    </TableRow>
-    <RelativeLayout>
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@color/colorAdd"
+            android:textSize="14dp" />
+
+
         <View
-            android:left="20dp"
-            android:top="195dp"
             android:layout_width="20dp"
             android:layout_height="1dp"
             android:layout_marginLeft="93dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="133dp"
             android:background="@color/textColor"
-            />
+            android:left="20dp"
+            android:top="195dp" />
+
         <TextView
             android:id="@+id/backTime"
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="131dp"
-            android:layout_marginTop="20dp"
-
-            android:gravity="center"
-            android:paddingRight="5dp"
-            android:paddingLeft="5dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/colorAdd"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="118dp"
             android:background="@drawable/boder_kuang"
-            android:textSize="14dp"
+            android:fontFamily="@font/msyh"
+            android:gravity="center"
             android:hint="返回时间"
-            />
-    </RelativeLayout>
-    <RelativeLayout>
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@color/colorAdd"
+            android:textSize="14dp" />
+
 
         <TextView
-            android:left="20dp"
-            android:top="160dp"
-            android:layout_width="20dp"
+            android:layout_width="wrap_content"
             android:layout_height="23dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="24dp"
-            android:textSize="18dp"
-            android:gravity="left"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="168dp"
             android:drawableLeft="@drawable/money"
-            />
-        <TextView
+            android:gravity="left"
             android:left="20dp"
-            android:top="160dp"
+            android:textSize="18dp"
+            android:top="160dp" />
+
+        <TextView
             android:layout_width="77dp"
             android:layout_height="23dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="170dp"
+            android:gravity="left"
+            android:left="20dp"
+            android:text="预计开销"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:gravity="left"
-            android:text="预计开销"
-            />
+            android:top="160dp" />
+
         <EditText
             android:id="@+id/money"
-            android:left="100dp"
-            android:top="155dp"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="20dp"
-            android:textSize="16dp"
+            android:layout_marginTop="167dp"
+            android:background="@drawable/boder_kuang"
             android:gravity="center"
             android:hint="RMB"
-            android:background="@drawable/boder_kuang"
-            android:inputType="number"
-            />
+            android:inputType="numberDecimal"
+            android:left="100dp"
+            android:textSize="16dp"
+            android:top="155dp" />
 
         <View
             android:left="20dp"
@@ -223,40 +220,69 @@
             android:layout_width="335dp"
             android:layout_height="1dp"
             android:layout_marginLeft="14dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="210dp"
             android:background="@color/textColor"
             />
-    </RelativeLayout>
 
-
-    <RelativeLayout>
         <EditText
             android:id="@+id/info"
-            android:left="20dp"
-            android:top="210dp"
             android:layout_width="320dp"
             android:layout_height="265dp"
             android:layout_marginLeft="21dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="230dp"
+            android:background="@drawable/boder_kuang"
+            android:gravity="left"
+            android:hint="旅行简介"
+            android:left="20dp"
             android:textColor="@color/Black"
             android:textSize="16dp"
-            android:gravity="left"
-            android:background="@drawable/boder_kuang"
-            android:hint="旅行简介"
-            />
-    </RelativeLayout>
+            android:top="210dp" />
 
-    <RelativeLayout>
         <CheckBox
             android:id="@+id/isremind"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="510dp"
             android:text="@string/isremind"
             android:textSize="16dp"
             android:fontFamily="@font/msyh"
             android:textColor="@color/black"
+            android:onClick="remindBtn"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/addReminderLayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:background="@drawable/bg_main"
+        >
+        <EditText
+            android:id="@+id/memo"
+            android:layout_width="320dp"
+            android:layout_height="415dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/boder_kuang"
+            android:gravity="left"
+            android:left="20dp"
+            android:hint="添加必要的物品"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:top="210dp" />
+        <CheckBox
+            android:id="@+id/isremind2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="440dp"
+            android:text="@string/isremind"
+            android:textSize="16dp"
+            android:fontFamily="@font/msyh"
+            android:textColor="@color/black"
+            android:onClick="remindBtn2"
             />
     </RelativeLayout>
 </TableLayout>

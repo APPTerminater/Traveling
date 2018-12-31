@@ -6,7 +6,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 
-import com.tongji.lisa1225.calendartest.utils.CountDownTimer;
+import com.tongji.lisa1225.calendartest.util.CountDownTimer;
 
 import java.util.Timer;
 import java.util.TimerTask;

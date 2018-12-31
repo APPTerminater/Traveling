@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest.utils;
+package com.tongji.lisa1225.calendartest.util;
 
 import android.os.Handler;
 import android.os.Message;
@@ -6,7 +6,6 @@ import android.os.SystemClock;
 
 /**
  * 倒计时定时器
- * Created by lenovo on 2017/1/5.
  */
 
 public abstract class CountDownTimer {

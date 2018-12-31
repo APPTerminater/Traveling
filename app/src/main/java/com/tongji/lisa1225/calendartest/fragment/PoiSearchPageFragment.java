@@ -26,7 +26,7 @@ import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.adapter.MapHistoryListAdapter;
 import com.tongji.lisa1225.calendartest.adapter.PoiSearchListAdapter;
 import com.tongji.lisa1225.calendartest.model.PoiItemOnclickBean;
-import com.tongji.lisa1225.calendartest.sqlite.MapHistoryBean;
+import com.tongji.lisa1225.calendartest.model.MapHistoryBean;
 import com.tongji.lisa1225.calendartest.util.LogUtil;
 import com.tongji.lisa1225.calendartest.util.MapUtil;
 

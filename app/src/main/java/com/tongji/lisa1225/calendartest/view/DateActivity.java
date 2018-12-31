@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest.view;//todo 需要更换字体、颜色等
+package com.tongji.lisa1225.calendartest.view;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -152,7 +152,7 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
         {
             Date startDate = new Date(tripInfo.start_time);
             Date endDate = new Date(tripInfo.end_time);
-            String city=new String(tripInfo.destination);
+            String city=tripInfo.destination;
             start_timeList.add(startDate);
             end_timeList.add(endDate);
             cityList.add(city);
@@ -188,7 +188,6 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
         text_step = (TextView) findViewById(R.id.main_text_step);
         delayHandler = new Handler(this);
         //计步相关结束
-
     }
     public void changeFont(String font){
         switch (font){
@@ -252,7 +251,11 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
         }
     }
     public void back(View view){
-        Intent mainintent =new Intent(DateActivity.this,MainActivity.class);
+        if(selectTime<=System.currentTimeMillis()&&(selectTime+24*60*60*1000)>System.currentTimeMillis())
+        {
+            //todo
+        }
+            Intent mainintent =new Intent(DateActivity.this,MainActivity.class);
         //启动
         mainintent.putExtra("nickname",nickname);
         startActivity(mainintent);
@@ -281,6 +284,7 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
      */
     private void setupService() {
         Intent intent = new Intent(this, StepService.class);
+        intent.putExtra("querydate",selectTime);
         bindService(intent, conn, Context.BIND_AUTO_CREATE);
         startService(intent);
     }

@@ -1,9 +1,7 @@
 package com.tongji.lisa1225.calendartest.service;
 
 import android.annotation.TargetApi;
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,12 +23,10 @@ import android.support.annotation.Nullable;
 //import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
-import com.tongji.lisa1225.calendartest.*;
-import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.config.Constant;
-import com.tongji.lisa1225.calendartest.pojo.StepData;
-import com.tongji.lisa1225.calendartest.utils.CountDownTimer;
-import com.tongji.lisa1225.calendartest.utils.DbUtils;
+import com.tongji.lisa1225.calendartest.model.StepData;
+import com.tongji.lisa1225.calendartest.util.CountDownTimer;
+import com.tongji.lisa1225.calendartest.util.DbUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,7 +35,6 @@ import java.util.List;
 
 /**
  * 计步服务
- * Created by lenovo on 2017/1/17.
  */
 @TargetApi(Build.VERSION_CODES.CUPCAKE)
 public class StepService extends Service implements SensorEventListener {

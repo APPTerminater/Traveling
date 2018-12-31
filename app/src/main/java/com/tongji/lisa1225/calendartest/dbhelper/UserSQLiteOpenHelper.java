@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest.sqlite;
+package com.tongji.lisa1225.calendartest.dbhelper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

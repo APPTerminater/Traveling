@@ -32,7 +32,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     EditText destination;
     EditText money;
     EditText info;
-    private CheckBox isremind;
+    EditText memo;
+    private CheckBox isremind,isremind2;
+    private RelativeLayout addTripLayout,addReminderLayout;
+    private Button tripBtn,reminderBtn;
     //private RelativeLayout selectDate, selectTime,selectDate2, selectTime2;
     private TextView currentDate, currentTime,currentDate2, currentTime2;
 
@@ -49,7 +52,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        get_intent = getIntent();//TODO 传来的昵称 日历标记、侧边栏显示
+        get_intent = getIntent();
         nickname=get_intent.getStringExtra("nickname");
 
         mDao=new TripInfoDao(AddActivity.this);
@@ -57,12 +60,17 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         destination=(EditText)findViewById(R.id.destination);
         money=(EditText)findViewById(R.id.money);
         info=(EditText)findViewById(R.id.info);
+        memo=(EditText)findViewById(R.id.memo);
         isremind=(CheckBox)findViewById(R.id.isremind);
+        isremind2=(CheckBox)findViewById(R.id.isremind2);
         currentTime = (TextView) findViewById(R.id.goTime);
         currentTime.setOnClickListener(this);
         currentTime2 = (TextView) findViewById(R.id.backTime);
         currentTime2.setOnClickListener(this);
-
+        addTripLayout=(RelativeLayout)findViewById(R.id.addTripLayout);
+        addReminderLayout=(RelativeLayout)findViewById(R.id.addReminderLayout);
+        tripBtn=(Button)findViewById(R.id.tripButton);
+        reminderBtn=(Button)findViewById(R.id.reminderButton);
 
     }
 
@@ -181,12 +189,24 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             arg0.cancel();
         }
     };
-
+    //按钮点击事件
     public void tomain(View view){
         Intent mainintent =new Intent(AddActivity.this,MainActivity.class);
         mainintent.putExtra("nickname",nickname);
         //启动
         startActivity(mainintent);
+    }
+    public void toReminder(View view){
+        addTripLayout.setVisibility(View.GONE);
+        addReminderLayout.setVisibility(View.VISIBLE);
+        tripBtn.setTextColor(getResources().getColor(R.color.danxiaqu));
+        reminderBtn.setTextColor(getResources().getColor(R.color.PureWhite));
+    }
+    public void toTrip(View view){
+        addReminderLayout.setVisibility(View.GONE);
+        addTripLayout.setVisibility(View.VISIBLE);
+        reminderBtn.setTextColor(getResources().getColor(R.color.danxiaqu));
+        tripBtn.setTextColor(getResources().getColor(R.color.PureWhite));
     }
     public void submit(View view){
         TripInfo tripInfo=new TripInfo();
@@ -194,11 +214,13 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         tripInfo.destination=destination.getText().toString().trim();
         tripInfo.start_time=starttime;
         tripInfo.end_time=backtime;
+        if(!TextUtils.isEmpty(money.getText().toString()))
         tripInfo.budget=Integer.parseInt(money.getText().toString());
         tripInfo.brief_info=info.getText().toString().trim();
         if(isremind.isChecked())
         tripInfo.remind="yes";
         else tripInfo.remind="no";
+        tripInfo.memo=memo.getText().toString().trim();
 
 
         if(TextUtils.isEmpty(tripInfo.destination)||TextUtils.isEmpty(money.getText().toString().trim())
@@ -220,6 +242,18 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         //启动
         startActivity(mainintent);
     }
+    //两个按钮的联动
+    public void remindBtn(View view){
+        if (isremind.isChecked())
+            isremind2.setChecked(true);
+        else isremind2.setChecked(false);
+    }
+    public void remindBtn2(View view){
+        if(isremind2.isChecked())
+            isremind.setChecked(true);
+        else isremind.setChecked(false);
+    }
+
 }
 
 

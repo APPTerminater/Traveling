@@ -38,7 +38,18 @@ public class RemindController {
         return false;
     }
 
-    /*String remindText(){
+    public String remindText(List<String>memoList){
+        String[] memoArray=new String[memoList.size()];
+        memoList.toArray(memoArray);
+        return memoArray[num];
+    }
 
-    }*/
+    public int getNum() {
+        return num;
+    }
+    public Date getstart_dates(){
+        Date[] startArray = new Date[start_dates.size()];
+        start_dates.toArray(startArray);
+        return startArray[num];
+    }
 }

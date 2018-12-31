@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest.pojo;
+package com.tongji.lisa1225.calendartest.model;
 
 import com.litesuits.orm.db.annotation.Column;
 import com.litesuits.orm.db.annotation.PrimaryKey;
@@ -7,7 +7,6 @@ import com.litesuits.orm.db.enums.AssignType;
 
 /**
  * 数据库中的表类
- * Created by lenovo on 2017/1/17.
  */
 @Table("step")   //标记为表名  使用了第三方框架
 public class StepData{
