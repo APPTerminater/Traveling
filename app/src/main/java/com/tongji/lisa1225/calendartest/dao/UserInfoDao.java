@@ -146,15 +146,15 @@ public class UserInfoDao {
      * @param nickname
      * @return
      */
-    public String alterWalk(String nickname){
-        String walk_daliy = null;
+    public int alterWalk(String nickname){
+        int walk_daliy = 0;
 
         SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
         // 查询比较特别,涉及到 cursor
 
         Cursor cursor = readableDatabase.query(UserInfo.TABLE, new String[]{"walk_daliy"}, "nickname=?", new String[]{nickname}, null, null, null);
         if(cursor.moveToNext()){
-            walk_daliy=cursor.getString(0);
+            walk_daliy=cursor.getInt(0);
         }
         cursor.close(); // 记得关闭 corsor
         readableDatabase.close(); // 关闭数据库

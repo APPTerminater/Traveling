@@ -2,21 +2,33 @@ package com.tongji.lisa1225.calendartest.view;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.prolificinteractive.materialcalendarview.*;
 import com.tongji.lisa1225.calendartest.R;
+import com.tongji.lisa1225.calendartest.config.Constant;
 import com.tongji.lisa1225.calendartest.controllor.RemindController;
+import com.tongji.lisa1225.calendartest.dao.DiaryInfoDao;
 import com.tongji.lisa1225.calendartest.dao.TripInfoDao;
 import com.tongji.lisa1225.calendartest.dao.UserInfoDao;
 import com.tongji.lisa1225.calendartest.decorator.DayModeDecorator;
 import com.tongji.lisa1225.calendartest.decorator.EventDecorator;
 import com.tongji.lisa1225.calendartest.decorator.HighlightWeekendsDecorator;
 import com.tongji.lisa1225.calendartest.decorator.NightModeDecorator;
+import com.tongji.lisa1225.calendartest.model.DiaryInfo;
 import com.tongji.lisa1225.calendartest.model.TripInfo;
+import com.tongji.lisa1225.calendartest.service.StepService;
 
 
 import android.support.v7.widget.Toolbar;
@@ -37,18 +49,23 @@ import android.widget.LinearLayout;
 import android.support.annotation.*;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Handler.Callback {
     MaterialCalendarView imcvTemMaterCalendarWeek;
     private UserInfoDao mDao;
     private TripInfoDao tDao;
+    private DiaryInfoDao dDao;
     SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+    Date today_zero;//今天零点
+    long today0;
     long selectday, selectmonth, selectyear;
     Toolbar topbar;
     //侧边栏部分
@@ -64,7 +81,77 @@ public class MainActivity extends AppCompatActivity {
     String nickname;
     Intent get_intent;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    //计步相关开始：循环取当前时刻的步数中间的时间间隔
+    private long TIME_INTERVAL = 5000;
 
+
+    private Messenger messenger;
+    private Messenger mGetReplyMessenger = new Messenger(new Handler(this));
+    private Handler delayHandler;
+
+    //以bind形式开启service，故有ServiceConnection接收回调
+    ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            try {
+                messenger = new Messenger(service);
+                Message msg = Message.obtain(null, Constant.MSG_FROM_CLIENT);
+                msg.replyTo = mGetReplyMessenger;
+                messenger.send(msg);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+        @Override
+        public void onServiceDisconnected(ComponentName name) {}
+    };
+
+    //接收从服务端回调的步数
+    @Override
+    public boolean handleMessage(Message msg) {
+        switch (msg.what) {
+            case Constant.MSG_FROM_SERVER:
+                //更新步数
+                DiaryInfo diaryInfo=new DiaryInfo();
+                today0=today_zero.getTime()-today_zero.getTime()%1000;
+                //today0=today0-172800000;
+                diaryInfo=dDao.alterData(nickname,today0);
+
+                if(diaryInfo.title==null&&diaryInfo.id==-1){
+                    long addLong=dDao.insertStep(today0,nickname,msg.getData().getInt("step"));
+                    if(addLong==-1){
+                        Toast.makeText(this,"添加失败",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(this,"数据添加在第  "+addLong+"   行",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {//todo
+                    int count;
+                    if (diaryInfo.step<msg.getData().getInt("step")) {
+                        count = dDao.updateStep(today0, nickname, msg.getData().getInt("step"));
+                        if (count == -1) {
+                            Toast.makeText(this, "更新失败", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "数据更新了  " + count + "   行", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+                delayHandler.sendEmptyMessageDelayed(Constant.REQUEST_SERVER, TIME_INTERVAL);
+                break;
+            case Constant.REQUEST_SERVER:
+                try {
+                    Message msgl = Message.obtain(null, Constant.MSG_FROM_CLIENT);
+                    msgl.replyTo = mGetReplyMessenger;
+                    messenger.send(msgl);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+        return false;
+    }
+    //计步相关结束
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
         mDao=new UserInfoDao(MainActivity.this);
         tDao=new TripInfoDao(MainActivity.this);
+        dDao=new DiaryInfoDao(MainActivity.this);
 
         layout=(RelativeLayout)findViewById(R.id.layout);
         infoLayout=(LinearLayout)findViewById(R.id.userinfo);
@@ -84,8 +172,17 @@ public class MainActivity extends AppCompatActivity {
 
         get_intent = getIntent();
         nickname=get_intent.getStringExtra("nickname");
+        //获取今天零点的date
+        TimeZone curTimeZone = TimeZone.getTimeZone("GMT+8");
+        Calendar c = Calendar.getInstance(curTimeZone);
+        Date d = new Date(System.currentTimeMillis());
+        c.setTime(d);
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        today_zero = c.getTime();
 
-
+        //查询数据库
         List<TripInfo> tripInfoList=new ArrayList<>();
         List<Date> start_timeList=new ArrayList<>();
         List<Date> end_timeList=new ArrayList<>();
@@ -109,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         if(remindController.shouldRemind())
         {
             AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
-            if(remindController.remindText(memoList)!=null)
+            if(!remindController.remindText(memoList).isEmpty())
                 alertdialogbuilder.setMessage(remindController.remindText(memoList));
             else alertdialogbuilder.setMessage("您在一天内有出行计划哦！请做好准备！");
             alertdialogbuilder.setPositiveButton("再次提醒",againclick);
@@ -159,6 +256,10 @@ public class MainActivity extends AppCompatActivity {
         });
         //处理日历结束
         whichMode();
+        //计步相关开始
+        //text_step = (TextView) findViewById(R.id.main_text_step);
+        delayHandler = new Handler(this);
+        //计步相关结束
     }
     //提醒确定按钮
     private DialogInterface.OnClickListener okclick=new DialogInterface.OnClickListener()
@@ -255,5 +356,32 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+    //计步相关开始
+    @Override
+    public void onStart() {
+        super.onStart();
+        setupService();
+    }
+    /**
+     * 开启服务
+     */
+    private void setupService() {
+        Intent intent = new Intent(this, StepService.class);
+        bindService(intent, conn, Context.BIND_AUTO_CREATE);
+        startService(intent);
+    }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        //取消服务绑定
+        unbindService(conn);
+        super.onDestroy();
+    }
+    //计步相关结束
 }

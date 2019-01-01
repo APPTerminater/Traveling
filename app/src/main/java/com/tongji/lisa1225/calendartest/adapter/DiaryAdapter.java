@@ -46,7 +46,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((NormalHolder) holder).destination.setText(datas.get(position).destination);
             ((NormalHolder) holder).temperature.setText(String.valueOf(datas.get(position).temperature)+"℃");
             ((NormalHolder) holder).text.setText(datas.get(position).text);
-            //((NormalHolder) holder).step.setText(datas.get(position).step);
+            ((NormalHolder) holder).step.setText(String.valueOf(datas.get(position).step)+"步");
         } else {
             ((DiaryAdapter.FootHolder) holder).tips.setVisibility(View.VISIBLE);
             if (hasMore == true) {

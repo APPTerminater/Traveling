@@ -14,10 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.iflytek.cloud.thirdparty.V;
 import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.dao.DiaryInfoDao;
-import com.tongji.lisa1225.calendartest.dao.TripInfoDao;
 import com.tongji.lisa1225.calendartest.model.DiaryInfo;
 
 public class EditDiaryActivity extends AppCompatActivity {
@@ -27,6 +25,7 @@ public class EditDiaryActivity extends AppCompatActivity {
     private EditText content;  //日记内容
     private TextView showdate;//显示日期
     private TextView city; //显示城市名
+    private TextView step;//显示步数
     private EditText title;//标题
     private EditText temperature;//温度
     private EditText money;//开销
@@ -35,7 +34,6 @@ public class EditDiaryActivity extends AppCompatActivity {
 
     //数据库
     private DiaryInfoDao dDao;
-
     //保存当页信息
     String textFont="msyh";
     String textSize="middle";
@@ -71,6 +69,7 @@ public class EditDiaryActivity extends AppCompatActivity {
         contentPaint = content.getPaint();
         showdate=findViewById(R.id.showdate);
         city=findViewById(R.id.city);
+        step=(TextView)findViewById(R.id.step);
         title=(EditText)findViewById(R.id.title);
         temperature=(EditText)findViewById(R.id.temperature);
         money=(EditText)findViewById(R.id.money);
@@ -95,10 +94,11 @@ public class EditDiaryActivity extends AppCompatActivity {
             isBold=diaryInfo.isbold;
             title.setText(diaryInfo.title);
             temperature.setText(String.valueOf(diaryInfo.temperature));
+            step.setText(String.valueOf(diaryInfo.step));
             money.setText(String.valueOf(diaryInfo.cost));
             content.setText(diaryInfo.text);
         }
-
+        step.setText(String.valueOf(diaryInfo.step)+"步");
         //改颜色字体大小
         changeColor(textColor);
         changeFont(textFont);
@@ -125,7 +125,7 @@ public class EditDiaryActivity extends AppCompatActivity {
         diaryInfo.cost=Integer.parseInt(money.getText().toString());
         diaryInfo.destination=cityname;
         //添加
-        if(dDao.alterData(nickname,selectTime).title==null) {
+        if(dDao.alterData(nickname,selectTime).id==-1) {
             if (TextUtils.isEmpty(diaryInfo.title) || TextUtils.isEmpty(money.getText().toString().trim())
                     || TextUtils.isEmpty(temperature.getText().toString().trim()) || TextUtils.isEmpty(diaryInfo.text)) {
                 Toast.makeText(this, "填写不完整", Toast.LENGTH_SHORT).show();

@@ -28,10 +28,12 @@ public class MyDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table UserInfo (nickname varchar(20) primary key, birthday varchar(20), password varchar(20),walk_daliy varchar(20),prefer_mode varchar(20))");
-        db.execSQL("create table tripinfo (id integer primary key autoincrement,nickname varchar(20), destination varchar(20), " +
-                "start_time long,end_time long,budget integer,brief_info varchar(50),remind varchar(10),memo varchar(100))");
+        db.execSQL("create table Tripinfo (id integer primary key autoincrement,nickname varchar(20), destination varchar(20), " +
+                "start_time long,end_time long,budget integer,brief_info varchar(50),remind varchar(10),memo varchar(100)," +
+                "total_day integer,total_walk integer,total_cost int,rates float,comment varchar(30))");
         db.execSQL("create table DiaryInfo (id integer primary key autoincrement,time long,nickname varchar(20), temperature integer,cost integer," +
-                "title varchar(20), text varchar(500),textfont varchar(20),isbold varchar(20),textsize varchar(20),textcolor varchar(20),destination varchar(20))");
+                "title varchar(20), text varchar(500),textfont varchar(20),isbold varchar(20),textsize varchar(20),textcolor varchar(20),destination varchar(20),step integer)");
+
     }
 
 

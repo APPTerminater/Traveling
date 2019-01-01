@@ -42,6 +42,8 @@ public class TripInfoDao {
         contentValues.put(TripInfo.KEY_budget,tripInfo.budget);
         contentValues.put(TripInfo.KEY_brief_info,tripInfo.brief_info);
         contentValues.put(TripInfo.KEY_remind,tripInfo.remind);
+        if (tripInfo.total_day>0)
+        contentValues.put(TripInfo.KEY_total_day,tripInfo.total_day);
         if(!TextUtils.isEmpty(tripInfo.destination))
         contentValues.put(TripInfo.KEY_memo,tripInfo.memo);
         // 返回,显示数据添加在第几行
@@ -63,7 +65,7 @@ public class TripInfoDao {
     }
 
     /**
-     * 修改的方法
+     * 修改的方法（明明用过了）
      * @param nickname
      * @param starttime
      * @return
@@ -77,6 +79,21 @@ public class TripInfoDao {
         sqLiteDatabase.close();
         return updateResult;
     }
+
+    public int updateRate(TripInfo tripInfo){
+        SQLiteDatabase sqLiteDatabase = mMyDBHelper.getWritableDatabase();
+        ContentValues contentValues =new ContentValues();
+        contentValues.put(TripInfo.KEY_comment, tripInfo.comment);
+        contentValues.put(TripInfo.KEY_rates, tripInfo.rates);
+        contentValues.put(TripInfo.KEY_walk,tripInfo.total_walk);
+        contentValues.put(TripInfo.KEY_cost,tripInfo.total_cost);
+
+        int updateResult = sqLiteDatabase.update(TripInfo.TABLE, contentValues, "id=?",
+                new String[]{String.valueOf(tripInfo.id)});
+        sqLiteDatabase.close();
+        return updateResult;
+    }
+
 
 
     /**

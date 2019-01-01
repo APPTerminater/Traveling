@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.tongji.lisa1225.calendartest.R;
@@ -49,6 +50,9 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((TripAdapter.NormalHolder) holder).destination.setText(datas.get(position).destination);
             ((NormalHolder) holder).duration.setText(getDateToString(datas.get(position).start_time)+"-"+getDateToString(datas.get(position).end_time));
             ((NormalHolder) holder).briefInfo.setText(datas.get(position).brief_info);
+            ((NormalHolder) holder).step.setText(String.valueOf(datas.get(position).total_walk)+"步");
+            ((NormalHolder) holder).stars.setRating(datas.get(position).rates);
+            ((NormalHolder) holder).comment.setText("旅行简介："+datas.get(position).comment);
 
         } else {
             ((TripAdapter.FootHolder) holder).tips.setVisibility(View.VISIBLE);
@@ -96,13 +100,18 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private TextView destination;
         private TextView duration;
         private TextView briefInfo;
-
+        private TextView step;
+        private RatingBar stars;
+        private TextView comment;
 
         public NormalHolder(View itemView) {
             super(itemView);
             destination=(TextView)itemView.findViewById(R.id.destination);
             duration=(TextView)itemView.findViewById(R.id.duration);
             briefInfo=(TextView)itemView.findViewById(R.id.brief_info);
+            step=(TextView)itemView.findViewById(R.id.step);
+            stars=(RatingBar)itemView.findViewById(R.id.ratingBar);
+            comment=(TextView)itemView.findViewById(R.id.comment);
 
             //textView = (TextView) itemView.findViewById(R.id.tv);
         }

@@ -83,6 +83,7 @@
             android:textSize="16dp"
             android:top="130dp" />
         <TextView
+            android:id="@+id/step"
             android:left="100dp"
             android:top="130dp"
             android:layout_width="wrap_content"
@@ -117,7 +118,7 @@
             android:layout_marginTop="160dp"
             android:background="@drawable/boder_kuang"
             android:textSize="14dp"
-            android:hint="100元"
+            android:hint="0元"
             android:fontFamily="@font/msyh"
             android:inputType="number"
             />

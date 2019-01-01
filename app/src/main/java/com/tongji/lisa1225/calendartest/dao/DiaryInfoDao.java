@@ -54,6 +54,28 @@ public class DiaryInfoDao {
         return rowid;
     }
 
+    //没写日记时加步数
+    public long insertStep(long time,String nickname,int step){
+        SQLiteDatabase sqLiteDatabase =  mMyDBHelper.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(DiaryInfo.KEY_time,time);
+        contentValues.put(DiaryInfo.KEY_nickname,nickname);
+        contentValues.put(DiaryInfo.Key_step,step);
+        long rowid=sqLiteDatabase.insert(DiaryInfo.TABLE,null,contentValues);
+
+        sqLiteDatabase.close();
+        return rowid;
+    }
+    public int updateStep(long time,String nickname,int step){
+        SQLiteDatabase sqLiteDatabase =  mMyDBHelper.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(DiaryInfo.KEY_time,time);
+        contentValues.put(DiaryInfo.KEY_nickname,nickname);
+        contentValues.put(DiaryInfo.Key_step,step);
+        int updateResult = sqLiteDatabase.update(DiaryInfo.TABLE, contentValues, "time=? and nickname=?", new String[]{String.valueOf(time),nickname});
+        sqLiteDatabase.close();
+        return updateResult;
+    }
 
     // 删除的方法，返回值是int
     public int deleteData(int id,String nickname){
@@ -81,6 +103,8 @@ public class DiaryInfoDao {
         contentValues.put(DiaryInfo.KEY_bold,diaryInfo.isbold);
         contentValues.put(DiaryInfo.KEY_size,diaryInfo.textsize);
         contentValues.put(DiaryInfo.KEY_color,diaryInfo.textcolor);
+        contentValues.put(DiaryInfo.Key_step,diaryInfo.step);
+        contentValues.put(DiaryInfo.KEY_destination,diaryInfo.destination);
         int updateResult = sqLiteDatabase.update(DiaryInfo.TABLE, contentValues, "id=?", new String[]{String.valueOf(id)});
         sqLiteDatabase.close();
         return updateResult;
@@ -98,7 +122,8 @@ public class DiaryInfoDao {
         SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
         // 查询比较特别,涉及到 cursor
         Cursor cursor = readableDatabase.query(DiaryInfo.TABLE, new String[]{DiaryInfo.KEY_id,DiaryInfo.KEY_temperature,DiaryInfo.KEY_cost,
-                DiaryInfo.KEY_title,DiaryInfo.KEY_text,DiaryInfo.KEY_font,DiaryInfo.KEY_bold,DiaryInfo.KEY_size,DiaryInfo.KEY_color},
+                DiaryInfo.KEY_title,DiaryInfo.KEY_text,DiaryInfo.KEY_font,DiaryInfo.KEY_bold,DiaryInfo.KEY_size,DiaryInfo.KEY_color,
+                        DiaryInfo.Key_step,DiaryInfo.KEY_destination},
                 "nickname=? and time=?", new String[]{nickname,String.valueOf(time)}, null, null, null);
         if(cursor.moveToNext()) {
             diaryInfo.nickname=nickname;
@@ -112,39 +137,42 @@ public class DiaryInfoDao {
             diaryInfo.isbold=cursor.getString(6);
             diaryInfo.textsize=cursor.getString(7);
             diaryInfo.textcolor=cursor.getString(8);
-
+            diaryInfo.step=cursor.getInt(9);
+            diaryInfo.destination=cursor.getString(10);
         }
-        cursor.close(); // 记得关闭 corsor
+        cursor.close(); // 记得关闭 cursor
         readableDatabase.close(); // 关闭数据库
         return diaryInfo;
     }
+    //recyclerview 使用的查询
     public List<DiaryInfo> alterData(String nickname){
         List<DiaryInfo> diaryInfoList=new ArrayList<>();
-
-        int count=0;
         SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
         // 查询比较特别,涉及到 cursor
         Cursor cursor = readableDatabase.query(DiaryInfo.TABLE, new String[]{DiaryInfo.KEY_id,DiaryInfo.KEY_temperature,DiaryInfo.KEY_cost,
                         DiaryInfo.KEY_title,DiaryInfo.KEY_text,DiaryInfo.KEY_font,DiaryInfo.KEY_bold,DiaryInfo.KEY_size,
-                        DiaryInfo.KEY_color,DiaryInfo.KEY_time,DiaryInfo.KEY_destination},
+                        DiaryInfo.KEY_color,DiaryInfo.KEY_time,DiaryInfo.KEY_destination,DiaryInfo.Key_step},
                 "nickname=?", new String[]{nickname}, null, null, null);
         while (cursor.moveToNext()) {
-            DiaryInfo diaryInfo = new DiaryInfo();
-            diaryInfo.nickname=nickname;
-            diaryInfo.id = cursor.getInt(0); //获取第一列的值,第一列的索引从0开始
-            diaryInfo.temperature = cursor.getInt(1);//获取第二列的值
-            diaryInfo.cost = cursor.getInt(2);
-            diaryInfo.title=cursor.getString(3);
-            diaryInfo.text=cursor.getString(4);
-            diaryInfo.textfont=cursor.getString(5);
-            diaryInfo.isbold=cursor.getString(6);
-            diaryInfo.textsize=cursor.getString(7);
-            diaryInfo.textcolor=cursor.getString(8);
-            diaryInfo.time=cursor.getLong(9);
-            diaryInfo.destination=cursor.getString(10);
-            diaryInfoList.add(diaryInfo);
+            if(cursor.getInt(0)!=-1&&cursor.getString(3)!=null) {
+                DiaryInfo diaryInfo = new DiaryInfo();
+                diaryInfo.nickname = nickname;
+                diaryInfo.id = cursor.getInt(0); //获取第一列的值,第一列的索引从0开始
+                diaryInfo.temperature = cursor.getInt(1);//获取第二列的值
+                diaryInfo.cost = cursor.getInt(2);
+                diaryInfo.title = cursor.getString(3);
+                diaryInfo.text = cursor.getString(4);
+                diaryInfo.textfont = cursor.getString(5);
+                diaryInfo.isbold = cursor.getString(6);
+                diaryInfo.textsize = cursor.getString(7);
+                diaryInfo.textcolor = cursor.getString(8);
+                diaryInfo.time = cursor.getLong(9);
+                diaryInfo.destination = cursor.getString(10);
+                diaryInfo.step=cursor.getInt(11);
+                diaryInfoList.add(diaryInfo);
+            }
         }
-        cursor.close(); // 记得关闭 corsor
+        cursor.close(); // 记得关闭 cursor
         readableDatabase.close(); // 关闭数据库
         return diaryInfoList;
     }

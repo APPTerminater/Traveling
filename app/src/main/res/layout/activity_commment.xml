@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/bg_main">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/tool_bar">
+        <Button
+            android:layout_marginTop="0dp"
+            android:id="@+id/backButton"
+            android:drawableLeft="@drawable/back1"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="0dp"
+            />
+        <View
+            android:left="4dp"
+            android:top="33dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:background="@color/PureWhite"
+            />
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="112dp"
+            android:text="评价"
+            android:textColor="@color/PureWhite"
+            android:textSize="20dp"
+            android:fontFamily="Microsoft Yahei"
+            />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout>
+        <View
+            android:left="10dp"
+            android:top="80dp"
+            android:layout_width="155dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:background="@drawable/boder_kuang2"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="34dp"
+            />
+        <TextView
+            android:left="65dp"
+            android:top="90dp"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:gravity="left"
+            android:text="你一共走了"
+            android:layout_marginLeft="69dp"
+            android:layout_marginTop="54dp"
+            />
+        <TextView
+            android:left="56dp"
+            android:top="120dp"
+            android:layout_width="89dp"
+            android:layout_height="29dp"
+            android:textColor="@color/hong"
+            android:textSize="20dp"
+            android:gravity="left"
+            android:text="100000步"
+            android:layout_marginLeft="63dp"
+            android:layout_marginTop="80dp"
+            />
+
+
+        <View
+            android:left="190dp"
+            android:top="80dp"
+            android:layout_width="155dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:background="@drawable/boder_kuang2"
+            android:layout_marginLeft="186dp"
+            android:layout_marginTop="34dp"
+            />
+        <TextView
+            android:left="65dp"
+            android:top="90dp"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:gravity="left"
+            android:text="你一共花了"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="54dp"
+            />
+        <TextView
+            android:left="56dp"
+            android:top="120dp"
+            android:layout_width="89dp"
+            android:layout_height="29dp"
+            android:textColor="@color/hong"
+            android:textSize="20dp"
+            android:gravity="left"
+            android:text="100000步"
+            android:layout_marginLeft="225dp"
+            android:layout_marginTop="80dp"
+            />
+    </RelativeLayout>
+    <RelativeLayout>
+        <TextView
+            android:left="44dp"
+            android:top="410dp"
+            android:layout_width="87dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:gravity="left"
+            android:text="Your rating"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            />
+        <RatingBar
+            style="@style/MyRatingBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="false"
+            android:rating="1.0"
+            android:stepSize="1.0"
+            android:numStars="5"
+            android:id="@+id/ratingBar"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="205dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="64dp"
+            android:gravity="left"
+            android:left="20dp"
+            android:text="        你完成了很棒的旅行！恭喜你！~"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:top="210dp" />
+    </RelativeLayout>
+    <RelativeLayout>
+
+        <Button
+            android:layout_width="217dp"
+            android:layout_height="70dp"
+            android:id="@+id/share"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="23dp"
+            android:background="@drawable/border_write"
+            android:drawableLeft="@drawable/weixin"
+            android:gravity="center"
+            android:onClick="share"
+            android:text="一键分享到微信"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:top="527dp" />
+
+
+    </RelativeLayout>
+
+
+
+</TableLayout>
+
+
+
+
+
+
+

@@ -141,7 +141,7 @@
             android:layout_marginRight="0dp"
             android:layout_centerVertical="true"
             android:textSize="14dp"
-            android:hint="100元"
+            android:hint="0元"
             android:fontFamily="@font/msyh"
             />
         <TextView

@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class DateActivity extends AppCompatActivity implements Handler.Callback {
+public class DateActivity extends AppCompatActivity {
     //数据库
     private TripInfoDao tDao;
     private DiaryInfoDao dDao;
@@ -64,53 +64,6 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
     Typeface msyh=null;
 
     TextPaint contentPaint;
-    //计步相关开始：循环取当前时刻的步数中间的时间间隔
-    private long TIME_INTERVAL = 500;
-
-
-    private Messenger messenger;
-    private Messenger mGetReplyMessenger = new Messenger(new Handler(this));
-    private Handler delayHandler;
-
-    //以bind形式开启service，故有ServiceConnection接收回调
-    ServiceConnection conn = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            try {
-                messenger = new Messenger(service);
-                Message msg = Message.obtain(null, Constant.MSG_FROM_CLIENT);
-                msg.replyTo = mGetReplyMessenger;
-                messenger.send(msg);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName name) {}
-    };
-
-    //接收从服务端回调的步数
-    @Override
-    public boolean handleMessage(Message msg) {
-        switch (msg.what) {
-            case Constant.MSG_FROM_SERVER:
-                //更新步数
-                text_step.setText(msg.getData().getInt("step") + "");
-                delayHandler.sendEmptyMessageDelayed(Constant.REQUEST_SERVER, TIME_INTERVAL);
-                break;
-            case Constant.REQUEST_SERVER:
-                try {
-                    Message msgl = Message.obtain(null, Constant.MSG_FROM_CLIENT);
-                    msgl.replyTo = mGetReplyMessenger;
-                    messenger.send(msgl);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                break;
-        }
-        return false;
-    }
-    //计步相关结束
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +84,7 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
         title=(TextView) findViewById(R.id.title);
         temperature=(TextView) findViewById(R.id.temperature);
         money=(TextView) findViewById(R.id.money);
+        text_step = (TextView) findViewById(R.id.main_text_step);
 
         //传来的数据
         get_intent = getIntent();
@@ -181,13 +135,11 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
             changeSize(textSize);
             changeBond(isBold);
         }
+        text_step.setText(String.valueOf(diaryInfo.step)+"步");
         //改颜色字体大小
 
 
-        //计步相关开始
-        text_step = (TextView) findViewById(R.id.main_text_step);
-        delayHandler = new Handler(this);
-        //计步相关结束
+
     }
     public void changeFont(String font){
         switch (font){
@@ -273,33 +225,5 @@ public class DateActivity extends AppCompatActivity implements Handler.Callback 
         startActivity(editintent);
     }
 
-    //计步相关开始
-    @Override
-    public void onStart() {
-        super.onStart();
-        setupService();
-    }
-    /**
-     * 开启服务
-     */
-    private void setupService() {
-        Intent intent = new Intent(this, StepService.class);
-        intent.putExtra("querydate",selectTime);
-        bindService(intent, conn, Context.BIND_AUTO_CREATE);
-        startService(intent);
-    }
 
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(true);
-        super.onBackPressed();
-    }
-
-    @Override
-    protected void onDestroy() {
-        //取消服务绑定
-        unbindService(conn);
-        super.onDestroy();
-    }
-    //计步相关结束
 }

@@ -22,6 +22,7 @@ import com.tongji.lisa1225.calendartest.dao.TripInfoDao;
 import com.tongji.lisa1225.calendartest.model.TripInfo;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener, OnDateSetListener{
@@ -221,7 +222,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         tripInfo.remind="yes";
         else tripInfo.remind="no";
         tripInfo.memo=memo.getText().toString().trim();
-
+        tripInfo.total_day=countDay();
 
         if(TextUtils.isEmpty(tripInfo.destination)||TextUtils.isEmpty(money.getText().toString().trim())
                 ||TextUtils.isEmpty(tripInfo.brief_info)||tripInfo.start_time*tripInfo.end_time==0){
@@ -241,6 +242,25 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         mainintent.putExtra("nickname",nickname);
         //启动
         startActivity(mainintent);
+    }
+    public int countDay(){
+        Date startDate=new Date(starttime);
+        Date endDate=new Date(backtime);
+        Calendar fromCalendar = Calendar.getInstance();
+        fromCalendar.setTime(startDate);
+        fromCalendar.set(Calendar.HOUR_OF_DAY, 0);
+        fromCalendar.set(Calendar.MINUTE, 0);
+        fromCalendar.set(Calendar.SECOND, 0);
+        fromCalendar.set(Calendar.MILLISECOND, 0);
+
+        Calendar toCalendar = Calendar.getInstance();
+        toCalendar.setTime(endDate);
+        toCalendar.set(Calendar.HOUR_OF_DAY, 0);
+        toCalendar.set(Calendar.MINUTE, 0);
+        toCalendar.set(Calendar.SECOND, 0);
+        toCalendar.set(Calendar.MILLISECOND, 0);
+
+        return (int) ((toCalendar.getTime().getTime() - fromCalendar.getTime().getTime()) / (1000 * 60 * 60 * 24)+1);
     }
     //两个按钮的联动
     public void remindBtn(View view){

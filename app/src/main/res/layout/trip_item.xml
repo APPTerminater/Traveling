@@ -7,23 +7,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
-            android:left="0dp"
-            android:top="104dp"
             android:layout_width="340dp"
-            android:layout_height="307dp"
-            android:gravity="center"
-            android:background="@drawable/boder_kuang2"
+            android:layout_height="300dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            />
+            android:background="@drawable/boder_kuang2"
+            android:gravity="center"
+            android:left="0dp"
+            android:top="104dp" />
 
         <TextView
             android:id="@+id/destination"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginLeft="41dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/msyh"
             android:gravity="left"
             android:left="20dp"
@@ -31,20 +31,20 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:top="90dp" />
+
         <TextView
             android:id="@+id/step"
-            android:layout_marginTop="21dp"
-            android:layout_marginLeft="161dp"
-            android:fontFamily="@font/msyh"
-            android:textColor="@color/textColor"
-            android:left="20dp"
-            android:top="90dp"
             android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:textSize="16dp"
-            android:gravity="left"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/msyh"
+            android:gravity="center"
+            android:left="20dp"
             android:text="10000步"
-            />
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:top="90dp" />
 
         <Button
             android:id="@+id/share"
@@ -57,19 +57,19 @@
             android:left="335dp"
             android:onClick="tocomment"
             android:top="114dp" />
+
         <TextView
             android:id="@+id/brief_info"
+            android:layout_width="290dp"
+            android:layout_height="85dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="95dp"
+            android:gravity="left"
             android:left="20dp"
-            android:top="210dp"
-            android:layout_width="320dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="90dp"
+            android:text="旅行简介：我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:gravity="left"
-            android:text="旅行简介：我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了"
-            />
+            android:top="210dp" />
         <View
             android:left="20dp"
             android:top="195dp"
@@ -83,62 +83,51 @@
         <TextView
             android:id="@+id/duration"
             android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="65dp"
             android:gravity="left"
             android:left="26dp"
             android:text="2018/01/01-2018/01/31"
-            android:textColor="@color/textColor"
+            android:textColor="@color/danxiaqu"
             android:textSize="16dp"
             android:top="130dp" />
+
         <TextView
-            android:left="44dp"
-            android:top="410dp"
-            android:layout_width="87dp"
-            android:layout_height="20dp"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:gravity="left"
-            android:text="Rating"
-            android:layout_marginLeft="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="195dp"
-            />
+            android:gravity="left"
+            android:left="44dp"
+            android:text="Rating"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:top="410dp" />
         <RatingBar
             style="@style/MyRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:isIndicator="false"
             android:rating="1.5"
-            android:stepSize="0.5"
+            android:stepSize="0.1"
             android:numStars="5"
             android:id="@+id/ratingBar"
             android:layout_marginLeft="105dp"
             android:layout_marginTop="195dp"
             />
+
         <TextView
             android:id="@+id/comment"
-            android:left="20dp"
-            android:top="210dp"
-            android:layout_width="320dp"
-            android:layout_height="90dp"
+            android:layout_width="290dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="230dp"
+            android:layout_marginTop="235dp"
+            android:gravity="left"
+            android:left="20dp"
+            android:text="你这是一次有趣的旅行！~"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:gravity="left"
-            android:text="你这是一次有趣的旅行！~"
-            />
-        <Button
-            android:id="@+id/edit"
-            android:left="335dp"
-            android:top="114dp"
-            android:background="@android:color/transparent"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:drawableLeft="@drawable/edit"
-            android:layout_marginTop="187dp"
-            android:layout_marginLeft="290dp"
-            />
+            android:top="210dp" />
     </RelativeLayout>
 </LinearLayout>

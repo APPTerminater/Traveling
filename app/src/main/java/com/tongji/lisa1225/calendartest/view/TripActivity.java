@@ -12,10 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.tongji.lisa1225.calendartest.R;
-import com.tongji.lisa1225.calendartest.adapter.DiaryAdapter;
 import com.tongji.lisa1225.calendartest.adapter.TripAdapter;
+import com.tongji.lisa1225.calendartest.controllor.RateController;
 import com.tongji.lisa1225.calendartest.dao.DiaryInfoDao;
 import com.tongji.lisa1225.calendartest.dao.TripInfoDao;
+import com.tongji.lisa1225.calendartest.dao.UserInfoDao;
 import com.tongji.lisa1225.calendartest.model.DiaryInfo;
 import com.tongji.lisa1225.calendartest.model.TripInfo;
 
@@ -26,10 +27,16 @@ public class TripActivity extends AppCompatActivity implements SwipeRefreshLayou
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
     List<TripInfo> tripInfoList;
+    List<DiaryInfo> diaryInfoList;
 
     String nickname;
     Intent get_intent;
     TripInfoDao tDao;
+    DiaryInfoDao dDao;
+    UserInfoDao mDao;
+    RateController rateController;
+
+    int walk_daily;
 
     private int lastVisibleItem = 0;
     private final int PAGE_COUNT = 10;
@@ -43,16 +50,41 @@ public class TripActivity extends AppCompatActivity implements SwipeRefreshLayou
         get_intent = getIntent();//传来的昵称
         nickname=get_intent.getStringExtra("nickname");
         tDao=new TripInfoDao(TripActivity.this);
+        dDao=new DiaryInfoDao(TripActivity.this);
+        mDao=new UserInfoDao(TripActivity.this);
 
+        walk_daily=mDao.alterWalk(nickname);
         initData();
         findView();
         initRefreshLayout();
         initRecyclerView();
     }
     private void initData() {
-        tripInfoList = tDao.alterData(nickname);
-        //[] diaryInfoArray = new DiaryInfo[diaryInfoList.size()];
-        //diaryInfoList.toArray(diaryInfoArray);
+        int num;//有多少天记录了
+        tripInfoList = tDao.alterData(nickname);//todo
+        diaryInfoList=dDao.alterData(nickname);
+        TripInfo[] tripInfoArray=new TripInfo[tripInfoList.size()];
+        tripInfoList.toArray(tripInfoArray);
+        DiaryInfo[] diaryInfoArray=new DiaryInfo[diaryInfoList.size()];
+        diaryInfoList.toArray(diaryInfoArray);
+        for(int i=0;i<tripInfoArray.length;i++)
+        {
+            tripInfoArray[i].total_cost=0;
+            tripInfoArray[i].total_walk=0;
+            num=0;
+            for(int j=0;j<diaryInfoArray.length;j++)
+            {
+                if(diaryInfoArray[j].time > (tripInfoArray[i].start_time-1000 * 60 * 60 * 24L)
+                        && diaryInfoArray[j].time < tripInfoArray[i].end_time){
+                    tripInfoArray[i].total_cost+=diaryInfoArray[j].cost;
+                    tripInfoArray[i].total_walk+=diaryInfoArray[j].step;
+                    num++;
+                }
+            }
+            rateController=new RateController(tripInfoArray[i],walk_daily,num);
+            tDao.updateRate(rateController.getRate());
+        }
+
     }
     private void findView() {
         refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshLayout);

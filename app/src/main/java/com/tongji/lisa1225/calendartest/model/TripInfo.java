@@ -13,6 +13,11 @@ public class TripInfo {
     public static final String KEY_brief_info="brief_info";
     public static final String KEY_remind="remind";
     public static final String KEY_memo="memo";
+    public static final String KEY_walk="total_walk";
+    public static final String KEY_cost="total_cost";
+    public static final String KEY_rates="rates";
+    public static final String KEY_comment="comment";
+    public static final String KEY_total_day="total_day";
     //属性
     public int id;
     public String nickname;
@@ -23,10 +28,14 @@ public class TripInfo {
     public String brief_info;
     public String remind;
     public String memo;
-
+    public int total_walk;
+    public int total_cost;
+    public float rates;
+    public String comment;
+    public int total_day;
 
     public TripInfo(){
-
+        id=-1;
         nickname=null;
         destination=null;
         start_time=0;
@@ -35,5 +44,10 @@ public class TripInfo {
         brief_info=null;
         remind=null;
         memo=null;
+        comment=null;
+        total_cost=0;
+        total_walk=0;
+        rates=0;
+        total_day=1;
     }
 }
