@@ -44,6 +44,7 @@ public class DiaryInfoDao {
         contentValues.put(DiaryInfo.KEY_size,diaryInfo.textsize);
         contentValues.put(DiaryInfo.KEY_color,diaryInfo.textcolor);
         contentValues.put(DiaryInfo.KEY_destination,diaryInfo.destination);
+        contentValues.put(DiaryInfo.Key_background,diaryInfo.background);
 
         // 返回,显示数据添加在第几行
         // 加了现在连续添加了3行数据,突然删掉第三行,然后再添加一条数据返回的是4不是3
@@ -66,6 +67,7 @@ public class DiaryInfoDao {
         sqLiteDatabase.close();
         return rowid;
     }
+    //更新步数
     public int updateStep(long time,String nickname,int step){
         SQLiteDatabase sqLiteDatabase =  mMyDBHelper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
@@ -105,6 +107,7 @@ public class DiaryInfoDao {
         contentValues.put(DiaryInfo.KEY_color,diaryInfo.textcolor);
         contentValues.put(DiaryInfo.Key_step,diaryInfo.step);
         contentValues.put(DiaryInfo.KEY_destination,diaryInfo.destination);
+        contentValues.put(DiaryInfo.Key_background,diaryInfo.background);
         int updateResult = sqLiteDatabase.update(DiaryInfo.TABLE, contentValues, "id=?", new String[]{String.valueOf(id)});
         sqLiteDatabase.close();
         return updateResult;
@@ -123,7 +126,7 @@ public class DiaryInfoDao {
         // 查询比较特别,涉及到 cursor
         Cursor cursor = readableDatabase.query(DiaryInfo.TABLE, new String[]{DiaryInfo.KEY_id,DiaryInfo.KEY_temperature,DiaryInfo.KEY_cost,
                 DiaryInfo.KEY_title,DiaryInfo.KEY_text,DiaryInfo.KEY_font,DiaryInfo.KEY_bold,DiaryInfo.KEY_size,DiaryInfo.KEY_color,
-                        DiaryInfo.Key_step,DiaryInfo.KEY_destination},
+                        DiaryInfo.Key_step,DiaryInfo.KEY_destination,DiaryInfo.Key_background},
                 "nickname=? and time=?", new String[]{nickname,String.valueOf(time)}, null, null, null);
         if(cursor.moveToNext()) {
             diaryInfo.nickname=nickname;
@@ -139,6 +142,7 @@ public class DiaryInfoDao {
             diaryInfo.textcolor=cursor.getString(8);
             diaryInfo.step=cursor.getInt(9);
             diaryInfo.destination=cursor.getString(10);
+            diaryInfo.background=cursor.getInt(11);
         }
         cursor.close(); // 记得关闭 cursor
         readableDatabase.close(); // 关闭数据库

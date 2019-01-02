@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main">
+    android:background="@drawable/bg_main"
+    android:id="@+id/layout">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/activity_toolbar"
@@ -20,7 +21,8 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:layout_marginLeft="0dp"
-            tools:ignore="DuplicateIds" />
+            tools:ignore="DuplicateIds"
+            android:onClick="seemore"/>
 
         <Button
             android:layout_marginTop="0dp"
@@ -78,54 +80,161 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <LinearLayout
+        android:id="@+id/userinfo"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:background="@color/tool_bar"
+        android:visibility="invisible">
+
+        <Button
+            android:id="@+id/seeless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/more"
+            tools:ignore="DuplicateIds"
+            android:text="      个人资料"
+            android:textColor="@color/PureWhite"
+            android:textSize="17dp"
+            android:fontFamily="@font/msyhbd"
+            android:onClick="seeless"/>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/msyhbd"
+            android:textColor="@color/PureWhite"
+            android:text="昵称ABC"
+            android:gravity="center"
+            android:id="@+id/nickname"
+            android:drawableLeft="@drawable/username"
+            />
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/textColor"
+            />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="17dp"
+            android:fontFamily="@font/msyhbd"
+            android:textColor="@color/PureWhite"
+            android:text="生日ABC"
+            android:gravity="center"
+            android:id="@+id/birthday"
+            android:drawableLeft="@drawable/bir"
+            />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="17dp"
+            android:fontFamily="@font/msyhbd"
+            android:textColor="@color/PureWhite"
+            android:text="步数ABC"
+            android:gravity="center"
+            android:id="@+id/walk_daily"
+            android:drawableLeft="@drawable/walk"
+            />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="17dp"
+            android:fontFamily="@font/msyhbd"
+            android:textColor="@color/PureWhite"
+            android:text="修改信息"
+            android:gravity="center"
+            android:id="@+id/edit_info"
+            android:onClick="toEditInfo"
+            android:drawableLeft="@drawable/editinfor"
+            />
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/textColor"
+            />
+        <CheckBox
+            android:id="@+id/changemode"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="夜间模式"
+            android:textSize="16dp"
+            android:fontFamily="@font/msyh"
+            android:textColor="@color/PureWhite"
+            android:gravity="center"
+            android:checked="false"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:onClick="changeMode"
+            />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
-    <android.support.v7.widget.Toolbar
-        android:left="0dp"
-        android:layout_width="375dp"
-        android:layout_height="45dp"
-        android:background="@color/zi"
-        android:layout_marginTop="144dp"
-        >
-        <Button
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="50dp"
-            android:id="@+id/shouye"
-            android:text="首页"
-            android:textSize="18dp"
-            android:layout_width="40dp"
-            android:layout_height="28dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/msyhbd"
-            android:textColor="@color/danxiaqu2"
-            android:onClick="tomain"
-            />
-        <Button
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="60dp"
-            android:id="@+id/add_sel"
-            android:drawableLeft="@drawable/addst"
-            android:layout_width="70dp"
-            android:layout_height="46dp"
-            android:background="@android:color/transparent"
-            android:onClick="toAdd"
-            />
-        <Button
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="55dp"
-            android:id="@+id/searchButton"
-            android:text="导航"
-            android:textSize="18dp"
-            android:layout_width="40dp"
-            android:layout_height="28dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/msyhbd"
-            android:textColor="@color/danxiaqu2"
-            android:onClick="toGaode"
-            />
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/bottom_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="70dp"
+            android:background="@color/zi"
+            android:left="0dp">
+
+            <Button
+                android:id="@+id/shouye"
+                android:layout_width="40dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/msyhbd"
+                android:background="@android:color/transparent"
+                android:text="首页"
+                android:textColor="@color/danxiaqu2"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="60dp"
+                android:layout_height="44dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/addst"
+                android:onClick="toAdd" />
+
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="40dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/msyhbd"
+                android:onClick="toGaode"
+                android:text="导航"
+                android:textColor="@color/danxiaqu2"
+                android:textSize="18dp" />
+
+        </android.support.v7.widget.Toolbar>
     </LinearLayout>
 
 

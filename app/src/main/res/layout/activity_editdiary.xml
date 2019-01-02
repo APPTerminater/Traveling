@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout"
     android:background="@drawable/bg_main">
 
     <android.support.v7.widget.Toolbar
@@ -39,6 +40,7 @@
             android:layout_marginTop="0dp"
             android:text="2018年12月01日"
             android:textColor="@color/PureWhite"
+            android:gravity="center"
             android:textSize="20dp" />
         <Button
             android:layout_marginTop="0dp"
@@ -374,15 +376,16 @@
             android:layout_height="28dp"
             android:background="@android:color/transparent"
             />
+
         <Button
-            android:layout_marginTop="533dp"
-            android:layout_marginLeft="300dp"
-            android:id="@+id/bizhi"
-            android:text="壁纸"
-            android:textSize="15dp"
-            android:layout_width="35dp"
+            android:id="@+id/bg"
+            android:layout_width="28dp"
             android:layout_height="28dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="533dp"
             android:background="@android:color/transparent"
-            />
+            android:onClick="changeBg"
+            android:text="切换壁纸"
+            android:textSize="12dp" />
     </RelativeLayout>
 </RelativeLayout>

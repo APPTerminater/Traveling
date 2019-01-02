@@ -26,7 +26,7 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private boolean hasMore = true;
     private boolean fadeTips = false;
     private Handler mHandler = new Handler(Looper.getMainLooper());
-    SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+    private SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
     public TripAdapter(List<TripInfo> datas, Context context, boolean hasMore) {
         this.datas = datas;
@@ -44,15 +44,22 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof TripAdapter.NormalHolder) {//todo
-
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+        if (holder instanceof TripAdapter.NormalHolder) {
             ((TripAdapter.NormalHolder) holder).destination.setText(datas.get(position).destination);
             ((NormalHolder) holder).duration.setText(getDateToString(datas.get(position).start_time)+"-"+getDateToString(datas.get(position).end_time));
             ((NormalHolder) holder).briefInfo.setText(datas.get(position).brief_info);
             ((NormalHolder) holder).step.setText(String.valueOf(datas.get(position).total_walk)+"步");
             ((NormalHolder) holder).stars.setRating(datas.get(position).rates);
-            ((NormalHolder) holder).comment.setText("旅行简介："+datas.get(position).comment);
+            ((NormalHolder) holder).comment.setText("旅行评价："+datas.get(position).comment);
+            //单击
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //触发自定义监听的单击事件
+                    onItemClickListener.onItemClick(holder.itemView,position);
+                }
+            });
 
         } else {
             ((TripAdapter.FootHolder) holder).tips.setVisibility(View.VISIBLE);
@@ -95,7 +102,7 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    class NormalHolder extends RecyclerView.ViewHolder {//todo
+    class NormalHolder extends RecyclerView.ViewHolder {
         private TextView textView;
         private TextView destination;
         private TextView duration;
@@ -116,6 +123,19 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //textView = (TextView) itemView.findViewById(R.id.tv);
         }
     }
+    public void setOnItemClickListener(TripAdapter.OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    /**
+     * 自定义监听回调，RecyclerView 的 单击事件
+     */
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
 
     class FootHolder extends RecyclerView.ViewHolder {
         private TextView tips;

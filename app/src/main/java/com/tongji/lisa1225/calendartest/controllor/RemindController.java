@@ -29,7 +29,7 @@ public class RemindController {
         reminds.toArray(remindArray);
 
         for (int i = 0; i < startArray.length; i++) {
-            if (remindArray[i].equals("yes")&&currentTime >= (startArray[i].getTime() - 1000 * 60 * 60 * 24L)) {
+            if (remindArray[i].equals("yes")&&currentTime >= (startArray[i].getTime() - 1000 * 60 * 60 * 24L)&&currentTime<startArray[i].getTime()) {
                 num=i;
                 return true;
             }

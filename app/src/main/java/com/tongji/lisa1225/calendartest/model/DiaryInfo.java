@@ -17,6 +17,8 @@ public class DiaryInfo {
     public static final String KEY_color="textcolor";
     public static final String KEY_destination="destination";
     public static final String Key_step="step";
+    public static final String Key_background="background";
+    public static final String Key_picture="picture";
     //属性
     public int id;
     public long time;
@@ -31,7 +33,8 @@ public class DiaryInfo {
     public String textcolor;
     public String destination;
     public int step;
-
+    public int background;
+    public int picture;
 
     public DiaryInfo(){
         id=-1;
@@ -47,5 +50,7 @@ public class DiaryInfo {
         textcolor=null;
         destination=null;
         step=0;
+        background=0;
+        picture=1;
     }
 }

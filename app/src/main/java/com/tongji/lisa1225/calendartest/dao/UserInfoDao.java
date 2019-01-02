@@ -33,7 +33,7 @@ public class UserInfoDao {
         contentValues.put(UserInfo.KEY_nickname,nickname);
         contentValues.put(UserInfo.KEY_birthday,birthday );
         contentValues.put(UserInfo.KEY_password,password);
-        contentValues.put(UserInfo.KEY_walk,walk_daliy);
+        contentValues.put(UserInfo.KEY_walk,Integer.valueOf(walk_daliy));
         contentValues.put(UserInfo.KEY_mode,"day");
         // 返回,显示数据添加在第几行
         // 加了现在连续添加了3行数据,突然删掉第三行,然后再添加一条数据返回的是4不是3

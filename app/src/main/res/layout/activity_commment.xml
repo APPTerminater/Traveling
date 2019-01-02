@@ -20,6 +20,7 @@
             android:layout_height="28dp"
             android:background="@android:color/transparent"
             android:layout_marginLeft="0dp"
+            android:onClick="toTrip"
             />
         <View
             android:left="4dp"
@@ -30,146 +31,186 @@
             android:background="@color/PureWhite"
             />
 
-
         <TextView android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:layout_marginLeft="112dp"
+            android:gravity="center"
             android:text="评价"
             android:textColor="@color/PureWhite"
             android:textSize="20dp"
-            android:fontFamily="Microsoft Yahei"
+            android:fontFamily="@font/msyh"
+            />
+
+        <Button
+            android:layout_marginTop="0dp"
+            android:id="@+id/share"
+            android:drawableLeft="@drawable/share1"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="110dp"
+            android:onClick="toTrip"
             />
     </android.support.v7.widget.Toolbar>
 
     <RelativeLayout>
-        <View
-            android:left="10dp"
-            android:top="80dp"
-            android:layout_width="155dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:background="@drawable/boder_kuang2"
+        <TextView
+            android:id="@+id/destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="21dp"
-            android:layout_marginTop="34dp"
-            />
+            android:layout_marginTop="15dp"
+            android:gravity="left"
+            android:left="20dp"
+            android:text="本次北京之行："
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="@font/msyhbd"
+            android:top="210dp" />
         <TextView
-            android:left="65dp"
-            android:top="90dp"
+            android:id="@+id/starttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="50dp"
+            android:gravity="left"
+            android:left="18dp"
+            android:text="启程于"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:fontFamily="@font/msyh"
+            android:top="210dp" />
+        <TextView
+            android:id="@+id/endtime"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="80dp"
+            android:gravity="left"
+            android:left="18dp"
+            android:text="回程于"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:fontFamily="@font/msyh"
+            android:top="210dp" />
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/boder_kuang2"
+            android:gravity="center"
+            android:left="10dp"
+            android:top="80dp" />
+
+        <TextView
             android:layout_width="70dp"
             android:layout_height="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="135dp"
+            android:gravity="left"
+            android:left="65dp"
+            android:text="你一共走了"
             android:textColor="@color/black"
             android:textSize="14dp"
-            android:gravity="left"
-            android:text="你一共走了"
-            android:layout_marginLeft="69dp"
-            android:layout_marginTop="54dp"
-            />
+            android:fontFamily="@font/round"
+            android:top="90dp" />
+
         <TextView
-            android:left="56dp"
-            android:top="120dp"
+            android:id="@+id/step"
             android:layout_width="89dp"
             android:layout_height="29dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="165dp"
+            android:gravity="center"
+            android:left="56dp"
+            android:text="100000步"
             android:textColor="@color/hong"
             android:textSize="20dp"
-            android:gravity="left"
-            android:text="100000步"
-            android:layout_marginLeft="63dp"
-            android:layout_marginTop="80dp"
-            />
+            android:fontFamily="@font/round"
+            android:top="120dp" />
 
 
         <View
-            android:left="190dp"
-            android:top="80dp"
-            android:layout_width="155dp"
+            android:layout_width="150dp"
             android:layout_height="100dp"
-            android:gravity="center"
+            android:layout_marginLeft="190dp"
+            android:layout_marginTop="120dp"
             android:background="@drawable/boder_kuang2"
-            android:layout_marginLeft="186dp"
-            android:layout_marginTop="34dp"
-            />
+            android:gravity="center"
+            android:left="190dp"
+            android:top="80dp" />
+
         <TextView
-            android:left="65dp"
-            android:top="90dp"
+
             android:layout_width="70dp"
             android:layout_height="20dp"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="135dp"
+            android:gravity="left"
+            android:left="65dp"
+            android:text="你一共花了"
             android:textColor="@color/black"
             android:textSize="14dp"
-            android:gravity="left"
-            android:text="你一共花了"
-            android:layout_marginLeft="230dp"
-            android:layout_marginTop="54dp"
-            />
+            android:fontFamily="@font/round"
+            android:top="90dp" />
+
         <TextView
-            android:left="56dp"
-            android:top="120dp"
+            android:id="@+id/cost"
             android:layout_width="89dp"
             android:layout_height="29dp"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="165dp"
+            android:gravity="center"
+            android:left="56dp"
+            android:text="10000元"
             android:textColor="@color/hong"
             android:textSize="20dp"
-            android:gravity="left"
-            android:text="100000步"
-            android:layout_marginLeft="225dp"
-            android:layout_marginTop="80dp"
-            />
+            android:fontFamily="@font/round"
+            android:top="120dp" />
     </RelativeLayout>
     <RelativeLayout>
+
         <TextView
-            android:left="44dp"
-            android:top="410dp"
-            android:layout_width="87dp"
-            android:layout_height="20dp"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            android:gravity="left"
-            android:text="Your rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
-            />
+            android:gravity="left"
+            android:left="44dp"
+            android:text="Your rating"
+            android:textColor="@color/black"
+            android:fontFamily="@font/msyhbd"
+            android:textSize="20dp"
+            android:top="410dp" />
         <RatingBar
             style="@style/MyRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:isIndicator="false"
-            android:rating="1.0"
-            android:stepSize="1.0"
+            android:rating="4.0"
+            android:stepSize="0.1"
             android:numStars="5"
             android:id="@+id/ratingBar"
-            android:layout_marginLeft="125dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="20dp"
             />
 
         <TextView
-            android:layout_width="320dp"
-            android:layout_height="205dp"
-            android:layout_marginLeft="21dp"
+            android:id="@+id/comment"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="64dp"
+            android:fontFamily="@font/round"
             android:gravity="left"
             android:left="20dp"
-            android:text="        你完成了很棒的旅行！恭喜你！~"
+            android:text="你完成了很棒的旅行！恭喜你！~"
             android:textColor="@color/black"
-            android:textSize="16dp"
+            android:textSize="18dp"
             android:top="210dp" />
-    </RelativeLayout>
-    <RelativeLayout>
-
-        <Button
-            android:layout_width="217dp"
-            android:layout_height="70dp"
-            android:id="@+id/share"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="23dp"
-            android:background="@drawable/border_write"
-            android:drawableLeft="@drawable/weixin"
-            android:gravity="center"
-            android:onClick="share"
-            android:text="一键分享到微信"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            android:top="527dp" />
-
-
     </RelativeLayout>
 
 

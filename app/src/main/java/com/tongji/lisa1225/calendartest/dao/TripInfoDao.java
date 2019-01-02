@@ -1,4 +1,4 @@
-package com.tongji.lisa1225.calendartest.dao;//TODO
+package com.tongji.lisa1225.calendartest.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -108,7 +108,8 @@ public class TripInfoDao {
         SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
         // 查询比较特别,涉及到 cursor
         Cursor cursor = readableDatabase.query(TripInfo.TABLE, new String[]{TripInfo.KEY_id,TripInfo.KEY_destination,TripInfo.KEY_start_time,
-                TripInfo.KEY_end_time,TripInfo.KEY_budget,TripInfo.KEY_brief_info,TripInfo.KEY_remind,TripInfo.KEY_memo},
+                TripInfo.KEY_end_time,TripInfo.KEY_budget,TripInfo.KEY_brief_info,TripInfo.KEY_remind,TripInfo.KEY_memo,
+                TripInfo.KEY_cost,TripInfo.KEY_total_day,TripInfo.KEY_walk,TripInfo.KEY_rates,TripInfo.KEY_comment},
                 "nickname=?", new String[]{nickname}, null, null, null);
         while (cursor.moveToNext()) {
             TripInfo tripInfo = new TripInfo();
@@ -121,6 +122,11 @@ public class TripInfoDao {
             tripInfo.brief_info=cursor.getString(5);
             tripInfo.remind=cursor.getString(6);
             tripInfo.memo=cursor.getString(7);
+            tripInfo.total_cost=cursor.getInt(8);
+            tripInfo.total_day=cursor.getInt(9);
+            tripInfo.total_walk=cursor.getInt(10);
+            tripInfo.rates=cursor.getFloat(11);
+            tripInfo.comment=cursor.getString(12);
             tripInfoList.add(tripInfo);
             count++;
         }

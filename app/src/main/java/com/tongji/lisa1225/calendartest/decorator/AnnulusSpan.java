@@ -13,7 +13,7 @@ public class AnnulusSpan implements LineBackgroundSpan {
                                CharSequence charSequence,
                                int start, int end, int lineNum) {
         canvas.save();
-        canvas.drawColor(Color.parseColor("#FF4081"));
+        canvas.drawColor(Color.parseColor("#a4a8d7"));
         canvas.restore();
     }
 

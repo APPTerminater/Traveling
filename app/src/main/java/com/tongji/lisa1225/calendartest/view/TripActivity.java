@@ -9,7 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.adapter.TripAdapter;
@@ -28,6 +36,20 @@ public class TripActivity extends AppCompatActivity implements SwipeRefreshLayou
     private RecyclerView recyclerView;
     List<TripInfo> tripInfoList;
     List<DiaryInfo> diaryInfoList;
+
+    Toolbar topbar;
+    //侧边栏部分
+    private RelativeLayout layout;
+    private LinearLayout infoLayout;
+    private TextView nicknameTextview;
+    private TextView birthdayTextview;
+    private TextView walkTextview;
+    private CheckBox modechange;
+    //底边栏部分
+    private Toolbar bottombar;
+    private Button addBtn;
+    private Button homepage;
+    private Button searchBtn;
 
     String nickname;
     Intent get_intent;
@@ -53,15 +75,30 @@ public class TripActivity extends AppCompatActivity implements SwipeRefreshLayou
         dDao=new DiaryInfoDao(TripActivity.this);
         mDao=new UserInfoDao(TripActivity.this);
 
+        layout=(RelativeLayout)findViewById(R.id.layout);
+        infoLayout=(LinearLayout)findViewById(R.id.userinfo);
+        nicknameTextview=(TextView)findViewById(R.id.nickname);
+        birthdayTextview=(TextView)findViewById(R.id.birthday);
+        walkTextview=(TextView)findViewById(R.id.walk_daily);
+        modechange=(CheckBox)findViewById(R.id.changemode);
+        addBtn=(Button)findViewById(R.id.addButton);
+        homepage=(Button)findViewById(R.id.shouye);
+        searchBtn=(Button)findViewById(R.id.searchButton);
+
+        topbar=(Toolbar)findViewById(R.id.activity_toolbar);
+        bottombar=(Toolbar)findViewById(R.id.bottom_tool_bar);
+
         walk_daily=mDao.alterWalk(nickname);
         initData();
         findView();
         initRefreshLayout();
         initRecyclerView();
+
+        whichMode();
     }
     private void initData() {
         int num;//有多少天记录了
-        tripInfoList = tDao.alterData(nickname);//todo
+        tripInfoList = tDao.alterData(nickname);
         diaryInfoList=dDao.alterData(nickname);
         TripInfo[] tripInfoArray=new TripInfo[tripInfoList.size()];
         tripInfoList.toArray(tripInfoArray);
@@ -98,6 +135,19 @@ public class TripActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
     private void initRecyclerView() {
         adapter = new TripAdapter(getDatas(0, PAGE_COUNT), this, getDatas(0, PAGE_COUNT).size() > 0 );
+        adapter.setOnItemClickListener(new TripAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //tripInfoList.get(postion)
+                Toast.makeText(TripActivity.this,"onItemClick : " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+                Intent commentIntent=new Intent(TripActivity.this,CommentActivity.class);
+                commentIntent.putExtra("nickname",nickname);
+                commentIntent.putExtra("position",position);
+                startActivity(commentIntent);
+
+            }
+        });
+
         mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
@@ -196,5 +246,62 @@ public class TripActivity extends AppCompatActivity implements SwipeRefreshLayou
         startActivity(commentIntent);
 
     }
+    public void seemore(View view){
+        infoLayout.setVisibility(View.VISIBLE);
+        nicknameTextview.setText(nickname);
+        birthdayTextview.setText(mDao.alterBirthday(nickname));
+        walkTextview.setText(mDao.alterWalk(nickname)+"步");
+    }
+    public void seeless(View view){
+        infoLayout.setVisibility(View.INVISIBLE);
+    }
+    public void toEditInfo(View view){
+        Intent editinfoIntent = new Intent(TripActivity.this, EditInfoActivity.class);
+        editinfoIntent.putExtra("nickname",nickname);
+        //启动
+        startActivity(editinfoIntent);
+    }
+    public void changeMode(View view){
+        switch (mDao.alterMode(nickname)){
+            case "day":
+                mDao.updateMode(nickname,"night");
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
+                topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+                infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+                addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
+                homepage.setTextColor(getResources().getColor(R.color.night_danxiaqu));
+                searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
+                bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
+                break;
+            case "night":
+                mDao.updateMode(nickname,"day");
+                layout.setBackgroundColor(getResources().getColor(R.color.white));
+                topbar.setBackgroundColor(getResources().getColor(R.color.tool_bar));
+                infoLayout.setBackgroundColor(getResources().getColor(R.color.tool_bar));
+                addBtn.setBackground(getResources().getDrawable(R.drawable.addst));
+                homepage.setTextColor(getResources().getColor(R.color.danxiaqu2));
+                searchBtn.setTextColor(getResources().getColor(R.color.danxiaqu2));
+                bottombar.setBackgroundColor(getResources().getColor(R.color.zi));
+                break;
+        }
+
+    }
     //按钮点击事件结束
+    public void whichMode(){
+        switch (mDao.alterMode(nickname)){
+            case "day":
+                break;
+            case "night":
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
+                topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+                infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+                addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
+                homepage.setTextColor(getResources().getColor(R.color.night_danxiaqu));
+                searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
+                bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
+                modechange.setChecked(true);
+                break;
+        }
+    }
+
 }

@@ -75,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
     private TextView birthdayTextview;
     private TextView walkTextview;
     private CheckBox modechange;
+    //底边栏部分
+    private Toolbar bottombar;
+    private Button addBtn;
+    private Button homepage;
+    private Button searchBtn;
 
     RemindController remindController;
 
@@ -122,17 +127,17 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
                     if(addLong==-1){
                         Toast.makeText(this,"添加失败",Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(this,"数据添加在第  "+addLong+"   行",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(this,"数据添加在第  "+addLong+"   行",Toast.LENGTH_SHORT).show();
                     }
                 }
-                else {//todo
+                else {
                     int count;
                     if (diaryInfo.step<msg.getData().getInt("step")) {
                         count = dDao.updateStep(today0, nickname, msg.getData().getInt("step"));
                         if (count == -1) {
                             Toast.makeText(this, "更新失败", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(this, "数据更新了  " + count + "   行", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(this, "数据更新了  " + count + "   行", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -167,8 +172,12 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         birthdayTextview=(TextView)findViewById(R.id.birthday);
         walkTextview=(TextView)findViewById(R.id.walk_daily);
         modechange=(CheckBox)findViewById(R.id.changemode);
+        addBtn=(Button)findViewById(R.id.addButton);
+        homepage=(Button)findViewById(R.id.shouye);
+        searchBtn=(Button)findViewById(R.id.searchButton);
 
         topbar=(Toolbar)findViewById(R.id.activity_toolbar);
+        bottombar=(Toolbar)findViewById(R.id.bottom_tool_bar);
 
         get_intent = getIntent();
         nickname=get_intent.getStringExtra("nickname");
@@ -328,8 +337,13 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
             case "day":
                 mDao.updateMode(nickname,"night");
                 layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
-                topbar.setBackgroundColor(getResources().getColor(R.color.black));
-                infoLayout.setBackgroundColor(getResources().getColor(R.color.black));
+                topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+                infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+                addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
+                homepage.setTextColor(getResources().getColor(R.color.night_toolbar));
+                searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
+                bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
+
                 imcvTemMaterCalendarWeek.addDecorator(new NightModeDecorator());
                 break;
             case "night":
@@ -337,6 +351,10 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
                 layout.setBackgroundColor(getResources().getColor(R.color.white));
                 topbar.setBackgroundColor(getResources().getColor(R.color.tool_bar));
                 infoLayout.setBackgroundColor(getResources().getColor(R.color.tool_bar));
+                addBtn.setBackground(getResources().getDrawable(R.drawable.addst));
+                homepage.setTextColor(getResources().getColor(R.color.tool_bar));
+                searchBtn.setTextColor(getResources().getColor(R.color.danxiaqu2));
+                bottombar.setBackgroundColor(getResources().getColor(R.color.zi));
                 imcvTemMaterCalendarWeek.addDecorator(new DayModeDecorator());
                 break;
         }
@@ -349,8 +367,12 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
                 break;
             case "night":
                 layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
-                topbar.setBackgroundColor(getResources().getColor(R.color.black));
-                infoLayout.setBackgroundColor(getResources().getColor(R.color.black));
+                topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+                infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+                addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
+                homepage.setTextColor(getResources().getColor(R.color.night_toolbar));
+                searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
+                bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
                 imcvTemMaterCalendarWeek.addDecorator(new NightModeDecorator());
                 modechange.setChecked(true);
                 break;

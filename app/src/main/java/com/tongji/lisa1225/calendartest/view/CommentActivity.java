@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,16 +17,63 @@ import android.graphics.Bitmap;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.tongji.lisa1225.calendartest.R;
+import com.tongji.lisa1225.calendartest.dao.TripInfoDao;
+import com.tongji.lisa1225.calendartest.model.TripInfo;
 
 public class CommentActivity extends AppCompatActivity {
+    TripInfoDao tDao;
+    List<TripInfo> tripInfoList;
+    String nickname;
+    Intent get_intent;
+    int position;
+
+    private SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+
+
+    private TextView destination;
+    private TextView starttime;
+    private TextView endtime;
+    private TextView step;
+    private TextView cost;
+    private RatingBar stars;
+    private TextView comment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commment);
+
+        destination=(TextView)findViewById(R.id.destination);
+        starttime=(TextView)findViewById(R.id.starttime);
+        endtime=(TextView)findViewById(R.id.endtime);
+        step=(TextView)findViewById(R.id.step);
+        cost=(TextView)findViewById(R.id.cost);
+        stars=(RatingBar)findViewById(R.id.ratingBar);
+        comment=(TextView)findViewById(R.id.comment);
+
+        get_intent = getIntent();//传来的昵称
+        nickname=get_intent.getStringExtra("nickname");
+        position=get_intent.getIntExtra("position",0);
+        tDao=new TripInfoDao(CommentActivity.this);
+        tripInfoList = tDao.alterData(nickname);
+        TripInfo[] tripInfoArray=new TripInfo[tripInfoList.size()];
+        tripInfoList.toArray(tripInfoArray);
+
+        destination.setText("本次"+tripInfoArray[position].destination+"之行：");
+        starttime.setText("启程于： "+getDateToString(tripInfoArray[position].start_time));
+        endtime.setText("回程于： "+getDateToString(tripInfoArray[position].end_time));
+        step.setText(String.valueOf(tripInfoArray[position].total_walk)+"步");
+        cost.setText(String.valueOf(tripInfoArray[position].total_cost)+"元");
+        stars.setRating(tripInfoArray[position].rates);
+        comment.setText(tripInfoArray[position].comment);
+        //tripInfoList[position];
+
+
        Button btn = (Button) findViewById(R.id.share);
        btn.setOnClickListener(new View.OnClickListener() {
 
@@ -56,7 +106,7 @@ public class CommentActivity extends AppCompatActivity {
             } catch (Exception e) {
                 Toast tot = Toast.makeText(
                         CommentActivity.this,
-                        "匿名内部类实现button点击事件",
+                        "异常",
                         Toast.LENGTH_LONG);
                 tot.show();
             }
@@ -67,5 +117,15 @@ public class CommentActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.activity_commment, menu);
         return true;
     }*/
+   public void toTrip(View view) {
+       Intent tripIntent = new Intent(CommentActivity.this, TripActivity.class);
+       tripIntent.putExtra("nickname",nickname);
+       //启动
+       startActivity(tripIntent);
+   }
 
+    public String getDateToString(long time) {
+        Date d = new Date(time);
+        return sf.format(d);
+    }
 }

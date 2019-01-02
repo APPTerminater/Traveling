@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CalendarTest</string>
+    <string name="app_name">Traveling</string>
     <string name="mapsearch">高德地图</string>
     <string name="destination">目的地</string>
     <string name="addnew">添加行程</string>

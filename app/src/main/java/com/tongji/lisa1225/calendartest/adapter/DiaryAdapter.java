@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tongji.lisa1225.calendartest.R;
@@ -40,13 +41,37 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof DiaryAdapter.NormalHolder) {
-            ((NormalHolder) holder).title.setText(datas.get(position).title);//todo
+            ((NormalHolder) holder).title.setText(datas.get(position).title);
             ((NormalHolder) holder).destination.setText(datas.get(position).destination);
             ((NormalHolder) holder).temperature.setText(String.valueOf(datas.get(position).temperature)+"℃");
             ((NormalHolder) holder).text.setText(datas.get(position).text);
             ((NormalHolder) holder).step.setText(String.valueOf(datas.get(position).step)+"步");
+
+           /* switch (datas.get(position).background){
+                case 0:
+                    ((NormalHolder) holder).diary.setBackground(context.getResources().getDrawable(R.drawable.bg_main));
+                    break;
+                case 1:
+                    ((NormalHolder) holder).diary.setBackground(context.getResources().getDrawable(R.drawable.bg_add));
+                    break;
+                case 2:
+                    ((NormalHolder) holder).diary.setBackground(context.getResources().getDrawable(R.drawable.bg_date));
+                    break;
+                case 3:
+                    ((NormalHolder) holder).diary.setBackground(context.getResources().getDrawable(R.drawable.bg_pink));
+                    break;
+            }*/
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //触发自定义监听的单击事件
+                    onItemClickListener.onItemClick(holder.itemView,position);
+                }
+            });
+
         } else {
             ((DiaryAdapter.FootHolder) holder).tips.setVisibility(View.VISIBLE);
             if (hasMore == true) {
@@ -88,13 +113,14 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         notifyDataSetChanged();
     }
 
-    class NormalHolder extends RecyclerView.ViewHolder {//todo
+    class NormalHolder extends RecyclerView.ViewHolder {
 
         private TextView title;
         private TextView destination;
         private TextView temperature;
         private TextView text;
         private TextView step;
+        private RelativeLayout diary;
 
         public NormalHolder(View itemView) {
             super(itemView);
@@ -103,7 +129,21 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             temperature=(TextView)itemView.findViewById(R.id.temperature);
             text=(TextView)itemView.findViewById(R.id.text);
             step=(TextView)itemView.findViewById(R.id.step);
+            diary=(RelativeLayout)itemView.findViewById(R.id.diary);
         }
+    }
+
+    public void setOnItemClickListener(DiaryAdapter.OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    private DiaryAdapter.OnItemClickListener onItemClickListener;
+
+    /**
+     * 自定义监听回调，RecyclerView 的 单击事件
+     */
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
     class FootHolder extends RecyclerView.ViewHolder {

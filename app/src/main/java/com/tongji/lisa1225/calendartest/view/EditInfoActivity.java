@@ -35,7 +35,7 @@ public class EditInfoActivity extends AppCompatActivity {
         birthdayText=(EditText)findViewById(R.id.newbirthday);
         birthdayText.setText(mDao.alterBirthday(nickname));
         walkText=(EditText) findViewById(R.id.newwalk);
-        walkText.setText(mDao.alterWalk(nickname));
+        walkText.setText(String.valueOf(mDao.alterWalk(nickname)));
         password_againText=(EditText)findViewById(R.id.newpassword_again);
         passwordText=(EditText)findViewById(R.id.newpassword);
 

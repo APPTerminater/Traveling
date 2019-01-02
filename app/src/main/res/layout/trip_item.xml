@@ -28,7 +28,7 @@
             android:gravity="left"
             android:left="20dp"
             android:text="北京"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp"
             android:top="90dp" />
 
@@ -42,7 +42,7 @@
             android:gravity="center"
             android:left="20dp"
             android:text="10000步"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="16dp"
             android:top="90dp" />
 
@@ -51,11 +51,10 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="290dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="25dp"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/share1"
             android:left="335dp"
-            android:onClick="tocomment"
             android:top="114dp" />
 
         <TextView
@@ -67,7 +66,7 @@
             android:gravity="left"
             android:left="20dp"
             android:text="旅行简介：我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了我去北京了"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="16dp"
             android:top="210dp" />
         <View
@@ -101,7 +100,7 @@
             android:gravity="left"
             android:left="44dp"
             android:text="Rating"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18dp"
             android:top="410dp" />
         <RatingBar
@@ -126,7 +125,7 @@
             android:gravity="left"
             android:left="20dp"
             android:text="你这是一次有趣的旅行！~"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="16dp"
             android:top="210dp" />
     </RelativeLayout>

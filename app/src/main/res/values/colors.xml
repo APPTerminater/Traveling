@@ -37,4 +37,9 @@
     <color name="changelowgreen">#8bc34a</color>
     <color name="changepink">#ff4081</color>
     <color name="changeorange">#ff9800</color>
+    <color name="night_toolbar">#3C3C3C</color>
+    <color name="night_bg">#F0F0F0</color>
+    <color name="night_buttombar">#CDCDCD</color>
+    <color name="night_danxiaqu">#939393</color>
+
 </resources>

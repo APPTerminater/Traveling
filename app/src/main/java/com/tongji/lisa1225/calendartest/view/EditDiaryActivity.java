@@ -1,8 +1,10 @@
 package com.tongji.lisa1225.calendartest.view;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -18,10 +20,15 @@ import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.dao.DiaryInfoDao;
 import com.tongji.lisa1225.calendartest.model.DiaryInfo;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 public class EditDiaryActivity extends AppCompatActivity {
+    private RelativeLayout layout;
     private RelativeLayout decorateLayout;
     private Button decoratedBtn;
     private Button bondedBtn;
+    private Button bg;
     private EditText content;  //日记内容
     private TextView showdate;//显示日期
     private TextView city; //显示城市名
@@ -39,6 +46,7 @@ public class EditDiaryActivity extends AppCompatActivity {
     String textSize="middle";
     String textColor="black";
     String isBold="no";
+    int background=0;
 
     Intent get_intent;
     String nickname;
@@ -62,9 +70,11 @@ public class EditDiaryActivity extends AppCompatActivity {
         msyh=Typeface.createFromAsset(getAssets(),"font/msyh.ttf");
 
         //寻找控件
+        layout=(RelativeLayout)findViewById(R.id.layout);
         decorateLayout=(RelativeLayout)findViewById(R.id.decorateLayout);
         decoratedBtn=(Button)findViewById(R.id.decoratedButton);
         bondedBtn=(Button)findViewById(R.id.bujiacu);
+        bg=(Button)findViewById(R.id.bg);
         content=(EditText)findViewById(R.id.content);
         contentPaint = content.getPaint();
         showdate=findViewById(R.id.showdate);
@@ -92,6 +102,7 @@ public class EditDiaryActivity extends AppCompatActivity {
             textSize=diaryInfo.textsize;
             textFont=diaryInfo.textfont;
             isBold=diaryInfo.isbold;
+            background=diaryInfo.background;
             title.setText(diaryInfo.title);
             temperature.setText(String.valueOf(diaryInfo.temperature));
             step.setText(String.valueOf(diaryInfo.step));
@@ -104,7 +115,45 @@ public class EditDiaryActivity extends AppCompatActivity {
         changeFont(textFont);
         changeSize(textSize);
         changeBond(isBold);
+        changeBackground(background);
+        Button btn = (Button) findViewById(R.id.choose_pic);
+        btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                share();
+            }
+        });
     }
+    //几个按钮点击事件
+    public void share() {
+        View dView = getWindow().getDecorView();
+        dView.setDrawingCacheEnabled(true);
+        dView.buildDrawingCache();
+        Bitmap bmp = dView.getDrawingCache();
+        if (bmp != null)
+        {
+            try {
+                // 获取内置SD卡路径
+                String sdCardPath = Environment.getExternalStorageDirectory().getPath();
+                // 图片文件路径
+                String filePath = sdCardPath + File.separator + "screenshot.png";
+
+                File file = new File(filePath);
+                FileOutputStream os = new FileOutputStream(file);
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, os);
+                os.flush();
+                os.close();
+            } catch (Exception e) {
+                Toast tot = Toast.makeText(
+                        EditDiaryActivity.this,
+                        "异常",
+                        Toast.LENGTH_LONG);
+                tot.show();
+            }
+        }
+    }
+
 
     //返回按钮
     public void back(View view){
@@ -124,6 +173,7 @@ public class EditDiaryActivity extends AppCompatActivity {
         diaryInfo.temperature= Integer.parseInt(temperature.getText().toString());
         diaryInfo.cost=Integer.parseInt(money.getText().toString());
         diaryInfo.destination=cityname;
+        diaryInfo.background=background;
         //添加
         if(dDao.alterData(nickname,selectTime).id==-1) {
             if (TextUtils.isEmpty(diaryInfo.title) || TextUtils.isEmpty(money.getText().toString().trim())
@@ -267,6 +317,29 @@ public class EditDiaryActivity extends AppCompatActivity {
                 bondedBtn.setVisibility(View.INVISIBLE);
                 isBold="no";
                 break;
+        }
+    }
+    public void changeBg(View view){
+        bg.setTextColor(getResources().getColor(R.color.tool_bar));
+        if(background==3)background=0;
+        else background++;
+        changeBackground(background);
+        //todo
+    }
+    public void changeBackground(int bg){
+        switch (bg){
+            case 0:
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_main));
+                break;
+            case 1:
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_add));
+                break;
+            case 2:
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_date));
+                break;
+            case 3:
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_pink));
+
         }
     }
     public void backToDate()

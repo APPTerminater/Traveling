@@ -17,6 +17,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.tongji.lisa1225.calendartest.R;
@@ -34,6 +36,7 @@ import java.util.List;
 
 public class DateActivity extends AppCompatActivity {
     //数据库
+    private TableLayout layout;
     private TripInfoDao tDao;
     private DiaryInfoDao dDao;
     CityController cityController;
@@ -57,6 +60,7 @@ public class DateActivity extends AppCompatActivity {
     String textSize="middle";
     String textColor="black";
     String isBold="no";
+    int background=0;
     //字体
     Typeface round=null;
     Typeface apple=null;
@@ -77,6 +81,7 @@ public class DateActivity extends AppCompatActivity {
         dDao=new DiaryInfoDao(DateActivity.this);
         tDao=new TripInfoDao(DateActivity.this);
         //寻找控件
+        layout=(TableLayout)findViewById(R.id.layout);
         city=findViewById(R.id.city);
         showdate=findViewById(R.id.showdate);
         content=(TextView) findViewById(R.id.content);
@@ -126,6 +131,7 @@ public class DateActivity extends AppCompatActivity {
             textSize=diaryInfo.textsize;
             textFont=diaryInfo.textfont;
             isBold=diaryInfo.isbold;
+            background=diaryInfo.background;
             title.setText(diaryInfo.title);
             temperature.setText(String.valueOf(diaryInfo.temperature+"℃"));
             money.setText(String.valueOf(diaryInfo.cost+"元"));
@@ -134,6 +140,7 @@ public class DateActivity extends AppCompatActivity {
             changeFont(textFont);
             changeSize(textSize);
             changeBond(isBold);
+            changeBackground(background);
         }
         text_step.setText(String.valueOf(diaryInfo.step)+"步");
         //改颜色字体大小
@@ -199,6 +206,22 @@ public class DateActivity extends AppCompatActivity {
                 break;
             case "no":
                 contentPaint.setFakeBoldText(false);
+                break;
+        }
+    }
+    public void changeBackground(int bg){
+        switch (bg){
+            case 0:
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_main));
+                break;
+            case 1:
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_add));
+                break;
+            case 2:
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_date));
+                break;
+            case 3:
+                layout.setBackground(getResources().getDrawable(R.drawable.bg_pink));
                 break;
         }
     }
