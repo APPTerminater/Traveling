@@ -117,6 +117,7 @@ public class DiaryInfoDao {
     /**
      * 查询的方法
      * @param nickname
+     * @param time
      * @return
      */
     public DiaryInfo alterData(String nickname,long time){

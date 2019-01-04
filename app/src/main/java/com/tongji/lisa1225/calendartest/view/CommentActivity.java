@@ -35,26 +35,18 @@ public class CommentActivity extends AppCompatActivity {
 
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
-
-    private TextView destination;
-    private TextView starttime;
-    private TextView endtime;
-    private TextView step;
-    private TextView cost;
-    private RatingBar stars;
-    private TextView comment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commment);
-
-        destination=(TextView)findViewById(R.id.destination);
-        starttime=(TextView)findViewById(R.id.starttime);
-        endtime=(TextView)findViewById(R.id.endtime);
-        step=(TextView)findViewById(R.id.step);
-        cost=(TextView)findViewById(R.id.cost);
-        stars=(RatingBar)findViewById(R.id.ratingBar);
-        comment=(TextView)findViewById(R.id.comment);
+        //初始化
+        TextView destination=(TextView)findViewById(R.id.destination);
+        TextView starttime=(TextView)findViewById(R.id.starttime);
+        TextView endtime=(TextView)findViewById(R.id.endtime);
+        TextView step=(TextView)findViewById(R.id.step);
+        TextView cost=(TextView)findViewById(R.id.cost);
+        RatingBar stars=(RatingBar)findViewById(R.id.ratingBar);
+        TextView comment=(TextView)findViewById(R.id.comment);
 
         get_intent = getIntent();//传来的昵称
         nickname=get_intent.getStringExtra("nickname");
@@ -71,15 +63,11 @@ public class CommentActivity extends AppCompatActivity {
         cost.setText(String.valueOf(tripInfoArray[position].total_cost)+"元");
         stars.setRating(tripInfoArray[position].rates);
         comment.setText(tripInfoArray[position].comment);
-        //tripInfoList[position];
 
-
-       Button btn = (Button) findViewById(R.id.share);
-       btn.setOnClickListener(new View.OnClickListener() {
-
+        Button btn = (Button) findViewById(R.id.share);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 share();
             }
         });
@@ -112,11 +100,7 @@ public class CommentActivity extends AppCompatActivity {
             }
         }
     }
-   /* public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_commment, menu);
-        return true;
-    }*/
+
    public void toTrip(View view) {
        Intent tripIntent = new Intent(CommentActivity.this, TripActivity.class);
        tripIntent.putExtra("nickname",nickname);

@@ -1,8 +1,5 @@
 package com.tongji.lisa1225.calendartest.controllor;
 
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +9,6 @@ public class CityController {
     private List<String> destinations;
     private int num;
 
-    //public RemindController() {}
     public CityController(List<Date> start_date,List<Date>end_date,List<String> destination) {
         this.start_dates = start_date;
         this.end_dates=end_date;
@@ -44,9 +40,6 @@ public class CityController {
             return null;
         }
         return dest_Array[num];
-    }
-    public int getNum(){
-        return num;
     }
 
 }

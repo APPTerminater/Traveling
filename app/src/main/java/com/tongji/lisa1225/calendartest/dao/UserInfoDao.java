@@ -44,18 +44,12 @@ public class UserInfoDao {
         return rowid;
     }
 
-
-    // 删除的方法，返回值是int
-    public int deleteData(String nickname){
-        SQLiteDatabase sqLiteDatabase = mMyDBHelper.getWritableDatabase();
-        int deleteResult = sqLiteDatabase.delete(UserInfo.TABLE, "nickname=?", new String[]{nickname});
-        sqLiteDatabase.close();
-        return deleteResult;
-    }
-
     /**
      * 修改的方法
      * @param nickname
+     * @param newBirthday
+     * @param newPassword
+     * @param newWalk
      * @return
      */
     public int updateData(String nickname,String newBirthday,String newPassword,String newWalk){
@@ -73,6 +67,7 @@ public class UserInfoDao {
     /**
      * 修改的方法（修改模式）
      * @param nickname
+     * @param mode
      * @return
      */
     public int updateMode(String nickname,String mode){
@@ -99,7 +94,7 @@ public class UserInfoDao {
             mode=cursor.getString(0);
         }
 
-        cursor.close(); // 记得关闭 corsor
+        cursor.close(); // 记得关闭 cursor
         readableDatabase.close(); // 关闭数据库
         return mode;
     }
@@ -118,7 +113,7 @@ public class UserInfoDao {
         if(cursor.moveToNext()){
             password=cursor.getString(0);
         }
-        cursor.close(); // 记得关闭 corsor
+        cursor.close(); // 记得关闭 cursor
         readableDatabase.close(); // 关闭数据库
         return password;
     }
@@ -137,7 +132,7 @@ public class UserInfoDao {
         if(cursor.moveToNext()){
             birthday=cursor.getString(0);
         }
-        cursor.close(); // 记得关闭 corsor
+        cursor.close(); // 记得关闭 cursor
         readableDatabase.close(); // 关闭数据库
         return birthday;
     }
@@ -156,7 +151,7 @@ public class UserInfoDao {
         if(cursor.moveToNext()){
             walk_daliy=cursor.getInt(0);
         }
-        cursor.close(); // 记得关闭 corsor
+        cursor.close(); // 记得关闭 cursor
         readableDatabase.close(); // 关闭数据库
         return walk_daliy;
     }

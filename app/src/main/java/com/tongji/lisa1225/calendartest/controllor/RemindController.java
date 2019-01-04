@@ -1,7 +1,5 @@
 package com.tongji.lisa1225.calendartest.controllor;
 
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +9,6 @@ public class RemindController {
     private List<String> reminds;
     private int num;
 
-    //public RemindController() {}
     public RemindController(List<Date> start_date,List<String> remind) {
         this.start_dates = start_date;
         this.reminds=remind;
@@ -44,9 +41,6 @@ public class RemindController {
         return memoArray[num];
     }
 
-    public int getNum() {
-        return num;
-    }
     public Date getstart_dates(){
         Date[] startArray = new Date[start_dates.size()];
         start_dates.toArray(startArray);

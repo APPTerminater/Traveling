@@ -210,7 +210,8 @@
                 android:background="@android:color/transparent"
                 android:text="首页"
                 android:textColor="@color/danxiaqu2"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:onClick="tomain"/>
 
             <Button
                 android:id="@+id/addButton"

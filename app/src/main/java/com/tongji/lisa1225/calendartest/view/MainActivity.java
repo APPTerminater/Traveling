@@ -1,13 +1,11 @@
 package com.tongji.lisa1225.calendartest.view;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -24,7 +22,6 @@ import com.tongji.lisa1225.calendartest.dao.TripInfoDao;
 import com.tongji.lisa1225.calendartest.dao.UserInfoDao;
 import com.tongji.lisa1225.calendartest.decorator.DayModeDecorator;
 import com.tongji.lisa1225.calendartest.decorator.EventDecorator;
-import com.tongji.lisa1225.calendartest.decorator.HighlightWeekendsDecorator;
 import com.tongji.lisa1225.calendartest.decorator.NightModeDecorator;
 import com.tongji.lisa1225.calendartest.model.DiaryInfo;
 import com.tongji.lisa1225.calendartest.model.TripInfo;
@@ -32,18 +29,9 @@ import com.tongji.lisa1225.calendartest.service.StepService;
 
 
 import android.support.v7.widget.Toolbar;
-import android.view.*;
 import android.widget.Button;
-import android.view.View.OnClickListener;
 import android.widget.CheckBox;
-import android.widget.LinearLayout.LayoutParams;
-import android.app.Activity;
-import android.util.DisplayMetrics;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
 import android.view.View;
-import android.view.View.OnTouchListener;
-import android.view.Window;
 import android.widget.LinearLayout;
 
 import android.support.annotation.*;
@@ -59,10 +47,13 @@ import java.util.List;
 import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity implements Handler.Callback {
+    //日历控件
     MaterialCalendarView imcvTemMaterCalendarWeek;
+    //数据库
     private UserInfoDao mDao;
     private TripInfoDao tDao;
     private DiaryInfoDao dDao;
+    //时间部分
     SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
     Date today_zero;//今天零点
     long today0;
@@ -80,15 +71,14 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
     private Button addBtn;
     private Button homepage;
     private Button searchBtn;
-
+    //提醒
     RemindController remindController;
-
+    //传来的数据
     String nickname;
     Intent get_intent;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     //计步相关开始：循环取当前时刻的步数中间的时间间隔
     private long TIME_INTERVAL = 5000;
-
 
     private Messenger messenger;
     private Messenger mGetReplyMessenger = new Messenger(new Handler(this));
@@ -161,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //初始化
         mDao=new UserInfoDao(MainActivity.this);
         tDao=new TripInfoDao(MainActivity.this);
         dDao=new DiaryInfoDao(MainActivity.this);
@@ -228,30 +218,22 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         EventDecorator eventDecorator=new EventDecorator(start_timeList,end_timeList);
         //处理日历
         imcvTemMaterCalendarWeek = findViewById(R.id.liView);
-        //imcvTemMaterCalendarWeek.state().edit() .setFirstDayOfWeek(Calendar.MONDAY) .setCalendarDisplayMode(CalendarMode.WEEKS) .commit();
         imcvTemMaterCalendarWeek.state().edit().setFirstDayOfWeek(Calendar.MONDAY).commit();
         imcvTemMaterCalendarWeek.setArrowColor(R.color.black);
         imcvTemMaterCalendarWeek.addDecorator(eventDecorator);
-
-        //imcvTemMaterCalendarWeek.setTopbarVisible(true);//隐藏标题栏和两边的箭头
         Calendar calendar = Calendar.getInstance();
-
-        //imcvTemMaterCalendarWeek.setSelectedDate(calendar.getTime());//当日选中
+        imcvTemMaterCalendarWeek.setSelectedDate(calendar.getTime());//当日选中
         // 设置选中日期颜色。
         imcvTemMaterCalendarWeek.setSelectionColor(getResources().getColor(R.color.ControlNormal));
         //设置日期选中时的点击事件。
         imcvTemMaterCalendarWeek.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) { //在这个方法中处理选中事件。
-                // dealWithData(date);
-                // 给bnt1添加点击响应事件
                 long selectTime=date.getDate().getTime();
                 selectday = date.getDay();
                 selectmonth = date.getMonth() + 1;
                 selectyear = date.getYear();
-                //Date nowdate = new Date(System.currentTimeMillis());
                 Intent dateintent = new Intent(MainActivity.this, DateActivity.class);
-                //if(nowdate.)
                 Bundle b=new Bundle();
                 b.putString("name","SWWWWW");
                 b.putLong("selectTime",selectTime);
@@ -266,7 +248,6 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         //处理日历结束
         whichMode();
         //计步相关开始
-        //text_step = (TextView) findViewById(R.id.main_text_step);
         delayHandler = new Handler(this);
         //计步相关结束
     }
@@ -336,15 +317,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         switch (mDao.alterMode(nickname)){
             case "day":
                 mDao.updateMode(nickname,"night");
-                layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
-                topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
-                infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
-                addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
-                homepage.setTextColor(getResources().getColor(R.color.night_toolbar));
-                searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
-                bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
-
-                imcvTemMaterCalendarWeek.addDecorator(new NightModeDecorator());
+                whichMode();
                 break;
             case "night":
                 mDao.updateMode(nickname,"day");
@@ -362,20 +335,16 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
     }
     //按钮点击事件结束
     public void whichMode(){
-        switch (mDao.alterMode(nickname)){
-            case "day":
-                break;
-            case "night":
-                layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
-                topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
-                infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
-                addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
-                homepage.setTextColor(getResources().getColor(R.color.night_toolbar));
-                searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
-                bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
-                imcvTemMaterCalendarWeek.addDecorator(new NightModeDecorator());
-                modechange.setChecked(true);
-                break;
+        if(mDao.alterMode(nickname).equals("night")) {
+            layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
+            topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+            infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+            addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
+            homepage.setTextColor(getResources().getColor(R.color.night_toolbar));
+            searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
+            bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
+            imcvTemMaterCalendarWeek.addDecorator(new NightModeDecorator());
+            modechange.setChecked(true);
         }
     }
     //计步相关开始

@@ -49,21 +49,6 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((NormalHolder) holder).text.setText(datas.get(position).text);
             ((NormalHolder) holder).step.setText(String.valueOf(datas.get(position).step)+"步");
 
-           /* switch (datas.get(position).background){
-                case 0:
-                    ((NormalHolder) holder).diary.setBackground(context.getResources().getDrawable(R.drawable.bg_main));
-                    break;
-                case 1:
-                    ((NormalHolder) holder).diary.setBackground(context.getResources().getDrawable(R.drawable.bg_add));
-                    break;
-                case 2:
-                    ((NormalHolder) holder).diary.setBackground(context.getResources().getDrawable(R.drawable.bg_date));
-                    break;
-                case 3:
-                    ((NormalHolder) holder).diary.setBackground(context.getResources().getDrawable(R.drawable.bg_pink));
-                    break;
-            }*/
-
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -120,7 +105,6 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         private TextView temperature;
         private TextView text;
         private TextView step;
-        private RelativeLayout diary;
 
         public NormalHolder(View itemView) {
             super(itemView);
@@ -129,7 +113,6 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             temperature=(TextView)itemView.findViewById(R.id.temperature);
             text=(TextView)itemView.findViewById(R.id.text);
             step=(TextView)itemView.findViewById(R.id.step);
-            diary=(RelativeLayout)itemView.findViewById(R.id.diary);
         }
     }
 

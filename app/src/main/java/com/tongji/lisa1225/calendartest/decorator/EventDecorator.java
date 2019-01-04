@@ -12,7 +12,6 @@ public class EventDecorator implements DayViewDecorator {
     private List<Date> start_dates;
     private List<Date> end_dates;
 
-    public EventDecorator() {}
     public EventDecorator(List<Date> start_date,List<Date>end_date) {
         this.start_dates = start_date;
         this.end_dates=end_date;
@@ -34,12 +33,6 @@ public class EventDecorator implements DayViewDecorator {
 
         }
         return false;
-       /* for (Date sdate:start_dates){
-
-        }
-        return dates.contains(day.getDate());
-*/
-        //return true;
     }
 
     @Override

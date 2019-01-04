@@ -120,7 +120,6 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             stars=(RatingBar)itemView.findViewById(R.id.ratingBar);
             comment=(TextView)itemView.findViewById(R.id.comment);
 
-            //textView = (TextView) itemView.findViewById(R.id.tv);
         }
     }
     public void setOnItemClickListener(TripAdapter.OnItemClickListener onItemClickListener){

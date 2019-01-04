@@ -55,21 +55,12 @@ public class TripInfoDao {
         return rowid;
     }
 
-
-    // 删除的方法，返回值是int
-    public int deleteData(int id,String nickname){
-        SQLiteDatabase sqLiteDatabase = mMyDBHelper.getWritableDatabase();
-        int deleteResult = sqLiteDatabase.delete(TripInfo.TABLE, "id=? and nickname=?", new String[]{String.valueOf(id),nickname});
-        sqLiteDatabase.close();
-        return deleteResult;
-    }
-
     /**
      * 修改的方法（明明用过了）
      * @param nickname
      * @param starttime
      * @return
-*/
+    */
     public int updateRemind(String nickname, Date starttime){
         SQLiteDatabase sqLiteDatabase = mMyDBHelper.getWritableDatabase();
         ContentValues contentValues =new ContentValues();

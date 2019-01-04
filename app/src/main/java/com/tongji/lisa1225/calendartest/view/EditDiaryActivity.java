@@ -63,12 +63,11 @@ public class EditDiaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editdiary);
-
+        //字体
         round=Typeface.createFromAsset(getAssets(),"font/round.ttf");
         apple=Typeface.createFromAsset(getAssets(),"font/apple.ttf");
         kai=Typeface.createFromAsset(getAssets(),"font/kai.ttf");
         msyh=Typeface.createFromAsset(getAssets(),"font/msyh.ttf");
-
         //寻找控件
         layout=(RelativeLayout)findViewById(R.id.layout);
         decorateLayout=(RelativeLayout)findViewById(R.id.decorateLayout);
@@ -118,7 +117,6 @@ public class EditDiaryActivity extends AppCompatActivity {
         changeBackground(background);
         Button btn = (Button) findViewById(R.id.choose_pic);
         btn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 share();
@@ -145,11 +143,6 @@ public class EditDiaryActivity extends AppCompatActivity {
                 os.flush();
                 os.close();
             } catch (Exception e) {
-                Toast tot = Toast.makeText(
-                        EditDiaryActivity.this,
-                        "异常",
-                        Toast.LENGTH_LONG);
-                tot.show();
             }
         }
     }
@@ -209,7 +202,7 @@ public class EditDiaryActivity extends AppCompatActivity {
         }
 
     }
-
+    //显示&不显示改变字体的控件
     public void decorate(View view){
         decoratedBtn.setVisibility(View.VISIBLE);
         decorateLayout.setVisibility(View.VISIBLE);

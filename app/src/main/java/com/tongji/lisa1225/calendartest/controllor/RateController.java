@@ -8,12 +8,7 @@ import java.util.List;
 public class RateController {
 
     private TripInfo tripInfo;
-    private int tripID;
-    List<Date> start_timeList;
-    List<Date> end_timeList;
     private int recordDays;
-    private float averageCost;//实际日均开销
-    private float averageStep;//实际日均步数
     private float averageBudget;//预计日均开销
     private float daliy_walk;
     private float rate;
@@ -25,7 +20,6 @@ public class RateController {
     public RateController(TripInfo tripInfo,int daily_walk,int recordDays) {
         this.tripInfo = tripInfo;
         this.daliy_walk=daily_walk;
-        tripID = -1;
         rate = 3;
         this.recordDays = recordDays;
         averageBudget=tripInfo.budget/tripInfo.total_day;
@@ -38,8 +32,8 @@ public class RateController {
             return tripInfo;
         }
         else {
-            averageCost=tripInfo.total_cost/recordDays;
-            averageStep=tripInfo.total_walk/recordDays;
+            float averageCost=tripInfo.total_cost/recordDays;
+            float averageStep=tripInfo.total_walk/recordDays;
             rate=rate+(averageBudget-averageCost)/averageCost+(averageStep-daliy_walk)/(averageStep+10);
 
         }

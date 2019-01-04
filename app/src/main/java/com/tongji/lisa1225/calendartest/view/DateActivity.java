@@ -1,34 +1,21 @@
 package com.tongji.lisa1225.calendartest.view;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextPaint;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.tongji.lisa1225.calendartest.R;
-import com.tongji.lisa1225.calendartest.config.Constant;
 import com.tongji.lisa1225.calendartest.controllor.CityController;
 import com.tongji.lisa1225.calendartest.dao.DiaryInfoDao;
 import com.tongji.lisa1225.calendartest.dao.TripInfoDao;
 import com.tongji.lisa1225.calendartest.model.DiaryInfo;
 import com.tongji.lisa1225.calendartest.model.TripInfo;
-import com.tongji.lisa1225.calendartest.service.StepService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -136,6 +123,7 @@ public class DateActivity extends AppCompatActivity {
             temperature.setText(String.valueOf(diaryInfo.temperature+"℃"));
             money.setText(String.valueOf(diaryInfo.cost+"元"));
             content.setText(diaryInfo.text);
+            //改颜色字体大小
             changeColor(textColor);
             changeFont(textFont);
             changeSize(textSize);
@@ -143,10 +131,6 @@ public class DateActivity extends AppCompatActivity {
             changeBackground(background);
         }
         text_step.setText(String.valueOf(diaryInfo.step)+"步");
-        //改颜色字体大小
-
-
-
     }
     public void changeFont(String font){
         switch (font){
@@ -226,11 +210,7 @@ public class DateActivity extends AppCompatActivity {
         }
     }
     public void back(View view){
-        if(selectTime<=System.currentTimeMillis()&&(selectTime+24*60*60*1000)>System.currentTimeMillis())
-        {
-            //todo
-        }
-            Intent mainintent =new Intent(DateActivity.this,MainActivity.class);
+        Intent mainintent =new Intent(DateActivity.this,MainActivity.class);
         //启动
         mainintent.putExtra("nickname",nickname);
         startActivity(mainintent);
@@ -238,7 +218,6 @@ public class DateActivity extends AppCompatActivity {
     public void edit(View view){
         Intent editintent =new Intent(DateActivity.this,EditDiaryActivity.class);
         Bundle b=new Bundle();
-        b.putString("name","SWWWWW");
         b.putLong("selectTime",selectTime);
         editintent.putExtras(b);
         editintent.putExtra("nickname",nickname);
@@ -247,6 +226,4 @@ public class DateActivity extends AppCompatActivity {
         //启动
         startActivity(editintent);
     }
-
-
 }

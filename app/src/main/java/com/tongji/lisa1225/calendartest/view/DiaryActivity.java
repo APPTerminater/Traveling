@@ -28,10 +28,7 @@ import java.util.List;
 import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.dao.DiaryInfoDao;
 import com.tongji.lisa1225.calendartest.dao.UserInfoDao;
-import com.tongji.lisa1225.calendartest.decorator.DayModeDecorator;
-import com.tongji.lisa1225.calendartest.decorator.NightModeDecorator;
 import com.tongji.lisa1225.calendartest.model.DiaryInfo;
-import com.tongji.lisa1225.calendartest.model.TripInfo;
 
 public class DiaryActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
     private SwipeRefreshLayout refreshLayout;
@@ -71,7 +68,7 @@ public class DiaryActivity extends AppCompatActivity implements SwipeRefreshLayo
         setContentView(R.layout.activity_diary);
         get_intent = getIntent();//传来的昵称
         nickname=get_intent.getStringExtra("nickname");
-
+        //初始化
         dDao=new DiaryInfoDao(DiaryActivity.this);
         mDao=new UserInfoDao(DiaryActivity.this);
 
@@ -93,18 +90,11 @@ public class DiaryActivity extends AppCompatActivity implements SwipeRefreshLayo
         initRefreshLayout();
         initRecyclerView();
 
-        whichMode();
+        whichMode();//夜间模式
     }
 
     private void initData() {
         diaryInfoList=dDao.alterData(nickname);
-        DiaryInfo[] diaryInfoArray = new DiaryInfo[diaryInfoList.size()];
-        diaryInfoList.toArray(diaryInfoArray);
-        /*
-        titleList = new ArrayList<>();
-        for (int i = 0; i < diaryInfoList.size(); i++) {
-            titleList.add(diaryInfoArray[i].title);
-        }*/
     }
 
     private void findView() {
@@ -128,15 +118,12 @@ public class DiaryActivity extends AppCompatActivity implements SwipeRefreshLayo
                 diaryInfoList=dDao.alterData(nickname);
                 DiaryInfo[] diaryInfoArray = new DiaryInfo[diaryInfoList.size()];
                 diaryInfoList.toArray(diaryInfoArray);
-                Toast.makeText(DiaryActivity.this,"onItemClick : " + String.valueOf(position), Toast.LENGTH_SHORT).show();
                 Intent dateIntent=new Intent(DiaryActivity.this,DateActivity.class);
                 dateIntent.putExtra("nickname",nickname);
 
                 Bundle b=new Bundle();
-                b.putString("name","SWWWWW");
                 b.putLong("selectTime",diaryInfoArray[position].time);
                 dateIntent.putExtras(b);
-                // 传来的昵称
                 dateIntent.putExtra("selectdate",getDateToString(diaryInfoArray[position].time));
                 dateIntent.putExtra("position",position);
                 startActivity(dateIntent);
@@ -254,13 +241,7 @@ public class DiaryActivity extends AppCompatActivity implements SwipeRefreshLayo
         switch (mDao.alterMode(nickname)){
             case "day":
                 mDao.updateMode(nickname,"night");
-                layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
-                topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
-                infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
-                addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
-                homepage.setTextColor(getResources().getColor(R.color.night_danxiaqu));
-                searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
-                bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
+                whichMode();
                 break;
             case "night":
                 mDao.updateMode(nickname,"day");
@@ -268,7 +249,7 @@ public class DiaryActivity extends AppCompatActivity implements SwipeRefreshLayo
                 topbar.setBackgroundColor(getResources().getColor(R.color.tool_bar));
                 infoLayout.setBackgroundColor(getResources().getColor(R.color.tool_bar));
                 addBtn.setBackground(getResources().getDrawable(R.drawable.addst));
-                homepage.setTextColor(getResources().getColor(R.color.danxiaqu2));
+                homepage.setTextColor(getResources().getColor(R.color.tool_bar));
                 searchBtn.setTextColor(getResources().getColor(R.color.danxiaqu2));
                 bottombar.setBackgroundColor(getResources().getColor(R.color.zi));
                 break;
@@ -277,19 +258,15 @@ public class DiaryActivity extends AppCompatActivity implements SwipeRefreshLayo
     }
     //按钮点击事件结束
     public void whichMode(){
-        switch (mDao.alterMode(nickname)){
-            case "day":
-                break;
-            case "night":
-                layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
-                topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
-                infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
-                addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
-                homepage.setTextColor(getResources().getColor(R.color.night_danxiaqu));
-                searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
-                bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
-                modechange.setChecked(true);
-                break;
+        if(mDao.alterMode(nickname).equals("night")) {
+            layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
+            topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+            infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
+            addBtn.setBackground(getResources().getDrawable(R.drawable.addst1));
+            homepage.setTextColor(getResources().getColor(R.color.night_toolbar));
+            searchBtn.setTextColor(getResources().getColor(R.color.night_danxiaqu));
+            bottombar.setBackgroundColor(getResources().getColor(R.color.night_buttombar));
+            modechange.setChecked(true);
         }
     }
     public String getDateToString(long time) {

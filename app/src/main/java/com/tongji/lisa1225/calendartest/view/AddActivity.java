@@ -29,7 +29,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     String nickname;
     Intent get_intent;
     private TripInfoDao mDao;
-
+    //控件
     EditText destination;
     EditText money;
     EditText info;
@@ -37,13 +37,11 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private CheckBox isremind,isremind2;
     private RelativeLayout addTripLayout,addReminderLayout;
     private Button tripBtn,reminderBtn;
-    //private RelativeLayout selectDate, selectTime,selectDate2, selectTime2;
-    private TextView currentDate, currentTime,currentDate2, currentTime2;
+    private TextView currentTime,currentTime2;
 
-    private TimePickerDialog mDialogAll,mDialogAll2,mDialogYearMonthDay;
+    private TimePickerDialog mDialogAll,mDialogAll2;
 
     long tenYears = 10L * 365 * 1000 * 60 * 60 * 24L;
-
     //测试日期有效性
     long starttime,backtime;
 
@@ -55,7 +53,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_add);
         get_intent = getIntent();
         nickname=get_intent.getStringExtra("nickname");
-
+        //初始化
         mDao=new TripInfoDao(AddActivity.this);
 
         destination=(EditText)findViewById(R.id.destination);
@@ -72,9 +70,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         addReminderLayout=(RelativeLayout)findViewById(R.id.addReminderLayout);
         tripBtn=(Button)findViewById(R.id.tripButton);
         reminderBtn=(Button)findViewById(R.id.reminderButton);
-
     }
-
+    //日期控件
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -144,7 +141,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
         String text = getDateToString(millseconds);
-
         starttime=millseconds;
         if(!dateWarning(1))
         {
