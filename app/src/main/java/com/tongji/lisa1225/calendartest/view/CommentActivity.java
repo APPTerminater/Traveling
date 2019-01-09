@@ -1,6 +1,7 @@
 package com.tongji.lisa1225.calendartest.view;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -32,13 +33,53 @@ public class CommentActivity extends AppCompatActivity {
     String nickname;
     Intent get_intent;
     int position;
+//eee
+
+    private static final int THUMB_SIZE = 150;
+
+    private static final String SDCARD_ROOT = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+    private static final String APP_ID = "wx61684d30a8561d7c";
+    private static final String tag = "CommentActivity";
+    IWXAPI api = null;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_comment);
+        api = WXAPIFactory.createWXAPI(this, wx61684d30a8561d7c, true);
+        api.registerApp(wx61684d30a8561d7c);
+        sendImg();
+    }
+
+    private void sendImg() {
+        String imagePath = SDCARD_ROOT + "/test.png";
+        WXImageObject imgObj = new WXImageObject();
+        imgObj.setImagePath(imagePath);
+
+        WXMediaMessage msg = new WXMediaMessage();
+        msg.mediaObject = imgObj;
+        msg.description="my travel";
+
+        Bitmap bmp = BitmapFactory.decodeFile(imagePath);
+        Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, THUMB_SIZE, THUMB_SIZE, true);
+        bmp.recycle();
+        msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
+        msg.title="abc-title";
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = "img"+String.valueOf(System.currentTimeMillis());
+        req.message = msg;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+        api.sendReq(req);
+    }
+//eee
 
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_commment);
+        setContentView(R.layout.activity_comment);
         //初始化
         TextView destination=(TextView)findViewById(R.id.destination);
         TextView starttime=(TextView)findViewById(R.id.starttime);
@@ -71,6 +112,9 @@ public class CommentActivity extends AppCompatActivity {
                 share();
             }
         });
+
+        IWXAPI mWxApi = WXAPIFactory.createWXAPI(this, "wx61684d30a8561d7c", true);
+        mWxApi.registerApp("wx61684d30a8561d7c");
     }
     //几个按钮点击事件
     public void share() {
@@ -99,6 +143,7 @@ public class CommentActivity extends AppCompatActivity {
                 tot.show();
             }
         }
+
     }
 
    public void toTrip(View view) {

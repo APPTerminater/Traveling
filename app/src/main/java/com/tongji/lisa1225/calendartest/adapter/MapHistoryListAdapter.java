@@ -14,9 +14,7 @@ import com.tongji.lisa1225.calendartest.util.LogUtil;
 import java.util.List;
 
 
-/**
- * Created by FAN on 2017/5/11.
- */
+
 public class MapHistoryListAdapter extends BaseAdapter {
     private List<MapHistoryBean> data;
     private LayoutInflater layoutInflater;

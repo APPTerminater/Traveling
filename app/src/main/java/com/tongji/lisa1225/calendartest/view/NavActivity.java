@@ -38,9 +38,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by FAN on 2017/5/8.
- */
 
 public class NavActivity extends Activity implements AMapNaviViewListener, AMapNaviListener {
     TTSController mTtsManager;
@@ -342,9 +339,6 @@ public class NavActivity extends Activity implements AMapNaviViewListener, AMapN
     public void onPlayRing(int i) {
 
     }
-
-
-
 
   /*  @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(String msg) {

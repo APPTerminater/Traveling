@@ -9,9 +9,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 
 
-/**
- * Created by FAN on 2017/5/8.
- */
+
 
 
 public class AmapLocationTestUtil implements AMapLocationListener {

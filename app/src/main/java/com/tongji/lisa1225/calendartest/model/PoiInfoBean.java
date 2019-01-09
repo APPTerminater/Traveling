@@ -2,9 +2,6 @@ package com.tongji.lisa1225.calendartest.model;
 
 import com.amap.api.services.core.LatLonPoint;
 
-/**
- * Created by FAN on 2017/5/10.
- */
 
 public class PoiInfoBean {
 

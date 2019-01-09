@@ -1,8 +1,6 @@
 package com.tongji.lisa1225.calendartest.model;
 
-/**
- * Created by FAN on 2017/5/11.
- */
+
 
 public class PathPlanDataBean {
     private String Time;

@@ -13,9 +13,7 @@ import com.tongji.lisa1225.calendartest.util.MapUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
-/**
- * Created by FAN on 2017/5/8.
- */
+
 
 public class GeocodeSearchListenerUtil implements GeocodeSearch.OnGeocodeSearchListener {
     public static GeocodeSearch geocoderSearch;

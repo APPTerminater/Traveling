@@ -2,9 +2,6 @@ package com.tongji.lisa1225.calendartest.model;
 
 import com.amap.api.navi.model.NaviLatLng;
 
-/**
- * Created by FAN on 2017/5/11.
- */
 
 public class NaviLatLngBean {
     /**

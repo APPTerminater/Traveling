@@ -7,9 +7,7 @@ import com.amap.api.maps.AMap;
 import com.tongji.lisa1225.calendartest.util.LogUtil;
 import com.tongji.lisa1225.calendartest.util.MapUtil;
 
-/**
- * Created by FAN on 2017/5/8.
- */
+
 
 public class MyLocationChangeListenerUtil implements AMap.OnMyLocationChangeListener {
     public static MyLocationChangeListenerUtil myLocationChangeListenerUtil;

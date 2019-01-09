@@ -39,9 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by FAN on 2017/5/9.
- */
+
 
 public class PoiSearchPageFragment extends Fragment {
     private AutoCompleteTextView autoCompleteTextView;

@@ -21,9 +21,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-/**
- * Created by FAN on 2017/5/8.
- */
+
 
 public class PoiInformationFragment extends Fragment {
     private TextView poi_name;

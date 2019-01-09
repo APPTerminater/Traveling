@@ -9,9 +9,7 @@ import com.amap.api.services.core.LatLonPoint;
 
 import java.text.DecimalFormat;
 
-/**
- * Created by FAN on 2017/5/8.
- */
+
 
 public class MapUtil {
     public static final String Kilometer = "\u516c\u91cc";// "公里";

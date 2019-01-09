@@ -1,8 +1,5 @@
 package com.tongji.lisa1225.calendartest.util;
 
-/**
- * Created by Administrator on 2017/5/8.
- */
 
 public class LogUtil {
     private static final String TAG = "DEBUG_FAN";

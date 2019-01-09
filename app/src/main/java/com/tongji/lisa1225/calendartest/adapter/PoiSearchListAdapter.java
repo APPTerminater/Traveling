@@ -13,9 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 
-/**
- * Created by FAN on 2017/5/11.
- */
+
 public class PoiSearchListAdapter extends BaseAdapter {
     private List<Map<String, Object>> data;
     private LayoutInflater layoutInflater;

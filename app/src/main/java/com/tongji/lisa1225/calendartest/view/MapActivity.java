@@ -70,9 +70,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
-/**
- * Created by FAN on 2017/5/8.
- */
 
 public class MapActivity extends Activity implements AMap.OnPOIClickListener, RouteSearch.OnRouteSearchListener {
     //lsy add
