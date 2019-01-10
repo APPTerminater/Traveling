@@ -1,5 +1,19 @@
-package com.tongji.lisa1225.calendartest.wxapi;
+package com.tongji.lisa1225.calendartest.view;
 
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
+import com.tencent.mm.opensdk.modelbase.BaseReq;
+import com.tencent.mm.opensdk.modelbase.BaseResp;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.tencent.mm.opensdk.utils.Log;
+import com.tongji.lisa1225.calendartest.R;
 
 public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHandler {
     private IWXAPI wxapi;

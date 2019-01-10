@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
@@ -23,6 +25,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXImageObject;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.dao.TripInfoDao;
 import com.tongji.lisa1225.calendartest.model.TripInfo;
@@ -35,51 +42,19 @@ public class CommentActivity extends AppCompatActivity {
     int position;
 //eee
 
-    private static final int THUMB_SIZE = 150;
+    private static final int THUMB_SIZE = 120;
 
     private static final String SDCARD_ROOT = Environment.getExternalStorageDirectory().getAbsolutePath();
-
+    private  static final String sdCardPath = Environment.getExternalStorageDirectory().getPath();
     private static final String APP_ID = "wx61684d30a8561d7c";
     private static final String tag = "CommentActivity";
     IWXAPI api = null;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment);
-        api = WXAPIFactory.createWXAPI(this, wx61684d30a8561d7c, true);
-        api.registerApp(wx61684d30a8561d7c);
-        sendImg();
-    }
-
-    private void sendImg() {
-        String imagePath = SDCARD_ROOT + "/test.png";
-        WXImageObject imgObj = new WXImageObject();
-        imgObj.setImagePath(imagePath);
-
-        WXMediaMessage msg = new WXMediaMessage();
-        msg.mediaObject = imgObj;
-        msg.description="my travel";
-
-        Bitmap bmp = BitmapFactory.decodeFile(imagePath);
-        Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, THUMB_SIZE, THUMB_SIZE, true);
-        bmp.recycle();
-        msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
-        msg.title="abc-title";
-        SendMessageToWX.Req req = new SendMessageToWX.Req();
-        req.transaction = "img"+String.valueOf(System.currentTimeMillis());
-        req.message = msg;
-        req.scene = SendMessageToWX.Req.WXSceneTimeline;
-        api.sendReq(req);
-    }
-//eee
-
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment);
+        setContentView(R.layout.activity_commment);
+
         //初始化
         TextView destination=(TextView)findViewById(R.id.destination);
         TextView starttime=(TextView)findViewById(R.id.starttime);
@@ -113,9 +88,51 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
 
-        IWXAPI mWxApi = WXAPIFactory.createWXAPI(this, "wx61684d30a8561d7c", true);
-        mWxApi.registerApp("wx61684d30a8561d7c");
+       // IWXAPI mWxApi = WXAPIFactory.createWXAPI(this, "wx61684d30a8561d7c", true);
+        //mWxApi.registerApp("wx61684d30a8561d7c");
+        api = WXAPIFactory.createWXAPI(this, APP_ID, true);
+        api.registerApp(APP_ID);
+
     }
+
+    private void sendImg() {
+        String imagePath = sdCardPath + File.separator + "screenshot.png";
+        WXImageObject imgObj = new WXImageObject();
+        imgObj.setImagePath(imagePath);
+
+        WXMediaMessage msg = new WXMediaMessage();
+        msg.mediaObject = imgObj;
+        msg.description="my travel";
+
+        Bitmap bmp = BitmapFactory.decodeFile(imagePath);
+        Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, THUMB_SIZE, THUMB_SIZE, true);
+        bmp.recycle();
+        msg.thumbData = bmpToByteArray(thumbBmp, true);
+        msg.title="abc-title";
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = "img"+String.valueOf(System.currentTimeMillis());
+        req.message = msg;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+        api.sendReq(req);
+    }
+//eee
+
+    public static byte[] bmpToByteArray(final Bitmap bmp,
+                                        final boolean needRecycle) {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 80, output);
+        if (needRecycle) {
+            bmp.recycle();
+        }
+        byte[] result = output.toByteArray();
+        try {
+            output.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     //几个按钮点击事件
     public void share() {
         View dView = getWindow().getDecorView();
@@ -126,10 +143,9 @@ public class CommentActivity extends AppCompatActivity {
         {
             try {
                 // 获取内置SD卡路径
-                String sdCardPath = Environment.getExternalStorageDirectory().getPath();
+
                 // 图片文件路径
                 String filePath = sdCardPath + File.separator + "screenshot.png";
-
                 File file = new File(filePath);
                 FileOutputStream os = new FileOutputStream(file);
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, os);
@@ -143,7 +159,7 @@ public class CommentActivity extends AppCompatActivity {
                 tot.show();
             }
         }
-
+        sendImg();
     }
 
    public void toTrip(View view) {
