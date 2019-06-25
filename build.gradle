@@ -8,14 +8,16 @@ buildscript {
     }
     dependencies {
         //圣玥用下面这个
-        //classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.android.tools.build:gradle:3.2.0'
         //林博用下面这个
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        //classpath 'com.android.tools.build:gradle:3.2.1'
 
        // classpath 'com.jakewharton:butterknife-gradle-plugin:8.0.1'
         //classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'//添加这行
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        //**重要**
+        classpath 'com.bugtags.library:bugtags-gradle:latest.integration'
     }
 }
 

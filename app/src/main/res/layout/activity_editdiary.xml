@@ -169,7 +169,7 @@
             android:gravity="left"
             android:hint="输入内容"
             android:background="@drawable/boder_kuang"
-            android:minLines="8"
+            android:minLines="6"
             />
 
     </RelativeLayout>
@@ -179,7 +179,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:visibility="invisible"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="45dp">
         <View
             android:layout_marginTop="348dp"

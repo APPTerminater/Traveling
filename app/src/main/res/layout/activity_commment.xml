@@ -41,7 +41,16 @@
             android:textSize="20dp"
             android:fontFamily="@font/msyh"
             />
-
+        <Button
+            android:layout_marginTop="0dp"
+            android:id="@+id/share"
+            android:drawableLeft="@drawable/share1"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="110dp"
+            android:onClick="toTrip"
+            />
 
     </android.support.v7.widget.Toolbar>
 
@@ -202,25 +211,6 @@
             android:textColor="@color/black"
             android:textSize="18dp"
             android:top="210dp" />
-    </RelativeLayout>
-    <RelativeLayout>
-
-        <Button
-            android:id="@+id/share"
-            android:layout_width="217dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="23dp"
-            android:background="@drawable/border_write"
-            android:drawableLeft="@drawable/weixin"
-            android:gravity="center"
-            android:onClick="share"
-            android:text="一键分享到微信"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            android:top="527dp" />
-
-
     </RelativeLayout>
 
 

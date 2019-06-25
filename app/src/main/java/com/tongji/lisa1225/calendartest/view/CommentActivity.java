@@ -159,7 +159,7 @@ public class CommentActivity extends AppCompatActivity {
                 tot.show();
             }
         }
-        sendImg();
+        //sendImg();
     }
 
    public void toTrip(View view) {

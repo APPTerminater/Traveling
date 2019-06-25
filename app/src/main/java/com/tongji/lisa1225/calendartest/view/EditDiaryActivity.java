@@ -296,8 +296,8 @@ public class EditDiaryActivity extends AppCompatActivity {
         }
     }
     //加粗
-    public void bond(View view){ changeBond("yes");}
-    public void notbond(View view){ changeBond("no");}
+    public void bond(View view){ changeBond("no"); }
+    public void notbond(View view){ changeBond("yes");}
     public void changeBond(String bond){
         switch (bond){
             case "yes":

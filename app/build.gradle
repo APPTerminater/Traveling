@@ -1,8 +1,13 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.neenbedankt.android-apt' //添加这行
 android {
+    useLibrary 'org.apache.http.legacy'
     compileSdkVersion 27
     defaultConfig {
+        ndk {
+            // 设置支持的 SO 库构架，一般而言，取你所有的库支持的构架的`交集`。
+            abiFilters 'armeabi'// 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
         applicationId "com.tongji.lisa1225.calendartest"
         minSdkVersion 21
         targetSdkVersion 23
@@ -24,8 +29,25 @@ android {
             universalApk true
         }
     }*/
+    lintOptions{
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+    }
 }
+//应用 Bugtags 插件
+apply plugin: 'com.bugtags.library.plugin'
 
+//Bugtags 插件配置
+bugtags {
+    //自动上传符号表功能配置，如果需要根据 build varint 配置，请参考帮助中心->符号表->Android 符号表->配置自动上传符号表
+    appKey "3e5eb38b63145d44d772e71380a58c57"  //这里是你的 appKey
+    appSecret "APP_SECRET"    //这里是你的 appSecret，管理员在设置页可以查看
+    mappingUploadEnabled true
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -46,4 +68,8 @@ dependencies {
     implementation 'com.jzxiang.pickerview:TimePickerDialog:1.0.0'
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation 'junit:junit:4.13-beta-3'
+    implementation 'com.bugtags.library:bugtags-lib:latest.integration'
+    //线上使用，如果不需要使用手动提交 issue，可以选择 metrics 包
+    //compile 'com.bugtags.metrics:bugtags-lib:latest.integration'
 }
