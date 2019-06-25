@@ -29,8 +29,8 @@ import com.bugtags.library.Bugtags;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-//import com.prolificinteractive.materialcalendarview.*;
 
+//import com.prolificinteractive.materialcalendarview.*;
 import com.tongji.lisa1225.calendartest.R;
 import com.tongji.lisa1225.calendartest.config.Constant;
 import com.tongji.lisa1225.calendartest.controllor.RemindController;
@@ -62,9 +62,8 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
     SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
     Date todayZero;//今天零点
     long today0;
-    long selectday;
-    long selectmonth;
-    long selectyear;
+    long selectday,selectmonth
+            , selectyear;
     Toolbar topbar;
     //侧边栏部分
     private RelativeLayout layout;
@@ -82,13 +81,13 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
     RemindController remindController;
     //传来的数据
     String nickname;
-    Intent getIntent;
+    Intent get_intent;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     //计步相关开始：循环取当前时刻的步数中间的时间间隔
-    private long timeInterval = 5000;
+    private long TIME_INTERVAL = 5000;
 
     private Messenger messenger;
-    private Messenger getReplyMessenger = new Messenger(new Handler(this));
+    private Messenger mGetReplyMessenger = new Messenger(new Handler(this));
     private Handler delayHandler;
 
     //以bind形式开启service，故有ServiceConnection接收回调
@@ -98,17 +97,14 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
             try {
                 messenger = new Messenger(service);
                 Message msg = Message.obtain(null, Constant.MSG_FROM_CLIENT);
-                msg.replyTo = getReplyMessenger;
+                msg.replyTo = mGetReplyMessenger;
                 messenger.send(msg);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
         }
-
         @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
+        public void onServiceDisconnected(ComponentName name) {}
     };
 
     //接收从服务端回调的步数
@@ -117,21 +113,22 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         switch (msg.what) {
             case Constant.MSG_FROM_SERVER:
                 //更新步数
-                DiaryInfo diaryInfo = new DiaryInfo();
-                today0 = todayZero.getTime() - todayZero.getTime() % 1000;
+                DiaryInfo diaryInfo=new DiaryInfo();
+                today0= todayZero.getTime()- todayZero.getTime()%1000;
                 //today0=today0-172800000;
-                diaryInfo = diaryDao.alterData(nickname,today0);
+                diaryInfo= diaryDao.alterData(nickname,today0);
 
-                if (diaryInfo.title == null && diaryInfo.id == -1) {
-                    long addLong = diaryDao.insertStep(today0,nickname,msg.getData().getInt("step"));
-                    if (addLong == -1) {
+                if(diaryInfo.title==null&&diaryInfo.id==-1){
+                    long addLong= diaryDao.insertStep(today0,nickname,msg.getData().getInt("step"));
+                    if(addLong==-1){
                         Toast.makeText(this,"添加失败",Toast.LENGTH_SHORT).show();
-                    } else {
+                    }else{
                         //Toast.makeText(this,"数据添加在第  "+addLong+"   行",Toast.LENGTH_SHORT).show();
                     }
-                } else {
+                }
+                else {
                     int count;
-                    if (diaryInfo.step < msg.getData().getInt("step")) {
+                    if (diaryInfo.step<msg.getData().getInt("step")) {
                         count = diaryDao.updateStep(today0, nickname, msg.getData().getInt("step"));
                         if (count == -1) {
                             Toast.makeText(this, "更新失败", Toast.LENGTH_SHORT).show();
@@ -141,49 +138,45 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
                     }
                 }
 
-                delayHandler.sendEmptyMessageDelayed(Constant.REQUEST_SERVER, timeInterval);
+                delayHandler.sendEmptyMessageDelayed(Constant.REQUEST_SERVER, TIME_INTERVAL);
                 break;
             case Constant.REQUEST_SERVER:
                 try {
                     Message msgl = Message.obtain(null, Constant.MSG_FROM_CLIENT);
-                    msgl.replyTo = getReplyMessenger;
+                    msgl.replyTo = mGetReplyMessenger;
                     messenger.send(msgl);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
                 break;
-            default:
-                break;
-
         }
         return false;
     }
     //计步相关结束
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //初始化
-        userDao = new UserInfoDao(MainActivity.this);
-        tripDao = new TripInfoDao(MainActivity.this);
-        diaryDao = new DiaryInfoDao(MainActivity.this);
+        userDao =new UserInfoDao(MainActivity.this);
+        tripDao =new TripInfoDao(MainActivity.this);
+        diaryDao =new DiaryInfoDao(MainActivity.this);
 
-        layout = (RelativeLayout)findViewById(R.id.layout);
-        infoLayout = (LinearLayout)findViewById(R.id.userinfo);
-        nicknameTextview = (TextView)findViewById(R.id.nickname);
-        birthdayTextview = (TextView)findViewById(R.id.birthday);
-        walkTextview = (TextView)findViewById(R.id.walk_daily);
-        modechange = (CheckBox)findViewById(R.id.changemode);
-        addBtn = (Button)findViewById(R.id.addButton);
-        homepage = (Button)findViewById(R.id.shouye);
-        searchBtn = (Button)findViewById(R.id.searchButton);
+        layout=(RelativeLayout)findViewById(R.id.layout);
+        infoLayout=(LinearLayout)findViewById(R.id.userinfo);
+        nicknameTextview=(TextView)findViewById(R.id.nickname);
+        birthdayTextview=(TextView)findViewById(R.id.birthday);
+        walkTextview=(TextView)findViewById(R.id.walk_daily);
+        modechange=(CheckBox)findViewById(R.id.changemode);
+        addBtn=(Button)findViewById(R.id.addButton);
+        homepage=(Button)findViewById(R.id.shouye);
+        searchBtn=(Button)findViewById(R.id.searchButton);
 
-        topbar = (Toolbar)findViewById(R.id.activity_toolbar);
-        bottombar = (Toolbar)findViewById(R.id.bottom_tool_bar);
+        topbar=(Toolbar)findViewById(R.id.activity_toolbar);
+        bottombar=(Toolbar)findViewById(R.id.bottom_tool_bar);
 
-        getIntent = getIntent();
-        nickname = getIntent.getStringExtra("nickname");
+        get_intent = getIntent();
+        nickname=get_intent.getStringExtra("nickname");
         //获取今天零点的date
         TimeZone curTimeZone = TimeZone.getTimeZone("GMT+8");
         Calendar c = Calendar.getInstance(curTimeZone);
@@ -195,45 +188,44 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         todayZero = c.getTime();
 
         //查询数据库
-        List<TripInfo> tripInfoList = new ArrayList<>();
-        List<Date> startTimeList = new ArrayList<>();
-        List<Date> endTimeList = new ArrayList<>();
-        List<String> remindList = new ArrayList<>();
-        List<String> memoList = new ArrayList<>();
+        List<TripInfo> tripInfoList=new ArrayList<>();
+        List<Date> start_timeList=new ArrayList<>();
+        List<Date> end_timeList=new ArrayList<>();
+        List<String> remindList =new ArrayList<>();
+        List<String> memoList=new ArrayList<>();
 
-        tripInfoList = tripDao.alterData(nickname);
-        for (TripInfo tripInfo:tripInfoList) {
+        tripInfoList= tripDao.alterData(nickname);
+        for (TripInfo tripInfo:tripInfoList)
+        {
             Date startDate = new Date(tripInfo.start_time);
-            startTimeList.add(startDate);
             Date endDate = new Date(tripInfo.end_time);
-            endTimeList.add(endDate);
-            String remind = tripInfo.remind;
+            String remind=tripInfo.remind;
+            String memo=tripInfo.memo;
+            start_timeList.add(startDate);
+            end_timeList.add(endDate);
             remindList.add(remind);
-            String memo = tripInfo.memo;
             memoList.add(memo);
         }
         //提醒功能
-        remindController = new RemindController(startTimeList,remindList);
-        if (remindController.shouldRemind()) {
-            AlertDialog.Builder alertdialogbuilder = new AlertDialog.Builder(this);
-            if (!remindController.remindText(memoList).isEmpty()) {
+        remindController=new RemindController(start_timeList,remindList);
+        if(remindController.shouldRemind())
+        {
+            AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+            if(!remindController.remindText(memoList).isEmpty())
                 alertdialogbuilder.setMessage(remindController.remindText(memoList));
-            } else {
-                alertdialogbuilder.setMessage("您在一天内有出行计划哦！请做好准备！");
-            }
+            else alertdialogbuilder.setMessage("您在一天内有出行计划哦！请做好准备！");
             alertdialogbuilder.setPositiveButton("再次提醒",againclick);
             alertdialogbuilder.setNegativeButton("确定", okclick);
-            AlertDialog alertdialog = alertdialogbuilder.create();
+            AlertDialog alertdialog=alertdialogbuilder.create();
             alertdialog.show();
         }
 
-
+        //在日历上显示出行的日子
+        EventDecorator eventDecorator=new EventDecorator(start_timeList,end_timeList);
         //处理日历
         imcvTemMaterCalendarWeek = findViewById(R.id.liView);
         imcvTemMaterCalendarWeek.state().edit().setFirstDayOfWeek(Calendar.MONDAY).commit();
         imcvTemMaterCalendarWeek.setArrowColor(R.color.black);
-        //在日历上显示出行的日子
-        EventDecorator eventDecorator = new EventDecorator(startTimeList,endTimeList);
         imcvTemMaterCalendarWeek.addDecorator(eventDecorator);
         Calendar calendar = Calendar.getInstance();
         imcvTemMaterCalendarWeek.setSelectedDate(calendar.getTime());//当日选中
@@ -242,24 +234,19 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         //设置日期选中时的点击事件。
         imcvTemMaterCalendarWeek.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget,
-                                       @NonNull CalendarDay date, boolean selected) {
-                //在这个方法中处理选中事件。
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) { //在这个方法中处理选中事件。
+                long selectTime=date.getDate().getTime();
                 selectday = date.getDay();
                 selectmonth = date.getMonth() + 1;
                 selectyear = date.getYear();
                 Intent dateintent = new Intent(MainActivity.this, DateActivity.class);
-                Bundle b = new Bundle();
+                Bundle b=new Bundle();
                 b.putString("name","SWWWWW");
-                long selectTime = date.getDate().getTime();
                 b.putLong("selectTime",selectTime);
                 dateintent.putExtras(b);
 
                 dateintent.putExtra("nickname",nickname);
-                dateintent.putExtra("selectdate",
-                        String.valueOf(selectyear) + "年"
-                                + String.valueOf(selectmonth) + "月"
-                                + String.valueOf(selectday) + "日");
+                dateintent.putExtra("selectdate", String.valueOf(selectyear) + "年" + String.valueOf(selectmonth) + "月" + String.valueOf(selectday) + "日");
                 //启动
                 startActivity(dateintent);
             }
@@ -270,24 +257,25 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         delayHandler = new Handler(this);
         //计步相关结束
     }
-
     //提醒确定按钮
-    private DialogInterface.OnClickListener okclick = new DialogInterface.OnClickListener() {
+    private DialogInterface.OnClickListener okclick=new DialogInterface.OnClickListener()
+    {
         @Override
-        public void onClick(DialogInterface arg0,int arg1) {
+        public void onClick(DialogInterface arg0,int arg1)
+        {
             tripDao.updateRemind(nickname,remindController.getstart_dates());
             arg0.cancel();
         }
     };
-
     //再次提醒按钮
-    private DialogInterface.OnClickListener againclick = new DialogInterface.OnClickListener() {
+    private DialogInterface.OnClickListener againclick=new DialogInterface.OnClickListener()
+    {
         @Override
-        public void onClick(DialogInterface arg0,int arg1) {
+        public void onClick(DialogInterface arg0,int arg1)
+        {
             arg0.cancel();
         }
     };
-
     //几个按钮点击事件
     public void toAdd(View view) {
         Intent addIntent = new Intent(MainActivity.this, AddActivity.class);
@@ -316,27 +304,23 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         //启动
         startActivity(tripIntent);
     }
-
-    public void seemore(View view) {
+    public void seemore(View view){
         infoLayout.setVisibility(View.VISIBLE);
         nicknameTextview.setText(nickname);
         birthdayTextview.setText(userDao.alterBirthday(nickname));
-        walkTextview.setText(userDao.alterWalk(nickname) + "步");
+        walkTextview.setText(userDao.alterWalk(nickname)+"步");
     }
-
-    public void seeless(View view) {
+    public void seeless(View view){
         infoLayout.setVisibility(View.INVISIBLE);
     }
-
-    public void toEditInfo(View view) {
+    public void toEditInfo(View view){
         Intent editinfoIntent = new Intent(MainActivity.this, EditInfoActivity.class);
         editinfoIntent.putExtra("nickname",nickname);
         //启动
         startActivity(editinfoIntent);
     }
-
-    public void changeMode(View view) {
-        switch (userDao.alterMode(nickname)) {
+    public void changeMode(View view){
+        switch (userDao.alterMode(nickname)){
             case "day":
                 userDao.updateMode(nickname,"night");
                 whichMode();
@@ -352,15 +336,12 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
                 bottombar.setBackgroundColor(getResources().getColor(R.color.zi));
                 imcvTemMaterCalendarWeek.addDecorator(new DayModeDecorator());
                 break;
-            default:
-                break;
         }
 
     }
-
     //按钮点击事件结束
-    public void whichMode() {
-        if (userDao.alterMode(nickname).equals("night")) {
+    public void whichMode(){
+        if(userDao.alterMode(nickname).equals("night")) {
             layout.setBackground(getResources().getDrawable(R.drawable.bg_xk));
             topbar.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
             infoLayout.setBackgroundColor(getResources().getColor(R.color.night_toolbar));
@@ -372,17 +353,15 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
             modechange.setChecked(true);
         }
     }
-
     //计步相关开始
     @Override
     public void onStart() {
         super.onStart();
         setupService();
     }
-    /*
+    /**
      * 开启服务
      */
-
     private void setupService() {
         Intent intent = new Intent(this, StepService.class);
         bindService(intent, conn, Context.BIND_AUTO_CREATE);
@@ -401,7 +380,6 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         unbindService(conn);
         super.onDestroy();
     }
-
     //计步相关结束
     @Override
     protected void onResume() {
