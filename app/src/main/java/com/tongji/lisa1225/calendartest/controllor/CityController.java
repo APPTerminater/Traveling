@@ -22,7 +22,9 @@ public class CityController {
         Date[] endArray = new Date[endDates.size()];
         endDates.toArray(endArray);
         for (int i = 0;i < startArray.length;i++) {
-            if (currentTime > (startArray[i].getTime() - 1000 * 60 * 60 * 24L)
+            if (startArray[i].getTime() > endArray[i].getTime()) {
+                System.out.print("出发时间晚于返回时间");
+            } else if (currentTime > (startArray[i].getTime() - 1000 * 60 * 60 * 24L)
                     && currentTime <= endArray[i].getTime()) {
                 num = i;
                 return true;

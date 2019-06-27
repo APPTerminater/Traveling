@@ -17,9 +17,17 @@ public class RateController {
 
     public RateController(TripInfo tripInfo,int dailyWalk,int recordDays) {
         this.tripInfo = tripInfo;
-        this.daliyWalk = dailyWalk;
+        if (dailyWalk >= 0) {
+            this.daliyWalk = dailyWalk;
+        } else {
+            System.out.print("输入数据错误");
+        }
         rate = 3;
-        this.recordDays = recordDays;
+        if (recordDays >= 0) {
+            this.recordDays = recordDays;
+        } else {
+            System.out.print("输入数据错误");
+        }
         averageBudget = tripInfo.budget / tripInfo.total_day;
     }
 
