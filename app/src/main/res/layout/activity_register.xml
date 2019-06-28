@@ -62,7 +62,7 @@
             android:layout_marginTop="105dp"
             android:background="@drawable/boder_kuang"
             android:hint="昵称（不可修改）"
-
+            android:maxLength="20"
             android:textSize="16dp"
             android:alpha="0.8"
             />
@@ -78,6 +78,7 @@
             android:layout_marginTop="165dp"
             android:background="@drawable/boder_kuang"
             android:hint="出生日期"
+            android:maxLength="20"
             android:textSize="16dp"
             android:alpha="0.8"
             />
@@ -92,6 +93,7 @@
             android:layout_marginLeft="80dp"
             android:layout_marginTop="225dp"
             android:background="@drawable/boder_kuang"
+            android:maxLength="5"
             android:hint="日均步数"
             android:textSize="16dp"
             android:gravity="center"
@@ -108,6 +110,7 @@
             android:layout_marginLeft="80dp"
             android:layout_marginTop="285dp"
             android:background="@drawable/boder_kuang"
+            android:maxLength="20"
             android:hint="密码"
             android:textSize="16dp"
             android:inputType="textPassword"
@@ -123,6 +126,7 @@
             android:radius="20dp"
             android:hint="确认密码"
             android:textSize="16dp"
+            android:maxLength="20"
             android:inputType="textPassword"
             android:gravity="center"
             android:layout_marginLeft="80dp"

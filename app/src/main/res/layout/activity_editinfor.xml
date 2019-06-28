@@ -131,6 +131,8 @@
             android:hint="单行输入"
             android:gravity="left"
             android:textSize="16dp"
+            android:maxLength="5"
+            android:inputType="number"
             android:textColor="@color/black"
             />
     </TableRow>
@@ -169,6 +171,7 @@
             android:layout_marginTop="50dp"
             android:background="@drawable/boder_kuang"
             android:hint="单行输入"
+            android:maxLength="20"
             android:gravity="left"
             android:textSize="16dp"
             android:textColor="@color/black"
@@ -216,6 +219,7 @@
             android:layout_marginLeft="170dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/boder_kuang"
+            android:maxLength="20"
             android:hint="设置密码"
             android:gravity="left"
             android:textSize="16dp"
@@ -256,6 +260,7 @@
             android:layout_marginLeft="170dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/boder_kuang"
+            android:maxLength="20"
             android:hint="再次输入"
             android:gravity="left"
             android:textSize="16dp"

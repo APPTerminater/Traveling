@@ -111,6 +111,7 @@
             android:hint="城市"
             android:left="100dp"
             android:textSize="16dp"
+            android:maxLength="20"
             android:top="135dp" />
 
         <TextView
@@ -212,6 +213,7 @@
             android:inputType="numberDecimal"
             android:left="100dp"
             android:textSize="16dp"
+            android:maxLength="10"
             android:top="155dp" />
 
         <View
@@ -236,6 +238,7 @@
             android:left="20dp"
             android:textColor="@color/Black"
             android:textSize="16dp"
+            android:maxLength="50"
             android:top="210dp" />
 
         <CheckBox
@@ -270,6 +273,7 @@
             android:hint="添加必要的物品"
             android:textColor="@color/black"
             android:textSize="16dp"
+            android:maxLength="100"
             android:top="210dp" />
         <CheckBox
             android:id="@+id/isremind2"

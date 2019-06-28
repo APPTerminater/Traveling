@@ -105,7 +105,7 @@ public class TripActivity extends AppCompatActivity implements SwipeRefreshLayou
         tripInfoList.toArray(tripInfoArray);
         DiaryInfo[] diaryInfoArray=new DiaryInfo[diaryInfoList.size()];
         diaryInfoList.toArray(diaryInfoArray);
-        for(int i=0;i<tripInfoArray.length;i++)
+        for (int i=0;i<tripInfoArray.length;i++)
         {
             tripInfoArray[i].total_cost=0;
             tripInfoArray[i].total_walk=0;

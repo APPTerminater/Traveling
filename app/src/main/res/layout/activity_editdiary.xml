@@ -70,6 +70,7 @@
             android:layout_marginTop="70dp"
             android:background="@drawable/boder_kuang"
             android:fontFamily="@font/msyhbd"
+            android:maxLength="20"
             android:hint="@string/rijiname" />
 
         <TextView
@@ -121,6 +122,7 @@
             android:background="@drawable/boder_kuang"
             android:textSize="14dp"
             android:hint="0元"
+            android:maxLength="10"
             android:fontFamily="@font/msyh"
             android:inputType="number"
             />
@@ -146,6 +148,7 @@
             android:layout_marginTop="160dp"
             android:textSize="14dp"
             android:hint="100℃"
+            android:maxLength="2"
             android:fontFamily="@font/msyh"
             android:inputType="number"
             />
@@ -168,6 +171,7 @@
             android:textSize="16dp"
             android:gravity="left"
             android:hint="输入内容"
+            android:maxLength="500"
             android:background="@drawable/boder_kuang"
             android:minLines="6"
             />

@@ -163,15 +163,19 @@ public class EditDiaryActivity extends AppCompatActivity {
         diaryInfo.isbold = isBold;
         diaryInfo.title = title.getText().toString().trim();
         diaryInfo.text = content.getText().toString().trim();
-        diaryInfo.temperature = Integer.parseInt(temperature.getText().toString());
-        diaryInfo.cost = Integer.parseInt(money.getText().toString());
+        if (!TextUtils.isEmpty(temperature.getText().toString().trim())) {
+            diaryInfo.temperature = Integer.parseInt(temperature.getText().toString());
+        }
+        if (!TextUtils.isEmpty(money.getText().toString().trim())) {
+            diaryInfo.cost = Integer.parseInt(money.getText().toString());
+        }
         diaryInfo.destination = cityname;
         diaryInfo.background = background;
         //添加
         if (dao.alterData(nickname,selectTime).id == -1) {
-            if (TextUtils.isEmpty(diaryInfo.title) || TextUtils.isEmpty(money.getText().toString().trim())
+            if (TextUtils.isEmpty(title.getText().toString().trim()) || TextUtils.isEmpty(money.getText().toString().trim())
                     || TextUtils.isEmpty(temperature.getText().toString().trim())
-                    || TextUtils.isEmpty(diaryInfo.text)) {
+                    || TextUtils.isEmpty(content.getText().toString().trim())) {
                 Toast.makeText(this, "填写不完整", Toast.LENGTH_SHORT).show();
                 return;
             } else {
